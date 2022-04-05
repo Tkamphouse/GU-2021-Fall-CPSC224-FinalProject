@@ -9,7 +9,6 @@ public class GameWindow extends JPanel{
 
     JLabel currentPlayerName;
     JLabel turnLabel;
-    JButton rollHand;
     JLabel scoringInstructions;
     ArrayList<JRadioButton> scoringButtons;
     JButton toEndScreen;
@@ -20,7 +19,6 @@ public class GameWindow extends JPanel{
 
     public GameWindow(){
         this.setLayout(null);
-        rollHand = new JButton("Roll");
         scoringInstructions = new JLabel("Select line to record score");
         toEndScreen = new JButton("Finish Game");
         exitGame = new JButton("Exit Game");
