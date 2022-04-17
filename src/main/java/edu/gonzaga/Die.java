@@ -5,53 +5,94 @@ package edu.gonzaga;
 * Class for a Die used in Yahtzee.
 */
 
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.util.Random;
 
 /** Class to store the state of a single die. */
 public class Die implements Comparable<Die> {
-    private Integer sideUp; // Current die 'value' in range 1..numSides
-    private Integer numSides; // Sides on the die (should be 1...INF integer)
+
+    private static Integer sideUp; // Current die 'value' in range 1..numSides
+    private static Integer numSides; // Sides on the die (should be 1...INF integer)
+    private static Boolean locked;
     private static final Integer DEFAULT_NUM_SIDES = 6;
     private static final Integer DEFAULT_SIDE_UP = 1;
+    int value = 0;
+    private DieView2 viewDie;
+
+    public void setSideUp(int chosenSide) { sideUp = chosenSide; }
+    public static int getSideUp(){
+        return sideUp;
+    }
+    public static int getNumSides() { return numSides; }
+    public static boolean getLockedStatus() { return locked; }
 
     public Die() {
         this.numSides = DEFAULT_NUM_SIDES;
         this.sideUp = DEFAULT_SIDE_UP;
+        this.locked = true;
+        viewDie = new DieView2();
+        viewDie.configureView();
+        Die[] die = new Die[6];
     }
 
     public Die(Integer numSides) {
         this.numSides = numSides;
         this.sideUp = DEFAULT_SIDE_UP;
+        this.locked = true;
+        viewDie = new DieView2();
+        viewDie.configureView();
+        Die[] die = new Die[6];
     }
 
     public Die(Integer numSides, Integer startingSide) {
         this.numSides = numSides;
         this.sideUp = startingSide;
+        this.locked = true;
+        viewDie = new DieView2();
+        viewDie.configureView();
+        Die[] die = new Die[6];
     }
 
     /** Rolls the die once, getting new random value. */
     public void roll() {
         Random rand = new Random();
         this.sideUp = rand.nextInt(this.numSides) + 1;
+
+        for(int i = 0; i < 6; i++) {
+            if(!viewDie.buttons[i].isSelected()) {
+                unlock();
+                this.sideUp = rand.nextInt(this.numSides) + 1;
+                viewDie.updateDieAppearance(getSideUp());
+            }
+        }
+        /************
+        needs to call a lock state ie lock(i) for when all three rolls are complete, i think this will be in hand?
+        ************/
     }
 
-    /**
-    * Returns current die value (the side that's up).
-    *
-    * @return Integer Current Die's Side Up
-    */
-    public Integer getSideUp() {
-        return this.sideUp;
+    public void lock(int i) {
+        locked = true;
+        updateLockedState(i);
     }
 
-    /**
-    * Returns quantity of sides on the die.
-    *
-    * @return Integer number of sides on the die
-    */
-    public Integer getNumSides() {
-        return this.numSides;
+    public void unlock() {
+        locked = false;
     }
+
+    public void updateLockedState(int i) {
+        if(locked) {
+            viewDie.buttons[i].setVisible(false);
+        } else {
+            viewDie.buttons[i].setVisible(true);
+        }
+    }
+
+    public void setValue(int dieFace) {
+        viewDie.updateDieAppearance(1);
+    }
+
 
     /**
     * Provides the ability to convert the Die object into a string. representation, both with
