@@ -5,9 +5,6 @@ package edu.gonzaga;
 * Class for a Die used in Yahtzee.
 */
 
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
 import java.util.Random;
 
 /** Class to store the state of a single die. */
@@ -18,7 +15,6 @@ public class Die implements Comparable<Die> {
     private static Boolean locked;
     private static final Integer DEFAULT_NUM_SIDES = 6;
     private static final Integer DEFAULT_SIDE_UP = 1;
-    int value = 0;
     private DieView2 viewDie;
 
     public void setSideUp(int chosenSide) { sideUp = chosenSide; }
@@ -61,7 +57,7 @@ public class Die implements Comparable<Die> {
         this.sideUp = rand.nextInt(this.numSides) + 1;
 
         for(int i = 0; i < 6; i++) {
-            if(!viewDie.buttons[i].isSelected()) {
+            if(!viewDie.button.isSelected()) {
                 unlock();
                 this.sideUp = rand.nextInt(this.numSides) + 1;
                 viewDie.updateDieAppearance(getSideUp());
@@ -83,9 +79,9 @@ public class Die implements Comparable<Die> {
 
     public void updateLockedState(int i) {
         if(locked) {
-            viewDie.buttons[i].setVisible(false);
+            viewDie.button.setVisible(false);
         } else {
-            viewDie.buttons[i].setVisible(true);
+            viewDie.button.setVisible(true);
         }
     }
 
