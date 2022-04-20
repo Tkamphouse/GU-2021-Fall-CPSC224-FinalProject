@@ -403,7 +403,7 @@ public class ScoreCard{
             if(dieValues[i] + 1 == dieValues[i + 1]){ //is current die less than next die
                 currentLength++;
             } 
-            else if(dieValues[i] + 1 < dieValues[i + 1]){//is current die less than next die
+            else if(dieValues[i] + 1 < dieValues[i + 1]){//is current die less than next die  
                 currentLength = 1;
             }
             if(currentLength > lengthOfStraight){ //is current length of straight count higher than stored length of straight
