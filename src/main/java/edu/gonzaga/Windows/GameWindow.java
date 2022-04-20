@@ -3,6 +3,7 @@ package edu.gonzaga.Windows;
 import javax.swing.*;
 import java.awt.event.*;
 import edu.gonzaga.*;
+import edu.gonzaga.ScoreCard.*;
 import java.util.ArrayList;
 
 public class GameWindow extends JPanel{

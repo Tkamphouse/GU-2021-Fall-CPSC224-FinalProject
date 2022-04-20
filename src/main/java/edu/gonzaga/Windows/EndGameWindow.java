@@ -3,8 +3,8 @@ package edu.gonzaga.Windows;
 import java.util.ArrayList;
 
 import javax.swing.*;
-
 import edu.gonzaga.*;
+import edu.gonzaga.ScoreCard.*;
 import java.awt.event.*;
 
 public class EndGameWindow extends JPanel{
