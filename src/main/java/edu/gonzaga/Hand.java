@@ -1,6 +1,10 @@
 
 package edu.gonzaga;
 
+import edu.gonzaga.GameComponents.GameButton;
+import edu.gonzaga.GameComponents.GameLabel;
+import edu.gonzaga.GameComponents.GameRadioButton;
+
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +18,6 @@ public class Hand
 {
     private static final int NUM_DICE = 5;
 
-    /*
     private static final Color backgroundColor = new Color(228, 216, 200);
     private static final int DEFAULT_COMPONENT_LENGTH = 30;
     private static final int ROLL_LABEL_X_COORDINATE = 0;
@@ -25,83 +28,81 @@ public class Hand
     private static final int EXPLANATION_ROLLING_WIDTH = 160;
     private static final int ROLL_BUTTON_X_COORDINATE = 20;
     private static final int ROLL_BUTTON_WIDTH = 120;
-    */
 
-    //private JPanel toPresent;
-    //private GameLabel numRollsLabel;
-    //private GameLabel rollingExplanationLabel;
-    private Die[] hand;
-    //private JPanel[] dicePanels;
-    //private GameButton rollButton;
+    private Die[] dice;
     private int length = NUM_DICE;
     private int numDice = NUM_DICE;
+    private int rollCount;
+
+    //handViewProperties
+    private JPanel[] dicePanels;
+    private JPanel curPanel;
+    private GameLabel numRollsLabel;
+    private GameLabel rollTextLabel;
+    private GameButton rollButton;
 
 
     public Hand()
     {
-        hand = new Die[NUM_DICE];
+        rollCount = 0;
+        dice = new Die[NUM_DICE];
         for(int i = 0; i < NUM_DICE; i++){
-            hand[i] = new Die();
+            dice[i] = new Die();
         }
         // IMLEMENT WHEN VIEWS START BEING DONE
-        //configureView();
+        configureView();
     }
 
     public Die[] returnHand()
     {
-        return hand;
+        return dice;
     }
 
     public int ruturnValue(int index)
     {
         int value = 0;
         if (index < numDice && index >= 0)
-            value = hand[index].getSideUp();
+            value = dice[index].getSideUp();
         return value;
     }
 
     public int[] returnAllValues()
     {
         int[] values = new int[NUM_DICE];
-        for(int i = 0; i < NUM_DICE; i++){
-            values[i] = hand[i].getSideUp();
-        }
+        for(int i = 0; i < NUM_DICE; i++)
+            values[i] = dice[i].getSideUp();
         return values;
     }
 
     public void reset() 
     {
+        rollCount = 0;
         for (int i = 0; i < this.numDice; ++i)
-        {
-            hand[i].setValue(1);
-        }
+            dice[i].setValue(1);
     }
 
     public void RollNewHand() 
     {
-        for (int i = 0; i < this.numDice; ++i)
+        if (rollCount < 3)
         {
-            if (!hand[i].islocked())
-                hand[i].roll();
+            for (int i = 0; i < this.numDice; ++i)
+            {
+                dice[i].roll();
+                ++rollCount;
+            }
         }
-    }
-
-    public int sum()
-    {
-        int sum = 0;
-        for(int i = 0; i < numDice; i++) 
-            sum += hand[i].getSideUp();
-        return sum;
+        else
+            reset();
     }
 
     public Die[] getDice()
     {
-        return hand;
+        return dice;
     }
 
     public Die getDie(int index)
     {
-        return hand[index];
+        return dice[index];
     }
 
     public int getSize() 
@@ -113,108 +114,29 @@ public class Hand
     {
         String ret = "";
         ret += "Hand: ";
-        for (Die die : hand)
+        for (Die die : dice)
             ret += die.toString() + " | ";
         return ret;
     }
 
-    // SCORING STUFF
-    // Totals the number of die with the same number in hand
-    // Sums the amount of die that have the same number
-    // Returns an int of the largest number of dice with the same number rolled
-    public int maxOfAKindFound()
+    public int sum()
     {
-        int maxCount = 0;
-        int currentCount = 0;
-        for (int dieValue = 1; dieValue <= hand[0].numSides(); dieValue++)
-        {
-            currentCount = 0;
-            for (int diePosition = 0; diePosition < numDice; diePosition++)
-            {
-                if (hand[diePosition].getSideUp() == dieValue)
-                    currentCount++;
-            }
-            if (currentCount > maxCount)
-                maxCount = currentCount;
-            }
-        return maxCount;
+        int sum = 0;
+        for(int i = 0; i < numDice; i++) 
+            sum += dice[i].getSideUp();
+        return sum;
     }
 
-    // Totals the largest stright found in hand
-    // Sums the the largest stright (subsequent numbers) in the hand
-    // Returns an int of the largest straight
-    public int maxStraightFound()
-    {
-        int STRAIGHT_LENGTH = 4;
-        int maxLength = 1;
-        int curLength = 1;
-        for(int counter = 0; counter < STRAIGHT_LENGTH || counter + 1 > numDice; counter++)
-        {
-            if (hand[counter].getSideUp() + 1 == hand[counter + 1].getSideUp()) //jump of 1
-                curLength++;
-            else if (hand[counter].getSideUp() + 1 < hand[counter + 1].getSideUp()) //jump of >= 2
-                curLength = 1;
-            if (curLength > maxLength)
-                maxLength = curLength;
-        }
-        return maxLength;
-    }
-
-    // Checks if a full house is in the hand
-    // Sums the dice to check if there are 3 of one number and 2 of another
-    // Returns true if a full house is found, false otherwise
-    public boolean fullHouseFound()
-    {
-        boolean foundFH = false;
-        boolean found3K = false;
-        boolean found2K = false;
-        int currentCount;
-        for (int dieValue = 1; dieValue <= hand[0].numSides(); dieValue++)
-        {
-            currentCount = 0;
-            for (int diePosition = 0; diePosition < numDice - 1; diePosition++)
-            {
-                if (hand[diePosition].getSideUp() == dieValue)
-                    currentCount++;
-            }
-            if (currentCount == 2)
-                found2K = true;
-            if (currentCount == 3)
-                found3K = true;
-        }
-        if (found2K && found3K)
-            foundFH = true;
-        return foundFH;
-    }
-
-    // Finds the number of Die showing the same number
-    // Takes in a counter and a Die value to check how many die in hand are showing that value
-    // Returns an int that sums the amount of die with said value
-    public int numOfDieValue(int dieValue, int currentCount)
-    {
-        for (int diePosition = 0; diePosition < numDice; diePosition++)
-        {
-            if (hand[diePosition].getSideUp() == dieValue)
-                currentCount++;
-        }
-        return currentCount;
-    }
-
-
-    // APPEARENCE AND DISPLAY STUFF
-    /*
-
-    public JPanel getAppearance(){
-        return toPresent;
-    }
+    // ***** HandView stuff ***** //
 
     // Sets up the visual information for the hand
-    private void configureView(){
+    private void configureView()
+    {
         numRollsLabel = new GameLabel("", SwingConstants.CENTER);
         numRollsLabel.setTextSize(20);
-        rollingExplanationLabel = new GameLabel("Select Dice to Keep", SwingConstants.CENTER);
-        rollingExplanationLabel.setTextSize(20);
-        rollingExplanationLabel.setVisible(false);
+        rollTextLabel = new GameLabel("Select Dice to Keep", SwingConstants.CENTER);
+        rollTextLabel.setTextSize(20);
+        rollTextLabel.setVisible(false);
         dicePanels = new JPanel[numDice];
         rollButton = new GameButton("Roll", dice[0].getNumSides());
         setComponentLocations();
@@ -222,21 +144,24 @@ public class Hand
     }
 
     // sets the component locations
-    private void setComponentLocations(){
+    private void setComponentLocations()
+    {
         numRollsLabel.setBounds(ROLL_LABEL_X_COORDINATE, ROLL_LABEL_Y_COORDINATE, ROLL_LABEL_WIDTH, DEFAULT_COMPONENT_LENGTH);
-        rollingExplanationLabel.setBounds(EXPLANATION_ROLLING_X_COORDINATE, EXPLANATION_ROLLING_Y_COORDINATE, EXPLANATION_ROLLING_WIDTH, DEFAULT_COMPONENT_LENGTH);
-        rollButton.setBounds(ROLL_BUTTON_X_COORDINATE, totalLength - 30, ROLL_BUTTON_WIDTH, DEFAULT_COMPONENT_LENGTH);
+        rollTextLabel.setBounds(EXPLANATION_ROLLING_X_COORDINATE, EXPLANATION_ROLLING_Y_COORDINATE, EXPLANATION_ROLLING_WIDTH, DEFAULT_COMPONENT_LENGTH);
+        rollButton.setBounds(ROLL_BUTTON_X_COORDINATE, length - 30, ROLL_BUTTON_WIDTH, DEFAULT_COMPONENT_LENGTH);
         setDiceLocations(dice[0].getNumSides());
     }
 
     // sets the dice locations
-    public void setDiceLocations(int typeDice){
+    public void setDiceLocations(int typeDice)
+    {
         int rowNum = 0;
         for(int i = 0; i < numDice; i++){
-            dicePanels[i] = dice[i].getAppearance();
-            if(i % 2 == 0){
+            dicePanels[i] = dice[i].getView();
+            if (i % 2 == 0)
                 dicePanels[i].setLocation(20 + 0, 120 + (rowNum * 75));
-            } else{
+            else
+            {
                 dicePanels[i].setLocation(20 + 70, 120 + (rowNum * 75));
                 rowNum++;
             }
@@ -244,46 +169,44 @@ public class Hand
     }
 
     // adds visual components to the JPanel
-    public void configurePanel(){
-        toPresent = new JPanel();
-        toPresent.setLayout(null);
-        toPresent.setBackground(backgroundColor);
-        toPresent.setSize(160, totalLength);
-        toPresent.add(numRollsLabel);
-        toPresent.add(rollingExplanationLabel);
-        for(int i = 0; i < numDice; i++){
-            toPresent.add(dicePanels[i]);
-        }
-        toPresent.add(rollButton);
+    public void configurePanel()
+    {
+        curPanel = new JPanel();
+        curPanel.setLayout(null);
+        curPanel.setBackground(backgroundColor);
+        curPanel.setSize(160, length);
+        curPanel.add(numRollsLabel);
+        curPanel.add(rollTextLabel);
+        for(int i = 0; i < numDice; i++)
+            curPanel.add(dicePanels[i]);
+        curPanel.add(rollButton);
     }
 
-    // Updated roll label text to display number of rolls taken and number of rolls left
-    //
-    // @param rollsPerTurn int value representing the number of rolls per turm
-    // @param rollCount int value represent the number of rolls the player has made that turn
-    
-    public void setRollLabel(int rollsPerTurn, int rollCount){
-        if((rollsPerTurn - rollCount) == 1){
+    public void setRollLabel(int rollsPerTurn, int rollCount)
+    {
+        if ((rollsPerTurn - rollCount) == 1)
             numRollsLabel.setText("Roll " + Integer.toString(rollCount) + " (" + Integer.toString(rollsPerTurn - rollCount) + " Roll Left)");
-        }else{
+        else
             numRollsLabel.setText("Roll " + Integer.toString(rollCount) + " (" + Integer.toString(rollsPerTurn - rollCount) + " Rolls Left)");
-        }
     }
 
     // sets the explanation label to "Final Hand"
-    public void setExplanationLabelScoringMode(){
-        rollingExplanationLabel.setText("Final Hand");
+    public void setExplanationLabelScoringMode()
+    {
+        rollTextLabel.setText("Final Hand");
     }
 
     // resets the explanation label to "Select Dice to Keep"
-    public void resetExplanationLabelText(){
-        rollingExplanationLabel.setText("Select Dice to Keep");
-        rollingExplanationLabel.setVisible(true);
+    public void resetExplanationLabelText()
+    {
+        rollTextLabel.setText("Select Dice to Keep");
+        rollTextLabel.setVisible(true);
     }
 
     // hides the die radio buttons that allow the player to select die to keep
-    public void hideDiceButtons(){
-        for(int i = 0; i < dice.length; i++)
+    public void hideDiceButtons()
+    {
+        for(int i = 0; i < length; i++)
         {
             dice[i].getDieButton().setVisible(false);
             dice[i].getDieButton().setSelected(false);
@@ -291,19 +214,36 @@ public class Hand
     }
 
     // sets the die radio button to visible
-    public void revealDiceButtons(){
-        for(int i = 0; i < hand.length; i++)
-            hand[i].getDieButton().setVisible(true);
+    public void revealDiceButtons()
+    {
+        for(int i = 0; i < length; i++)
+            dice[i].getDieButton().setVisible(true);
     }
 
     // hides the Rolling Explanation label
-    public void hideRollingExplanation(){
-        rollingExplanationLabel.setVisible(false);
+    public void hideRollText()
+    {
+        rollTextLabel.setVisible(false);
     }
 
     // sets the Rolling Explanation label to visible
-    public void revealRollingExplanation(){
-        rollingExplanationLabel.setVisible(true);
+    public void showRollText()
+    {
+        rollTextLabel.setVisible(true);
     }
-    */
+
+    public JLabel getRollLabel()
+    {
+        return numRollsLabel;
+    }
+
+    public JButton getRollButton()
+    {
+        return rollButton;
+    }
+
+    public JPanel getAppearance()
+    {
+        return curPanel;
+    }
 }
