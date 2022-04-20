@@ -39,7 +39,7 @@ public class ScoreTable{
     private GameLabel[] threesRow = {new GameLabel(" Three 3's"), new GameLabel("Count and Add Only Threes"), new GameLabel("-", true)};
     private GameLabel[] foursRow = {new GameLabel(" Fours 4's"), new GameLabel("Count and Add Only Fours"), new GameLabel("-", true)};
     private GameLabel[] fivesRow = {new GameLabel(" Fives 5's"), new GameLabel("Count and Add Only Fives"), new GameLabel("-", true)};
-    private GameLabel[] sixesRow = {new GameLabel(" Sixes 6's"), new GameLabel("Count and Add Only Sixes"), new GameLabel("-", true)};
+    private GameLabel[] sixesRow = {new GameLabel(" Sixes 6's"), new GameLabel("Count and Add Only Sixes"), new GameLabel("-", true)}; 
     private GameLabel[] sevensRow = {new GameLabel(" Sevens 7's"), new GameLabel("Count and Add Only Sevens"), new GameLabel("-", true)};
     private GameLabel[] eightsRow = {new GameLabel(" Eights 8's"), new GameLabel("Count and Add Only Eights"), new GameLabel("-", true)};
     private GameLabel[] ninesRow = {new GameLabel(" Nine 9's"), new GameLabel("Count and Add Only Nines"), new GameLabel("-", true)};
