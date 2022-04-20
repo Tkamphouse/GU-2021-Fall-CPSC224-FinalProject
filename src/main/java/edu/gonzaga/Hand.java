@@ -208,8 +208,8 @@ public class Hand
     {
         for(int i = 0; i < length; i++)
         {
-            dice[i].getDieButton().setVisible(false);
-            dice[i].getDieButton().setSelected(false);
+            dice[i].setButtonVisibility(false);
+            //dice[i].getDieButton().setSelected(false);
         }
     }
 
@@ -217,7 +217,7 @@ public class Hand
     public void revealDiceButtons()
     {
         for(int i = 0; i < length; i++)
-            dice[i].getDieButton().setVisible(true);
+            dice[i].setButtonVisibility(true);
     }
 
     // hides the Rolling Explanation label
