@@ -39,8 +39,8 @@ public class OfAKindLine extends ScoreLine{
                 finalScore = 50;
             }
             else{ //add up dice values if 3/4 of a kind ///////////////////////////////////////////////////////////to fix!!!!!!!!!!!!!!!!!!!
-                //finalScore = playerHand.calcHandSum();
-                finalScore = 0; 
+                finalScore = playerHand.sum();
+                //finalScore = 0; 
             }
             super.setPossibleScore(1, finalScore);
         }
