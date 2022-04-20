@@ -39,7 +39,7 @@ public class NameWindow extends JPanel{
 
         for(int i = 0; i < numPlayers; i++){
             JLabel tempJLabel = new JLabel("Player " + (i + 1) + ": ");
-            JTextField tempTextField = new JTextField(20);
+            JTextField tempTextField = new JTextField(10);
             playerNumLabels.add(i, tempJLabel);
             playerNameCollectors.add(i, tempTextField);
         }

@@ -35,19 +35,22 @@ public class TitleWindow extends JPanel{
 
         yahtzeeTitle = new JLabel("Yahtzee");
         yahtzeeTitle.setFont(new Font("Serif", Font.PLAIN, 120));
+        yahtzeeTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         contentCenter.add(yahtzeeTitle);
     
         numPlayerDropBox.setFont(new Font("Serif", Font.PLAIN, 30));
-        numPlayerDropBox.setMaximumSize(new Dimension(300, 30));
+        numPlayerDropBox.setMaximumSize(new Dimension(150, 30));
         renderer = new DefaultListCellRenderer();
         renderer.setHorizontalAlignment(DefaultListCellRenderer.CENTER);
         numPlayerDropBox.setRenderer(renderer);
+        numPlayerDropBox.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         contentCenter.add(numPlayerDropBox);
 
-        boxLabel = new JLabel("Number of Players");
+        boxLabel = new JLabel("Players");
         boxLabel.setFont(new Font("Serif", Font.PLAIN, 30));
+        boxLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         contentCenter.add(boxLabel);
     }
