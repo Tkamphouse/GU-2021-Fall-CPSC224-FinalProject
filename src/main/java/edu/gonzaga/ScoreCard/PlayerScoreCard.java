@@ -29,7 +29,7 @@ public class PlayerScoreCard extends ScoreCard{
         manualSetScore(scoringRow, score);
         playerView.deleteScoringOption(scoringRow);
         for(int i = 0; i < 6; i++){
-            super.getTotalLines().get(i).calculateScore(new Hand(6, 6, 6));
+            super.getTotalLines().get(i).calculateScore(new Hand());
         }
     }
 

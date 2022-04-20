@@ -38,8 +38,9 @@ public class OfAKindLine extends ScoreLine{
             else if(howManyOfAKind == 5){ //score 50 if yahtzee
                 finalScore = 50;
             }
-            else{ //add up dice values if 3/4 of a kind
-                finalScore = playerHand.calcHandSum(); 
+            else{ //add up dice values if 3/4 of a kind ///////////////////////////////////////////////////////////to fix!!!!!!!!!!!!!!!!!!!
+                //finalScore = playerHand.calcHandSum();
+                finalScore = 0; 
             }
             super.setPossibleScore(1, finalScore);
         }
