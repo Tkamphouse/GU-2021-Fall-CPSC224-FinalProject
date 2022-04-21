@@ -85,13 +85,17 @@ public class Die implements Comparable<Die> {
         dieView.updateDieAppearance(dieFace);
     }
 
-    public void setButtonVisibility() {
-        dieView.button.setVisible(false);
-    }
+    public void setButtonInvisibility() { dieView.button.setVisible(false); }
+
+    public void setButtonVisibility() { dieView.button.setVisible(true); }
 
     public JPanel getView() {
         return dieView;
     }
+
+    public int getSideUp() {return sideUp; }
+
+
 
     /**
     * Provides the ability to convert the Die object into a string. representation, both with
