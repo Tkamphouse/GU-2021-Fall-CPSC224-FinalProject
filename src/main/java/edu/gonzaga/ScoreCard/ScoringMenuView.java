@@ -75,5 +75,9 @@ public class ScoringMenuView extends JPanel{
     public void deleteScoringOption(int indexToHide){
         buttons.get(indexToHide).setVisible(false);
     }
+
+    public ArrayList<JRadioButton> getButtons(){
+        return buttons;
+    }
     
 }

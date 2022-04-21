@@ -57,4 +57,8 @@ public class PlayerScoreCardView extends JPanel{
         scoringMenu.setVisible(true);
     }
     
+    public ScoringMenuView getScoringMenu(){
+        return scoringMenu;
+    }
+
 }

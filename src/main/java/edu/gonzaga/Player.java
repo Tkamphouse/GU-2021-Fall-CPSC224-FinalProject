@@ -1,6 +1,9 @@
 package edu.gonzaga;
 
 import java.util.ArrayList;
+
+import javax.swing.JButton;
+import java.awt.event.*;
 import edu.gonzaga.ScoreCard.PlayerScoreCard;
 import edu.gonzaga.ScoreCard.PlayerScoreCardView;
 
@@ -17,7 +20,15 @@ public class Player {
         hideScoringMenu();
     }
 
-    public Player(String name, boolean playing){
+    public Player(String name, JButton scoreButton){
+        this.name = name;
+        playerScoreCard = new PlayerScoreCard(name, 6);
+        setNotPlaying();
+        hideScoringMenu();
+        attachScoreButton(scoreButton);
+    }
+
+    public Player(String name, JButton scoreButton, boolean playing){
         this.name = name;
         playerScoreCard = new PlayerScoreCard(name, 6);
         if(playing){
@@ -26,6 +37,18 @@ public class Player {
             setNotPlaying();
         }
         hideScoringMenu();
+        attachScoreButton(scoreButton);
+    }
+
+    public void attachScoreButton(JButton scoreButton){
+        int numButtons = playerScoreCard.getPlayerScoreCardView().getScoringMenu().getButtons().size();
+        for(int i = 0; i < numButtons; i++){
+            playerScoreCard.getPlayerScoreCardView().getScoringMenu().getButtons().get(i).addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent event){
+                    scoreButton.setVisible(true);
+                }
+            });
+        }
     }
 
     public ArrayList<Integer> getScores(){
