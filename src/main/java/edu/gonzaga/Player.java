@@ -14,6 +14,7 @@ public class Player {
         this.name = name;
         playerScoreCard = new PlayerScoreCard(name, 6);
         setNotPlaying();
+        hideScoringMenu();
     }
 
     public Player(String name, boolean playing){
@@ -24,6 +25,7 @@ public class Player {
         }else{
             setNotPlaying();
         }
+        hideScoringMenu();
     }
 
     public ArrayList<Integer> getScores(){
@@ -76,5 +78,14 @@ public class Player {
     public void recordScore(){
         playerScoreCard.score();
     }
+
+    public void hideScoringMenu(){
+        playerScoreCard.hideScoringMenu();
+    }
+
+    public void revealScoringMenu(){
+        playerScoreCard.revealScoringMenu();
+    }
+
 
 }
