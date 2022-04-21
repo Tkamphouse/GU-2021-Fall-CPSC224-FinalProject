@@ -1,6 +1,6 @@
 # Final Full Yahtzee Game Team Project
 
-Final Team project for team: ???
+Final Team name for team: Blue Bulldogs
 
-Team members:
+Team members: Hailey Boe, Anna Cardinal, Tyler Kamphouse, Jonathan Smoley
 
