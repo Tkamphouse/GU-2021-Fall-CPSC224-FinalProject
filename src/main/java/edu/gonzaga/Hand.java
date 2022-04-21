@@ -79,10 +79,14 @@ public class Hand
         rollCount = 0;
         for (int i = 0; i < this.numDice; ++i)
             dice[i].setValue(1);
+        revealRollButton();
+        //hideDiceButtons();
     }
 
     public void RollNewHand() 
     {
+        if (rollCount == 1)
+            revealDiceButtons();
         if (rollCount < 3)
         {
             for (int i = 0; i < this.numDice; ++i)
@@ -91,8 +95,11 @@ public class Hand
                 ++rollCount;
             }
         }
-        else
-            reset();
+        else if (rollCount >= 3)
+        {
+            hideDiceButtons();
+            hideRollButton();
+        }
     }
 
     public Die[] getDice()
@@ -108,6 +115,14 @@ public class Hand
     public int getSize() 
     {
         return numDice;
+    }
+
+    public boolean isTurnOver()
+    {
+        if (rollCount >= 3)
+            return true;
+        else
+            return false;
     }
 
     public String toString() 
@@ -157,7 +172,7 @@ public class Hand
     {
         int rowNum = 0;
         for(int i = 0; i < numDice; i++){
-            dicePanels[i] = dice[i].getView();
+            dicePanels[i] = dice[i].getView(); //NEEDS TO BE CHECK FOR COMBATIBILITY WITH DIE()
             if (i % 2 == 0)
                 dicePanels[i].setLocation(20 + 0, 120 + (rowNum * 75));
             else
@@ -203,12 +218,24 @@ public class Hand
         rollTextLabel.setVisible(true);
     }
 
+    // hides the roll button
+    public void hideRollButton()
+    {
+        rollButton.setVisible(false);
+    }
+
+    // reveals roll button
+    public void revealRollButton()
+    {
+        rollButton.setVisible(true);
+    }
+
     // hides the die radio buttons that allow the player to select die to keep
     public void hideDiceButtons()
     {
         for(int i = 0; i < length; i++)
         {
-            dice[i].setButtonVisibility(false);
+            dice[i].setButtonVisibility(false);  //NEEDS TO BE CHECK FOR COMBATIBILITY WITH DIE()
             //dice[i].getDieButton().setSelected(false);
         }
     }
@@ -217,7 +244,7 @@ public class Hand
     public void revealDiceButtons()
     {
         for(int i = 0; i < length; i++)
-            dice[i].setButtonVisibility(true);
+            dice[i].setButtonVisibility(true);  //NEEDS TO BE CHECK FOR COMBATIBILITY WITH DIE()
     }
 
     // hides the Rolling Explanation label
