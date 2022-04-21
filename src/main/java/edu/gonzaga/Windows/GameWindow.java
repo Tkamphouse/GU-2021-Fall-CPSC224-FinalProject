@@ -43,3 +43,21 @@ public class GameWindow extends JPanel{
     }
     
 }
+
+/*
+ Roll Button Pressed: 
+ - show possible scores
+ - tell hand to roll
+ - check if final roll, if so, then tell player to make scoring menu visible
+
+ Line Button Pressed:
+ - tell scoreline to record possible score in actual score
+ - make finish turn button visible
+
+ Finish Turn Button Pressed: (part of GameWindow,pass to player when a possible score is pressed)
+ - record current player's scorecard
+ - switch to next player (if there is one and if scores still need to be filled) which 
+    could be the first player in the list (so set to players.get(0)), otherwise, switch to
+    end screen
+- reset the hand (roll count) to 0 and hide the scoring menu
+ */
