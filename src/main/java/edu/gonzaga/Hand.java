@@ -74,6 +74,11 @@ public class Hand
         return values;
     }
 
+    public int rollCount()
+    {
+        return rollCount;
+    }
+
     public void reset() 
     {
         rollCount = 0;
@@ -235,7 +240,7 @@ public class Hand
     {
         for(int i = 0; i < length; i++)
         {
-            dice[i].setButtonVisibility(false);  //NEEDS TO BE CHECK FOR COMBATIBILITY WITH DIE()
+            dice[i].setButtonInvisibility(); 
             //dice[i].getDieButton().setSelected(false);
         }
     }
@@ -244,7 +249,7 @@ public class Hand
     public void revealDiceButtons()
     {
         for(int i = 0; i < length; i++)
-            dice[i].setButtonVisibility(true);  //NEEDS TO BE CHECK FOR COMBATIBILITY WITH DIE()
+            dice[i].setButtonVisibility();  
     }
 
     // hides the Rolling Explanation label
