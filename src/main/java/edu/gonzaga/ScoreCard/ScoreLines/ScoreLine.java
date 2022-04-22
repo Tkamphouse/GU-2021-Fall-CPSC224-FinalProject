@@ -56,6 +56,10 @@ public abstract class ScoreLine {
         return possibleScores.get(scoreColumn);
     }
 
+    public int getScore(int scoreColumn){
+        return scores.get(scoreColumn - 1);
+    }
+
     public boolean checkUsed(){
         for(int i = 0; i < scores.size(); i++){
             if(scores.get(i) == -1){
