@@ -95,7 +95,7 @@ public class Die implements Comparable<Die> {
 
     public int getSideUp() {return sideUp; }
 
-
+    public int getNumSides() { return numSides; }
 
     /**
     * Provides the ability to convert the Die object into a string. representation, both with
