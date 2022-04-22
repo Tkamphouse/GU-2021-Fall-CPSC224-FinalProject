@@ -3,6 +3,8 @@ package edu.gonzaga;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
+
 import java.awt.event.*;
 import edu.gonzaga.ScoreCard.PlayerScoreCard;
 import edu.gonzaga.ScoreCard.PlayerScoreCardView;
@@ -42,10 +44,13 @@ public class Player {
 
     public void attachScoreButton(JButton scoreButton){
         int numButtons = playerScoreCard.getPlayerScoreCardView().getScoringMenu().getButtons().size();
+        JRadioButton tempButton;
         for(int i = 0; i < numButtons; i++){
-            playerScoreCard.getPlayerScoreCardView().getScoringMenu().getButtons().get(i).addActionListener(new ActionListener(){
+            tempButton = playerScoreCard.getPlayerScoreCardView().getScoringMenu().getButtons().get(i);
+            tempButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent event){
                     scoreButton.setVisible(true);
+                    //System.out.println("Score Button Pressed");
                 }
             });
         }
@@ -86,16 +91,20 @@ public class Player {
 
     public void setPlaying(){
         this.playing = true;
-        this.playerScoreCard.getView().setVisible(true);
+        this.playerScoreCard.getPlayerScoreCardView().setVisible(true);
     }
 
     public void setNotPlaying(){
         this.playing = false;
-        this.playerScoreCard.getView().setVisible(false);
+        this.playerScoreCard.getPlayerScoreCardView().setVisible(false);
     }
 
     public void showPossibleScores(Hand currentHand){
         playerScoreCard.displayPossibleScores(currentHand);
+    }
+
+    public void resetPossibleScores(){
+        playerScoreCard.resetPossibleScores();
     }
 
     public void recordScore(){
@@ -108,6 +117,10 @@ public class Player {
 
     public void revealScoringMenu(){
         playerScoreCard.revealScoringMenu();
+    }
+
+    public Boolean checkifPlaying(){
+        return playing;
     }
 
 

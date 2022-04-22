@@ -7,29 +7,36 @@ import edu.gonzaga.ScoreCard.*;
 import java.util.ArrayList;
 
 public class GameWindow extends JPanel{
-    JLabel currentPlayerName;
-    JLabel turnLabel;
-    JLabel scoringInstructions;
-    ArrayList<JRadioButton> scoringButtons;
-    JButton toEndScreen;
-    JButton exitGame;
-    Hand gameHand;
-    ScoreCard currentPlayerScoreCard;
-    ArrayList<Player> players;
 
-    public GameWindow(){
+    JLabel currentPlayerName = new JLabel();
+    JPanel currentPlayerScoreCardView = new JPanel();
+    JButton toEndScreen;
+    JButton endTurn;
+    Hand gameHand;
+    ArrayList<Player> players;
+    Player currentPlayer;
+
+    public GameWindow(ArrayList<JTextField> nameCollectors){
         this.setLayout(null);
-        scoringInstructions = new JLabel("Select line to record score");
+        this.setSize(800, 800);
+        gameHand = new Hand();
         toEndScreen = new JButton("Finish Game");
-        exitGame = new JButton("Exit Game");
+        endTurn = new JButton("End Turn");
+        initPlayers(nameCollectors);
+        players.get(0).setPlaying();
+        setRollButtonMechanics();
+        setEndTurnButton();
+        configureView();
     }
 
     public void initPlayers(ArrayList<JTextField> nameCollectors){
         players = new ArrayList<>();
         for (int i = 0; i < nameCollectors.size(); i++){
-            Player newPlayer = new Player(nameCollectors.get(i).getText());
+            Player newPlayer = new Player(nameCollectors.get(i).getText(), endTurn);
             players.add(newPlayer);
         }
+        currentPlayer = players.get(0);
+        currentPlayerName.setText(currentPlayer.getName() + "'s Turn");
     }
 
     //to be set after all screens created in Yahtzee
@@ -40,6 +47,122 @@ public class GameWindow extends JPanel{
                 setVisible(false);
             }
         });
+    }
+
+    /*public void updatePlayerLabel(Player currentPlayer){
+        currentPlayerName.setText(currentPlayer.getName() + "'s Turn");
+    }*/
+
+    public void getPlayerScoreCards(){
+        int scoreCardWidth = players.get(0).getView().getWidth();
+        int scoreCardHeight = players.get(0).getView().getHeight();
+        currentPlayerScoreCardView.setSize(scoreCardWidth, scoreCardHeight);
+        currentPlayerScoreCardView.setLayout(null);
+        for(int i = 0; i < players.size(); i++){
+            players.get(i).getView().setLocation(0, 0);
+            currentPlayerScoreCardView.add(players.get(i).getView());
+        }
+    }
+
+    public void incrementCurrentPlayer(){
+        //System.out.println(players.size());
+        if(players.size() > 1){
+            for(int i = 0; i < players.size(); i++){
+                if(players.get(i).checkifPlaying()){
+                    if(checkCurrentPlayerLastPlayer()){
+                        players.get(0).setPlaying();
+                        currentPlayer = players.get(0);
+                    }else{
+                        players.get(i + 1).setPlaying();
+                        currentPlayer = players.get(i + 1);
+                    }
+                    players.get(i).setNotPlaying();
+                    i = players.size() - 1;
+                }
+            }
+            currentPlayerName.setText(currentPlayer.getName() + "'s Turn");
+            currentPlayer.resetPossibleScores();
+        }
+    }
+
+    public void setRollButtonMechanics(){
+        gameHand.getRollButton().addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event){
+                gameHand.RollNewHand();
+                currentPlayer.showPossibleScores(gameHand);
+                if(gameHand.isTurnOver()){
+                    currentPlayer.revealScoringMenu();
+                }
+            }
+        });
+    }
+
+    public void setEndTurnButton(){
+        endTurn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event){
+                currentPlayer.recordScore();
+                currentPlayer.hideScoringMenu();
+                if(checkCurrentPlayerLastPlayer() && currentPlayer.checkScoreCardFull()){
+                    toEndScreen.setVisible(true);
+                }else{
+                    incrementCurrentPlayer();
+                    gameHand.reset();
+                }
+                endTurn.setVisible(false);
+            }
+        });
+    }
+
+    public void setToEndScreen(){
+        toEndScreen.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event){
+                EndGameWindow endGameWindow = new EndGameWindow();
+                //to do
+            }
+        });
+    }
+
+    public boolean checkCurrentPlayerLastPlayer(){
+        for(int i = 0; i < players.size(); i++){
+            if(players.get(i).checkifPlaying()){
+                if(i == players.size() - 1){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void setComponentSizes(){
+        currentPlayerName.setSize(150, 30);
+        toEndScreen.setSize(150, 30);
+        endTurn.setSize(150, 30);
+    }
+
+    public void setComponentLocations(){
+        currentPlayerName.setLocation(10, 10);
+        currentPlayerScoreCardView.setLocation(10, currentPlayerName.getHeight() + 20);
+        gameHand.getAppearance().setLocation(currentPlayerScoreCardView.getWidth() + 20, currentPlayerName.getHeight() + 20);
+        toEndScreen.setLocation(10, currentPlayerName.getHeight() + currentPlayerScoreCardView.getHeight() + 30);
+        endTurn.setLocation(170, currentPlayerName.getHeight() + currentPlayerScoreCardView.getHeight() + 30);
+    }
+
+    public void addComponents(){
+        this.add(currentPlayerName);
+        this.add(currentPlayerScoreCardView);
+        this.add(gameHand.getAppearance());
+        this.add(toEndScreen);
+        this.add(endTurn);
+    }
+
+    public void configureView(){
+        toEndScreen.setVisible(false);
+        endTurn.setVisible(false);
+        gameHand.hideDiceButtons();
+        getPlayerScoreCards();
+        setComponentSizes();
+        setComponentLocations();
+        addComponents();
     }
     
 }

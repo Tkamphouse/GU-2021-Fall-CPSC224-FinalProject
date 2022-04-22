@@ -19,6 +19,7 @@ public class DieView2 extends JPanel {
 
     JLabel icon;
     JRadioButton button;
+    //src\media\D6S1.png
     ImageIcon d6Side1 = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\D6S1.png");
     ImageIcon d6Side2 = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\D6S2.png");
     ImageIcon d6Side3 = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\D6S3.png");
@@ -31,24 +32,27 @@ public class DieView2 extends JPanel {
         this.setLayout(null);
         this.sideUp = sideUp;
         this.numSides = numSides;
-        icon = new JLabel(icons[6]);
+        icon = new JLabel(icons[sideUp - 1]);
         button = new JRadioButton();
+        configureView();
     }
 
     public void updateDieAppearance(int sideUp) {
-        this.sideUp = sideUp;
+        //this.sideUp = sideUp;
         icon.setIcon(icons[sideUp - 1]);
     }
 
     public void configureView(){
-        icon = new JLabel(sideUp - 1 + "");
+        //icon = new JLabel(sideUp - 1 + "");
         icon.setBounds(IMAGE_XCOORDINATE, IMAGE_YCOORDINATE, IMAGE_WIDTH, IMAGE_HEIGHT);
-        icon.setBounds(BUTTON_XCOORDINATE, BUTTON_YCOORDINATE, BUTTON_WIDTH, BUTTON_HEIGHT);
+        button.setBounds(BUTTON_XCOORDINATE, BUTTON_YCOORDINATE, BUTTON_WIDTH, BUTTON_HEIGHT);
         icon.setOpaque(false);
-        icon.setLayout(null);
-        icon.setSize(PANEL_WIDTH, PANEL_HEIGHT);
-        icon.setOpaque(false);
-        icon.add(icon);
+        //icon.setLayout(null);
+        this.setSize(PANEL_WIDTH, PANEL_HEIGHT);
+        this.setOpaque(false);
+        //icon.add(icon);
+        this.add(icon);
+        this.add(button);
     }
 
     public JRadioButton getRadioButton() {
