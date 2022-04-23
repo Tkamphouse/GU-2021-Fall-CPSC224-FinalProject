@@ -23,6 +23,12 @@ public class PlayerScoreCard extends ScoreCard{
         }
     }
 
+    public void resetPossibleScores(){
+        for(int i = 0; i < 13; i++){
+            super.getScoreLines().get(i).resetPossibleScore(1);
+        }
+    }
+
     public void score(){
         int scoringRow = playerView.getSelectedScoringIndex() + 1;
         int score = super.getScoreLines().get(scoringRow - 1).getPossibleScore(0);

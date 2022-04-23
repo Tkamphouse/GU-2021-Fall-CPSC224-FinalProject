@@ -104,8 +104,8 @@ public class NameWindow extends JPanel{
     public void setSwitchButton(JFrame main){
         toGameWindow.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
-                GameWindow gameWindow = new GameWindow();
-                gameWindow.initPlayers(playerNameCollectors);
+                GameWindow gameWindow = new GameWindow(playerNameCollectors);
+                //gameWindow.initPlayers(playerNameCollectors);
                 main.add(gameWindow);
                 gameWindow.setVisible(true);
                 setVisible(false);

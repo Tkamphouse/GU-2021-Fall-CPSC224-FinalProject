@@ -30,7 +30,7 @@ public class Hand
     private static final int ROLL_BUTTON_WIDTH = 120;
 
     private Die[] dice;
-    private int length = NUM_DICE;
+    private int length = 600;
     private int numDice = NUM_DICE;
     private int rollCount;
 
@@ -40,7 +40,6 @@ public class Hand
     private GameLabel numRollsLabel;
     private GameLabel rollTextLabel;
     private GameButton rollButton;
-
 
     public Hand()
     {
@@ -82,25 +81,30 @@ public class Hand
     public void reset() 
     {
         rollCount = 0;
-        for (int i = 0; i < this.numDice; ++i)
+        setRollLabel(3, rollCount);
+        for (int i = 0; i < this.numDice; ++i){
             dice[i].setValue(1);
+            dice[i].deselectButton();
+        }
         revealRollButton();
         //hideDiceButtons();
     }
 
     public void RollNewHand() 
     {
+        rollCount++;
+        setRollLabel(3, rollCount);
+        //if (rollCount < 3)
+        //{
+        for (int i = 0; i < this.numDice; ++i)
+        {
+            dice[i].roll();
+        }
+        //rollCount++;
+        //}
         if (rollCount == 1)
             revealDiceButtons();
-        if (rollCount < 3)
-        {
-            for (int i = 0; i < this.numDice; ++i)
-            {
-                dice[i].roll();
-                ++rollCount;
-            }
-        }
-        else if (rollCount >= 3)
+        if (rollCount >= 3)
         {
             hideDiceButtons();
             hideRollButton();
@@ -152,7 +156,8 @@ public class Hand
     // Sets up the visual information for the hand
     private void configureView()
     {
-        numRollsLabel = new GameLabel("", SwingConstants.CENTER);
+        numRollsLabel = new GameLabel("Not Assigned", SwingConstants.CENTER);
+        setRollLabel(3, rollCount);
         numRollsLabel.setTextSize(20);
         rollTextLabel = new GameLabel("Select Dice to Keep", SwingConstants.CENTER);
         rollTextLabel.setTextSize(20);
@@ -238,7 +243,7 @@ public class Hand
     // hides the die radio buttons that allow the player to select die to keep
     public void hideDiceButtons()
     {
-        for(int i = 0; i < length; i++)
+        for(int i = 0; i < numDice; i++)
         {
             dice[i].setButtonInvisibility(); 
             //dice[i].getDieButton().setSelected(false);
@@ -248,7 +253,7 @@ public class Hand
     // sets the die radio button to visible
     public void revealDiceButtons()
     {
-        for(int i = 0; i < length; i++)
+        for(int i = 0; i < numDice; i++)
             dice[i].setButtonVisibility();  
     }
 

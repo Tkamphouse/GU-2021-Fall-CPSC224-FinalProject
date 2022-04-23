@@ -47,6 +47,13 @@ public abstract class ScoreLine {
         view.updateScoreCell(newScore, scoreColumn, Color.GRAY);
     }
 
+    public void resetPossibleScore(int scoreColumn){
+        if(!checkUsed()){
+            possibleScores.set(scoreColumn - 1, -1);
+            view.updateScoreCell("-", scoreColumn);
+        }
+    }
+
     public void setScore(int scoreColumn, int newScore){
         scores.set(scoreColumn - 1, newScore);
         view.updateScoreCell(newScore, scoreColumn);

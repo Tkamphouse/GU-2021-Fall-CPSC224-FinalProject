@@ -121,4 +121,9 @@ public class ScoreLineView extends JPanel{
         scoreCells.get(scoreColumn - 1).setForeground(scoreColor);
     }
 
+    /*public void updateScoreCell(String newScoreText, int scoreColumn, Color scoreColor){
+        scoreCells.get(scoreColumn - 1).setText(newScoreText);
+        scoreCells.get(0).setForeground(Color.BLACK);
+    }*/
+
 }
