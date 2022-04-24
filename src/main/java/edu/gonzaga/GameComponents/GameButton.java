@@ -36,7 +36,8 @@ public class GameButton extends JButton{
     public GameButton(String text){
         super(text);
         this.setColorSettings();
-        this.setFont(new Font("Bookman Old Style", Font.PLAIN, 20));
+        this.setFont(new Font("Candara", Font.PLAIN, 20));
+        this.setVerticalAlignment(SwingConstants.CENTER);
         this.setFocusPainted(false);
         this.setContentAreaFilled(false);
         this.setOpaque(true);
@@ -47,6 +48,7 @@ public class GameButton extends JButton{
         super(text);
         this.setColorSettings();
         this.setFont(new Font("Bookman Old Style", Font.PLAIN, 20));
+        this.setVerticalAlignment(SwingConstants.CENTER);
         this.setFocusPainted(false);
         this.setContentAreaFilled(false);
         this.setOpaque(true);

@@ -20,8 +20,8 @@ import java.awt.*;
 public class GameLabel extends JLabel{
 
     //private static final Color darkBrown = new Color(27, 25, 21);
-    String fontName = "Bookman Old Style";
-    Font defaultTextFont = new Font("Bookman Old Style", Font.PLAIN, 15);
+    String fontName = "Candara";
+    Font defaultTextFont = new Font("Candara", Font.PLAIN, 15);
 
     public GameLabel(){
         super();
