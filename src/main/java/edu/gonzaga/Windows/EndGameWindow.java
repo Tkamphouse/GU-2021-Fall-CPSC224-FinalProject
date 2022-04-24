@@ -34,7 +34,7 @@ public class EndGameWindow extends JPanel{
         leaderBoard = new LeaderBoard(players);
         add(leaderBoard.getLeaderBoardView(), BorderLayout.CENTER);
 
-        // toTitleScreen = new JButton("Return to Title");
+        toTitleScreen = new JButton("Return to Title");
         // add(toTitleScreen, BorderLayout.SOUTH);
     }
 
