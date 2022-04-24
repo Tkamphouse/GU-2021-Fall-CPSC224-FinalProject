@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import edu.gonzaga.*;
 import edu.gonzaga.ScoreCard.*;
-// import java.awt.event.*;
+import java.awt.event.*;
 
 /**
  * Class to make a final window with results of the game.
@@ -43,13 +43,13 @@ public class EndGameWindow extends JPanel{
      * 
      * @param titleWindow reference to the title window
      */
-    // public void setSwitchButton(JPanel titleWindow){
-    //     toTitleScreen.addActionListener(new ActionListener(){
-    //         public void actionPerformed(ActionEvent event){
-    //             titleWindow.setVisible(true);
-    //             setVisible(false);
-    //         }
-    //     });
-    // }
+    public void setSwitchButton(JPanel titleWindow){
+        toTitleScreen.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event){
+                titleWindow.setVisible(true);
+                setVisible(false);
+            }
+        });
+    }
 
 }
