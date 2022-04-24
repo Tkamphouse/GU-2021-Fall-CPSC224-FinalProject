@@ -2,7 +2,7 @@ package edu.gonzaga;
 
 import javax.swing.*;
 
-public class DieView2 extends JPanel {
+public class DieView extends JPanel {
 
     private static final int IMAGE_XCOORDINATE = 0;
     private static final int IMAGE_YCOORDINATE = 0;
@@ -28,7 +28,7 @@ public class DieView2 extends JPanel {
     ImageIcon d6Side6 = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\D6S6.png");
     ImageIcon[] icons = {d6Side1, d6Side2, d6Side3, d6Side4, d6Side5, d6Side6};
 
-    public DieView2(int sideUp, int numSides){
+    public DieView(int sideUp, int numSides){
         this.setLayout(null);
         this.sideUp = sideUp;
         this.numSides = numSides;

@@ -18,13 +18,13 @@ public class Die implements Comparable<Die> {
     private Boolean locked;
     private static final Integer DEFAULT_NUM_SIDES = 6;
     private static final Integer DEFAULT_SIDE_UP = 1;
-    private DieView2 dieView;
+    private DieView dieView;
 
     public Die() {
         this.numSides = DEFAULT_NUM_SIDES;
         this.sideUp = DEFAULT_SIDE_UP;
         this.locked = false;
-        dieView = new DieView2(sideUp, numSides);
+        dieView = new DieView(sideUp, numSides);
         //dieView.configureView();
         dieView.getRadioButton().addActionListener(new ActionListener() {
             //@Override
@@ -38,7 +38,7 @@ public class Die implements Comparable<Die> {
         this.numSides = numSides;
         this.sideUp = DEFAULT_SIDE_UP;
         this.locked = false;
-        dieView = new DieView2(sideUp, numSides);
+        dieView = new DieView(sideUp, numSides);
         //dieView.configureView();
         dieView.getRadioButton().addActionListener(new ActionListener() {
             //@Override
@@ -52,7 +52,7 @@ public class Die implements Comparable<Die> {
         this.numSides = numSides;
         this.sideUp = startingSide;
         this.locked = true;
-        dieView = new DieView2(sideUp, numSides);
+        dieView = new DieView(sideUp, numSides);
         //dieView.configureView();
         dieView.getRadioButton().addActionListener(new ActionListener() {
             //@Override
