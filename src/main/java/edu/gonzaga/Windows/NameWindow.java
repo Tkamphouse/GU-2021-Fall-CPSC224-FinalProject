@@ -5,6 +5,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+/**
+ * Class defining the window to add names for the number of 
+ * players requested by the user.
+ * 
+ * @author Jonathan Smoley
+ * @version 2.0 4/24/2022
+ */
 public class NameWindow extends JPanel{
     JFrame window;
     JPanel contentNorth;
@@ -17,6 +24,13 @@ public class NameWindow extends JPanel{
     JButton toGameWindow;
     int numPlayers;
 
+    /**
+     * Default constructor for the NameWindow class.
+     * 
+     * @param main the frame object of the program
+     * @param numPlayers number of players requested by the user
+     * @see TitleWindow.java
+     */
     public NameWindow(JFrame main, Integer numPlayers){
         window = main;
         this.numPlayers = numPlayers;
@@ -33,6 +47,11 @@ public class NameWindow extends JPanel{
         add(contentSouth, BorderLayout.SOUTH);
     }
 
+    /**
+     * Creates a list of components to gather player names.
+     * 
+     * @see NameWindow constructor
+     */
     private void initPlayerLists(){
         playerNumLabels = new ArrayList<>();
         playerNameCollectors = new ArrayList<>();
@@ -45,6 +64,11 @@ public class NameWindow extends JPanel{
         }
     }
 
+    /**
+     * Creates and adds components to the north panel.
+     * 
+     * @see NameWindow constructor
+     */
     private void setNorthContent(){
         contentNorth = new JPanel();
         contentNorth.setPreferredSize(new Dimension(450, 100));
@@ -55,6 +79,13 @@ public class NameWindow extends JPanel{
         contentNorth.add(instructions);
     }
 
+    /**
+     * Creates and adds components to the panel going
+     * in the center of the window.
+     * 
+     * @param playerCount
+     * @see NameWindow constructor
+     */
     private void setCenterContent(Integer playerCount){
         contentCenter = new JPanel();
         contentCenter.setLayout(new GridBagLayout());
@@ -84,6 +115,11 @@ public class NameWindow extends JPanel{
         }
     }
 
+    /**
+     * Sets ups the content at the bottom of the window.
+     * 
+     * @see NameWindow constructor
+     */
     private void setSouthContent(){
         contentSouth = new JPanel();
         BoxLayout layout = new BoxLayout(contentSouth , BoxLayout.Y_AXIS);
@@ -100,12 +136,17 @@ public class NameWindow extends JPanel{
         contentSouth.add(constraintNotice, layout);
     }
 
-    //to be set after all screens created in Yahtzee
-    public void setSwitchButton(JFrame main){
+    /**
+     * Sets the behavior of the button pressed to start the game.
+     * 
+     * @param main the frame object of the program
+     * @param titleWindow intro panel reference passed to game window
+     * @see TitleWindow.java
+     */
+    public void setSwitchButton(JFrame main, TitleWindow titleWindow){
         toGameWindow.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
-                GameWindow gameWindow = new GameWindow(playerNameCollectors);
-                //gameWindow.initPlayers(playerNameCollectors);
+                GameWindow gameWindow = new GameWindow(main, titleWindow, playerNameCollectors);
                 main.add(gameWindow);
                 gameWindow.setVisible(true);
                 setVisible(false);

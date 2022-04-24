@@ -3,9 +3,16 @@ package edu.gonzaga.Windows;
 import javax.swing.*;
 import java.awt.event.*;
 import edu.gonzaga.*;
-import edu.gonzaga.ScoreCard.*;
 import java.util.ArrayList;
 
+/**
+ * Class to create and update the actual game mechanics
+ * while user(s) are playing the game.
+ * 
+ * @author Anna Cardinal
+ * @author Jonathan Smoley
+ * @version 2.0 4/24/2022
+ */
 public class GameWindow extends JPanel{
 
     JLabel currentPlayerName = new JLabel();
@@ -16,7 +23,14 @@ public class GameWindow extends JPanel{
     ArrayList<Player> players;
     Player currentPlayer;
 
-    public GameWindow(ArrayList<JTextField> nameCollectors){
+    /**
+     * Default constructor for the GameWindow class.
+     * 
+     * @param window the frame object of the program
+     * @param titleWindow reference to the intro window
+     * @param nameCollectors an arraylist of textfields holding player names
+     */
+    public GameWindow(JFrame window, TitleWindow titleWindow, ArrayList<JTextField> nameCollectors){
         this.setLayout(null);
         this.setSize(800, 800);
         gameHand = new Hand();
@@ -26,9 +40,16 @@ public class GameWindow extends JPanel{
         players.get(0).setPlaying();
         setRollButtonMechanics();
         setEndTurnButton();
+        setToEndScreen(window, titleWindow, players);
         configureView();
     }
 
+    /**
+     * Method to create player objects using the names collected.
+     * 
+     * @param nameCollectors an arraylist of textfields holding player names
+     * @see GameWindow constructor
+     */
     public void initPlayers(ArrayList<JTextField> nameCollectors){
         players = new ArrayList<>();
         for (int i = 0; i < nameCollectors.size(); i++){
@@ -39,20 +60,15 @@ public class GameWindow extends JPanel{
         currentPlayerName.setText(currentPlayer.getName() + "'s Turn");
     }
 
-    //to be set after all screens created in Yahtzee
-    public void setSwitchButton(JPanel endGame){
-        toEndScreen.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent event){
-                endGame.setVisible(true);
-                setVisible(false);
-            }
-        });
-    }
-
     /*public void updatePlayerLabel(Player currentPlayer){
         currentPlayerName.setText(currentPlayer.getName() + "'s Turn");
     }*/
 
+    /**
+     * Method to initialize the scorecard components
+     * 
+     * @see configureView method
+     */
     public void getPlayerScoreCards(){
         int scoreCardWidth = players.get(0).getView().getWidth();
         int scoreCardHeight = players.get(0).getView().getHeight();
@@ -64,8 +80,10 @@ public class GameWindow extends JPanel{
         }
     }
 
+    /**
+     * Method to "loop" through players and update playing status
+     */
     public void incrementCurrentPlayer(){
-        //System.out.println(players.size());
         if(players.size() > 1){
             for(int i = 0; i < players.size(); i++){
                 if(players.get(i).checkifPlaying()){
@@ -85,6 +103,12 @@ public class GameWindow extends JPanel{
         }
     }
 
+    /**
+     * Method to set the behavior of the roll button
+     * belonging to the hand
+     * 
+     * @see GameWindow constructor
+     */
     public void setRollButtonMechanics(){
         gameHand.getRollButton().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
@@ -97,6 +121,11 @@ public class GameWindow extends JPanel{
         });
     }
 
+    /**
+     * Method to set the behavior of the end turn button
+     * 
+     * @see GameWindow constructor
+     */
     public void setEndTurnButton(){
         endTurn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
@@ -113,15 +142,31 @@ public class GameWindow extends JPanel{
         });
     }
 
-    public void setToEndScreen(){
+    /**
+     * Method to set the screen switching behavior once scorecards are full.
+     * 
+     * @param main the frame object of the program
+     * @param titleWindow reference to the intro window
+     * @param players an arraylist of player objects
+     */
+    public void setToEndScreen(JFrame main, TitleWindow titleWindow, ArrayList<Player> players){
         toEndScreen.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
-                EndGameWindow endGameWindow = new EndGameWindow();
-                //to do
+                EndGameWindow endGameWindow = new EndGameWindow(players);
+                endGameWindow.setSwitchButton(titleWindow);
+                main.add(endGameWindow);
+                endGameWindow.setVisible(true);
+                setVisible(false);
             }
         });
     }
 
+    /**
+     * Method to check for the last player in the loop.
+     * 
+     * @return boolean true if last, false if not
+     * @see setEndTurnButton method, incrementCurrentPlayer method
+     */
     public boolean checkCurrentPlayerLastPlayer(){
         for(int i = 0; i < players.size(); i++){
             if(players.get(i).checkifPlaying()){
@@ -133,12 +178,22 @@ public class GameWindow extends JPanel{
         return false;
     }
 
+    /**
+     * Method to configure sizes of the components in this panel
+     * 
+     * @see configureView method
+     */
     public void setComponentSizes(){
         currentPlayerName.setSize(150, 30);
         toEndScreen.setSize(150, 30);
         endTurn.setSize(150, 30);
     }
 
+    /**
+     * Method to configure where in the panel each component will go
+     * 
+     * @see configureView method
+     */
     public void setComponentLocations(){
         currentPlayerName.setLocation(10, 10);
         currentPlayerScoreCardView.setLocation(10, currentPlayerName.getHeight() + 20);
@@ -147,6 +202,11 @@ public class GameWindow extends JPanel{
         endTurn.setLocation(170, currentPlayerName.getHeight() + currentPlayerScoreCardView.getHeight() + 30);
     }
 
+    /**
+     * Method to finally add all components to the current panel
+     * 
+     * @see configureView method
+     */
     public void addComponents(){
         this.add(currentPlayerName);
         this.add(currentPlayerScoreCardView);
@@ -155,6 +215,11 @@ public class GameWindow extends JPanel{
         this.add(endTurn);
     }
 
+    /**
+     * Method to do most of setting up the game window panel
+     * 
+     * @see GameWindow constructor
+     */
     public void configureView(){
         toEndScreen.setVisible(false);
         endTurn.setVisible(false);
@@ -166,21 +231,3 @@ public class GameWindow extends JPanel{
     }
     
 }
-
-/*
- Roll Button Pressed: 
- - show possible scores
- - tell hand to roll
- - check if final roll, if so, then tell player to make scoring menu visible
-
- Line Button Pressed:
- - tell scoreline to record possible score in actual score
- - make finish turn button visible
-
- Finish Turn Button Pressed: (part of GameWindow,pass to player when a possible score is pressed)
- - record current player's scorecard
- - switch to next player (if there is one and if scores still need to be filled) which 
-    could be the first player in the list (so set to players.get(0)), otherwise, switch to
-    end screen
-- reset the hand (roll count) to 0 and hide the scoring menu
- */

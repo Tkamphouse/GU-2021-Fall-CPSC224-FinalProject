@@ -4,6 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Class for the introduction window. That is,
+ * the first window that appears when starting
+ * the game.
+ * 
+ * @author Jonathan Smoley
+ * @version 2.0 4/24/2022
+ */
 public class TitleWindow extends JPanel{
     JFrame window;
     NameWindow nextPanel;
@@ -16,6 +24,12 @@ public class TitleWindow extends JPanel{
     JButton toNameWindow;
     DefaultListCellRenderer renderer;
 
+    /**
+     * Default constructor for the TitleWindow class.
+     * Creates and adds components to the panel.
+     * 
+     * @see Yahtzee.java
+     */
     public TitleWindow(){
         JPanel spacer = new JPanel();
         spacer.setPreferredSize(new Dimension(800, 200));
@@ -28,6 +42,12 @@ public class TitleWindow extends JPanel{
         add(contentSouth, BorderLayout.SOUTH);
     }
 
+    /**
+     * Creates and add components to the center panel
+     * of a title window.
+     * 
+     * @see TitleWindow constructor
+     */
     private void setCenterContent(){
         contentCenter = new JPanel();
         contentCenter.setLayout(new BoxLayout(contentCenter, BoxLayout.Y_AXIS));
@@ -55,6 +75,12 @@ public class TitleWindow extends JPanel{
         contentCenter.add(boxLabel);
     }
 
+    /**
+     * Creates and add components to the south panel
+     * of a title window.
+     * 
+     * @see TitleWindow constructor
+     */
     private void setSouthContent(){
         contentSouth = new JPanel(new FlowLayout(FlowLayout.CENTER, 90, 40));
         contentSouth.setPreferredSize(new Dimension(450, 150));
@@ -65,12 +91,19 @@ public class TitleWindow extends JPanel{
         contentSouth.add(toNameWindow);
     }
 
-    public void setSwitchButton(JFrame main){
+    /**
+     * Sets the behavior when clicking the start button.
+     * 
+     * @param main the frame that the next panel is in
+     * @param titleWindow a reference to this object panel to switch to
+     * @see Yahtzee.java
+     */
+    public void setSwitchButton(JFrame main, TitleWindow titleWindow){
         window = main;
         toNameWindow.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
                 NameWindow nameWindow = new NameWindow(window, numPlayerDropBox.getSelectedIndex() + 1);
-                nameWindow.setSwitchButton(window);
+                nameWindow.setSwitchButton(window, titleWindow);
                 nextPanel = nameWindow;
                 main.add(nameWindow);
                 nameWindow.setVisible(true);
