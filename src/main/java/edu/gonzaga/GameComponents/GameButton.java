@@ -21,25 +21,35 @@ import javax.swing.border.BevelBorder;
 /** Class customizing java swing component JButton */
 public class GameButton extends JButton{
 
-    private static final Color darkBrown = new Color(27, 25, 21);
+    /*private static final Color darkBrown = new Color(27, 25, 21);
     private static final Color lightRed = new Color(177, 107, 73);
     private static final Color darkRed = new Color(150, 70, 47);
     private static final Color lightGreen = new Color(151, 158, 131);
     private static final Color darkGreen = new Color(100, 110, 86);
     private static final Color lightBlue = new Color(159, 188, 170);
-    private static final Color darkBlue = new Color(111, 147, 131); 
+    private static final Color darkBlue = new Color(111, 147, 131);*/
 
-    private Color mainColor;
-    private Color clickedColor;
+    //FormatSample palette = new FormatSample();
+    private Color mainColor = ColorPalette.red;
+    private Color clickedColor = ColorPalette.darkRed;
 
-    public GameButton(String text, int gameType){
+    public GameButton(String text){
         super(text);
-        this.setGameType(gameType);
-        this.setFont(new Font("Baskerville Old Face", Font.PLAIN, 20));
+        this.setColorSettings();
+        this.setFont(new Font("Bookman Old Style", Font.PLAIN, 20));
         this.setFocusPainted(false);
         this.setContentAreaFilled(false);
         this.setOpaque(true);
-        this.setForeground(darkBrown);
+        this.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+    }
+
+    public GameButton(String text, int gameType){
+        super(text);
+        this.setColorSettings();
+        this.setFont(new Font("Bookman Old Style", Font.PLAIN, 20));
+        this.setFocusPainted(false);
+        this.setContentAreaFilled(false);
+        this.setOpaque(true);
         this.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     }
 
@@ -48,8 +58,8 @@ public class GameButton extends JButton{
     *
     * @param gameType int value representing the number of sides on the dice in the game
     */
-    public void setGameType(int gameType){
-        if(gameType == 12){
+    public void setColorSettings(){
+        /*if(gameType == 12){
             mainColor = lightBlue;
             clickedColor = darkBlue; 
         } else if(gameType == 8){
@@ -58,8 +68,9 @@ public class GameButton extends JButton{
         } else{
             mainColor = lightRed;
             clickedColor = darkRed;
-        }
+        }*/
         this.setBackground(mainColor);
+        this.setForeground(ColorPalette.textColor);
         addChangeListener(new ChangeListener(){
             @Override
             public void stateChanged(ChangeEvent event){
@@ -75,6 +86,12 @@ public class GameButton extends JButton{
                 }
             }
         });
+    }
+
+    public void setColors(Color mainColor, Color clickedColor){
+        this.mainColor = mainColor;
+        this.clickedColor = clickedColor;
+        setColorSettings();
     }
 
     /**
