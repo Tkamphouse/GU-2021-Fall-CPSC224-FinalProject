@@ -76,4 +76,8 @@ public abstract class ScoreLine {
         return true;
     }
 
+    public void setLineBackground(Color backgroundColor){
+        view.setLineBackground(backgroundColor);
+    }
+
 }

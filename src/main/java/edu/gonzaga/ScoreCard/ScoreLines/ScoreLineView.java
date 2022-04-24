@@ -16,7 +16,7 @@ public class ScoreLineView extends JPanel{
     private GameLabel nameCell;
     private GameLabel scoringExplanationCell;
     private ArrayList<GameLabel> scoreCells = new ArrayList<>();
-    private int height = 20;
+    private int height = 25;
     private int width;
 
     public ScoreLineView(String name, String scoringExplanations, ArrayList<Integer> scores){
@@ -31,6 +31,7 @@ public class ScoreLineView extends JPanel{
                 tempLabel.setHorizontalAlignment(SwingConstants.CENTER);
                 tempLabel.setVerticalAlignment(SwingConstants.CENTER);
             }
+            tempLabel.setTextBold();
             scoreCells.add(tempLabel);
         }
         this.width = NAME_CELL_WIDTH + SCORING_EXPLANATION_CELL_WIDTH + (SCORE_CELL_WIDTH * scoreCells.size());
@@ -119,6 +120,19 @@ public class ScoreLineView extends JPanel{
     public void updateScoreCell(int newScore, int scoreColumn, Color scoreColor){
         scoreCells.get(scoreColumn - 1).setText(Integer.toString(newScore));
         scoreCells.get(scoreColumn - 1).setForeground(scoreColor);
+    }
+
+    public void setLineBackground(Color backgroundColor){
+        //System.out.println("called");
+        nameCell.setOpaque(true);
+        nameCell.setBackground(backgroundColor);
+        scoringExplanationCell.setOpaque(true);
+        scoringExplanationCell.setBackground(backgroundColor);
+        for(int i = 0; i < scoreCells.size(); i++){
+            scoreCells.get(i).setOpaque(true);;
+            scoreCells.get(i).setBackground(backgroundColor);
+            //System.out.println("hey");
+        }
     }
 
     /*public void updateScoreCell(String newScoreText, int scoreColumn, Color scoreColor){

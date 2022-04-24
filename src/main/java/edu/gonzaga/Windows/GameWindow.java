@@ -17,15 +17,20 @@ public class GameWindow extends JPanel{
     Player currentPlayer;
 
     public GameWindow(ArrayList<JTextField> nameCollectors){
+        //System.out.println("1");
         this.setLayout(null);
         this.setSize(800, 800);
         gameHand = new Hand();
+        //System.out.println("2");
         toEndScreen = new JButton("Finish Game");
         endTurn = new JButton("End Turn");
         initPlayers(nameCollectors);
+        //System.out.println("3");
         players.get(0).setPlaying();
         setRollButtonMechanics();
+        //System.out.println("4");
         setEndTurnButton();
+        //System.out.println("5");
         configureView();
     }
 

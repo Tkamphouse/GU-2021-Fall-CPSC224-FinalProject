@@ -22,6 +22,7 @@ public class ScoreCardView extends JPanel{
 
     public ScoreCardView(String titleText, ArrayList<ScoreLine> scoreLineModelsRef, ArrayList<ScoreLine> totalLinesRef, ArrayList<TitleLineView> titleLinesRef){
         this.title = new GameLabel(titleText, SwingConstants.CENTER);
+        title.setTextBold();
         this.setLayout(null);
         for(int i = 0; i < scoreLineModelsRef.size(); i++){
             scoreLines.add(scoreLineModelsRef.get(i).getView());
@@ -105,6 +106,13 @@ public class ScoreCardView extends JPanel{
 
     public ArrayList<ScoreLineView> getTotalLineViews(){
         return totalLines;
+    }
+
+    public void color(Color titleColor, Color columnHeadersColor, Color possibleScoreColor){
+        title.setOpaque(true);
+        title.setBackground(titleColor);
+        titleLines.get(0).setLineBackground(columnHeadersColor);
+        titleLines.get(1).setLineBackground(columnHeadersColor);
     }
 
 }

@@ -41,6 +41,7 @@ public class LeaderBoardView extends JPanel{
             }
         }});
         addPlayerScores();
+        scoreTableView.color(ColorPalette.darkRed, ColorPalette.lightRed, ColorPalette.red);
         this.add(scoreTableView);
         this.add(winnerLabel);
     }

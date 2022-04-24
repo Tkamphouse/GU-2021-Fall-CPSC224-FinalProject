@@ -59,4 +59,17 @@ public class GameLabel extends JLabel{
     public void setTextSize(int textSize){
         this.setFont(new Font(fontName, Font.PLAIN, textSize));
     }
+
+    public void setTextSettings(Boolean bold, int textSize){
+        if(bold){
+            this.setFont(new Font(fontName, Font.BOLD, textSize));
+        }else{
+            this.setFont(new Font(fontName, Font.PLAIN, textSize));
+        }
+        //this.setFont(new Font(fontName, Font.PLAIN, textSize));
+    }
+
+    public void setTextBold(){
+        this.setFont(new Font(fontName, Font.BOLD, 15));
+    }
 }

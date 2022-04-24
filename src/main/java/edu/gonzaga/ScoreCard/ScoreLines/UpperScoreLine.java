@@ -8,6 +8,7 @@ public class UpperScoreLine extends ScoreLine{
 
     public UpperScoreLine(String name, String scoringExplanation, int rowNum, int numPlayers){
         super(name, scoringExplanation, numPlayers);
+        //System.out.println("1");
         this.rowNum = rowNum;
     }
 

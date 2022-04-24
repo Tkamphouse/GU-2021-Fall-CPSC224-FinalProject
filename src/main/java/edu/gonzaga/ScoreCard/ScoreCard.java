@@ -49,7 +49,9 @@ public class ScoreCard{
         configureScoreLines(numPlayers);
         configureTotalLines(numPlayers);
         configureTitleLines(numPlayers);
+        //System.out.println("1");
         configureView();
+        //System.out.println("2");
     }
 
     public void configureScoreLines(int numPlayers){
