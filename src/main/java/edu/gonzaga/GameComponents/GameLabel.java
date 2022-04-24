@@ -19,34 +19,36 @@ import java.awt.*;
 /** Class Customizing the java swing component JLabel */
 public class GameLabel extends JLabel{
 
-    private static final Color darkBrown = new Color(27, 25, 21);
+    //private static final Color darkBrown = new Color(27, 25, 21);
+    String fontName = "Candara";
+    Font defaultTextFont = new Font("Candara", Font.PLAIN, 15);
 
     public GameLabel(){
         super();
-        this.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
-        this.setForeground(darkBrown);
+        this.setFont(defaultTextFont);
+        this.setForeground(ColorPalette.textColor);
     }
 
     public GameLabel(String text){
         super(text);
-        this.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
-        this.setForeground(darkBrown);
+        this.setFont(defaultTextFont);
+        this.setForeground(ColorPalette.textColor);
     }
 
     public GameLabel(String text, boolean bold){
         super(text);
         if(bold){
-            this.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+            this.setFont(new Font(fontName, Font.BOLD, 15));
         }else{
-            this.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
+            this.setFont(defaultTextFont);
         }
-        this.setForeground(darkBrown);
+        this.setForeground(ColorPalette.textColor);
     }
 
     public GameLabel(String text, int horizontalAlignment){
         super(text, horizontalAlignment);
-        this.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
-        this.setForeground(darkBrown);
+        this.setFont(defaultTextFont);
+        this.setForeground(ColorPalette.textColor);
     }
 
     /**
@@ -55,6 +57,6 @@ public class GameLabel extends JLabel{
     * @param textSize int value representing the new text size
     */
     public void setTextSize(int textSize){
-        this.setFont(new Font("Baskerville Old Face", Font.PLAIN, textSize));
+        this.setFont(new Font(fontName, Font.PLAIN, textSize));
     }
 }
