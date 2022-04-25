@@ -17,6 +17,7 @@ public class FormatSample extends JPanel{
     GameButton button = new GameButton("Click Me");
     GameLabel label = new GameLabel("I'm a Label");
     GameRadioButton radioButton = new GameRadioButton();
+    GameRadioButton radioButton2 = new GameRadioButton(2);
 
     public FormatSample(){
         this.setLayout(null);
@@ -30,11 +31,14 @@ public class FormatSample extends JPanel{
         label.setLocation(colorPaletteWidth + 10, button.getHeight() + 20);
         radioButton.setSize(20, 20);
         radioButton.setLocation(colorPaletteWidth + 10, button.getHeight() + label.getHeight() + 30);
+        radioButton2.setSize(20, 20);
+        radioButton2.setLocation(colorPaletteWidth + 10, button.getHeight() + label.getHeight() + radioButton.getHeight() + 40);
         this.setSize(colorPaletteWidth + 10 + button.getWidth() + 10, colorPaletteHeight + 10);
         this.add(colorPalette);
         this.add(button);
         this.add(label);
         this.add(radioButton);
+        this.add(radioButton2);
     }
 
     public void makeSwatches(){
