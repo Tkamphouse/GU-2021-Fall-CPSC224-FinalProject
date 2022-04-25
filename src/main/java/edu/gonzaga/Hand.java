@@ -1,7 +1,6 @@
 
 package edu.gonzaga;
 
-import edu.gonzaga.GameComponents.ColorPalette;
 import edu.gonzaga.GameComponents.GameButton;
 import edu.gonzaga.GameComponents.GameLabel;
 import edu.gonzaga.GameComponents.GameRadioButton;
@@ -19,7 +18,7 @@ public class Hand
 {
     private static final int NUM_DICE = 5;
 
-    //private static final Color backgroundColor = new Color(228, 216, 200);
+    private static final Color backgroundColor = new Color(228, 216, 200);
     private static final int DEFAULT_COMPONENT_LENGTH = 30;
     private static final int ROLL_LABEL_X_COORDINATE = 0;
     private static final int ROLL_LABEL_Y_COORDINATE = 0;
@@ -199,7 +198,7 @@ public class Hand
     {
         curPanel = new JPanel();
         curPanel.setLayout(null);
-        curPanel.setBackground(ColorPalette.backgroundColor);
+        curPanel.setBackground(backgroundColor);
         curPanel.setSize(160, length);
         curPanel.add(numRollsLabel);
         curPanel.add(rollTextLabel);
