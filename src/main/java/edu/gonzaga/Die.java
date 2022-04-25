@@ -80,6 +80,13 @@ public class Die implements Comparable<Die> {
             locked = false;
         }
     }
+    
+    public void changeLockedState() {
+        if (locked == true)
+            locked = false;
+        else if (locked == false)
+            locked = true;
+    }
 
     public void setValue(int newSideUp) {
         this.sideUp = newSideUp;
