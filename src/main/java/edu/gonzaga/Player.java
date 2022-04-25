@@ -70,9 +70,9 @@ public class Player {
         }
     }
 
-    public ArrayList<Integer> getScores(){
+    /*public ArrayList<Integer> getScores(){
         return playerScoreCard.getScores();
-    }
+    }*/
 
     public int getScore(int row){
         return playerScoreCard.getScore(row);
@@ -83,8 +83,9 @@ public class Player {
     }
 
     public int getFinalScore(){
-        int index = playerScoreCard.getScores().size() - 1;
-        return playerScoreCard.getScores().get(index);
+        //int index = playerScoreCard.getScores().size() - 1;
+        //return playerScoreCard.getScores().get(index);
+        return playerScoreCard.getFinalScore();
     }
 
     public PlayerScoreCardView getView(){
@@ -125,6 +126,10 @@ public class Player {
         playerScoreCard.score();
     }
 
+    public void recordScore(int row, int score){
+        playerScoreCard.manualSetScore(row, score);
+    }
+
     public void hideScoringMenu(){
         playerScoreCard.hideScoringMenu();
     }
@@ -137,5 +142,8 @@ public class Player {
         return playing;
     }
 
+    public PlayerScoreCard getScoreCard(){
+        return playerScoreCard;
+    }
 
 }

@@ -81,5 +81,10 @@ public class PlayerScoreCard extends ScoreCard{
     public int getTotalScore(int row){
         return super.getTotalLines().get(row - 1).getScores().get(0);
     }
+
+    public int getFinalScore(){
+        //return super.getScoreLines().get(12).getScores().get(0);
+        return super.getTotalLines().get(5).getScore(1);
+    }
     
 }
