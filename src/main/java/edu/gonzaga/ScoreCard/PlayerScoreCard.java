@@ -4,13 +4,18 @@ import edu.gonzaga.Hand;
 
 public class PlayerScoreCard extends ScoreCard{
 
+    private static int cardCount = 0;
+    private int id;
     private PlayerScoreCardView playerView;
     private ScoreCardView scoreTable;
 
     public PlayerScoreCard(String playerName, int numDiceSides){
         super(playerName + "'s ScoreCard", numDiceSides, 1);
+        //System.out.println("1");
+        cardCount++;
+        id = cardCount;
         scoreTable = super.getView();
-        playerView = new PlayerScoreCardView(scoreTable);
+        playerView = new PlayerScoreCardView(scoreTable, id);
     }
 
     public PlayerScoreCardView getPlayerScoreCardView(){
@@ -41,6 +46,9 @@ public class PlayerScoreCard extends ScoreCard{
 
     public void manualSetScore(int scoringRow, int score){
         super.setScore(scoringRow, 1, score);
+        for(int i = 0; i < 6; i++){
+            super.getTotalLines().get(i).calculateScore(new Hand());
+        }
     }
 
     public void hideScoringMenu(){
@@ -75,6 +83,11 @@ public class PlayerScoreCard extends ScoreCard{
 
     public int getTotalScore(int row){
         return super.getTotalLines().get(row - 1).getScores().get(0);
+    }
+
+    public int getFinalScore(){
+        //return super.getScoreLines().get(12).getScores().get(0);
+        return super.getTotalLines().get(5).getScore(1);
     }
     
 }
