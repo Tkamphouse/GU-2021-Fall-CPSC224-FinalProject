@@ -46,5 +46,31 @@ class DieTest {
         Die die2 = new Die(6, die2Value);
         assertTrue(die1.compareTo(die2) == 0);
     }
+
+    @Test
+    void testRoll() {
+
+    }
+
+    @Test
+    void testLockedState() {
+
+    }
+
+    @Test
+    void testSetValue() {
+
+    }
+
+    @Test
+    void testGetNumSides() {
+
+    }
+
+    @Test
+    void testGetSideUp() {
+
+    }
+
 }
 

@@ -24,10 +24,8 @@ public class Die implements Comparable<Die> {
         this.numSides = DEFAULT_NUM_SIDES;
         this.sideUp = DEFAULT_SIDE_UP;
         this.locked = false;
-        dieView = new DieView(sideUp, numSides);
-        //dieView.configureView();
+        dieView = new DieView(sideUp);
         dieView.getRadioButton().addActionListener(new ActionListener() {
-            //@Override
             public void actionPerformed(ActionEvent e) {
                 updateLockedState();
             }
@@ -38,10 +36,8 @@ public class Die implements Comparable<Die> {
         this.numSides = numSides;
         this.sideUp = DEFAULT_SIDE_UP;
         this.locked = false;
-        dieView = new DieView(sideUp, numSides);
-        //dieView.configureView();
+        dieView = new DieView(sideUp);
         dieView.getRadioButton().addActionListener(new ActionListener() {
-            //@Override
             public void actionPerformed(ActionEvent e) {
                 updateLockedState();
             }
@@ -52,10 +48,8 @@ public class Die implements Comparable<Die> {
         this.numSides = numSides;
         this.sideUp = startingSide;
         this.locked = true;
-        dieView = new DieView(sideUp, numSides);
-        //dieView.configureView();
+        dieView = new DieView(sideUp);
         dieView.getRadioButton().addActionListener(new ActionListener() {
-            //@Override
             public void actionPerformed(ActionEvent e) {
                 updateLockedState();
             }
@@ -67,7 +61,6 @@ public class Die implements Comparable<Die> {
         if(!locked) {
             Random rand = new Random();
             this.sideUp = rand.nextInt(this.numSides) + 1;
-            //this.sideUp = rand.nextInt(this.numSides);
             dieView.updateDieAppearance(this.sideUp);
         }
     }
@@ -86,14 +79,14 @@ public class Die implements Comparable<Die> {
         dieView.updateDieAppearance(newSideUp);
     }
 
+    public void deselectButton() {
+        dieView.button.setSelected(false);
+        updateLockedState();
+    }
+
     public void setButtonInvisibility() { dieView.button.setVisible(false); }
 
     public void setButtonVisibility() { dieView.button.setVisible(true); }
-
-    public void deselectButton() { 
-        dieView.button.setSelected(false);
-        updateLockedState(); 
-    }
 
     public JPanel getView() {
         return dieView;
@@ -112,7 +105,6 @@ public class Die implements Comparable<Die> {
     @Override
     public String toString() {
         String ret = "";
-        // ret += "Die: " + this.sideUp.toString() + " of " + this.numSides.toString() + " sides";
         ret += this.sideUp.toString();
         return ret;
     }
