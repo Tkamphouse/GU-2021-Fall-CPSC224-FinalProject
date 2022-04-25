@@ -9,9 +9,9 @@ public class PlayerScoreCardView extends JPanel{
     private Color[][] possibleColors = {
         {ColorPalette.lightRed, ColorPalette.red, ColorPalette.darkRed},
         {ColorPalette.lightGreen, ColorPalette.green, ColorPalette.darkGreen},
-        {ColorPalette.lightPurple, ColorPalette.purple, ColorPalette.darkPurple},
         {ColorPalette.lightBlue, ColorPalette.blue, ColorPalette.darkBlue},
         {ColorPalette.lightGrey, ColorPalette.grey, ColorPalette.darkGrey},
+        {ColorPalette.lightPurple, ColorPalette.purple, ColorPalette.darkPurple},
         {ColorPalette.lightTeal, ColorPalette.teal, ColorPalette.darkTeal},
         {ColorPalette.lightBrown, ColorPalette.brown, ColorPalette.darkBrown},
         {ColorPalette.lightOrange, ColorPalette.orange, ColorPalette.darkOrange}
@@ -55,7 +55,7 @@ public class PlayerScoreCardView extends JPanel{
     }
 
     public void setComponentSizes(){
-        possibleScoreExplanation.setSize(200, 20);
+        possibleScoreExplanation.setSize(250, 20);
     }
 
     public void setComponentLocations(){

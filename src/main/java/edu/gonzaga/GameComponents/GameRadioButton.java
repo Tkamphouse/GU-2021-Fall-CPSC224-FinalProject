@@ -3,6 +3,7 @@ package edu.gonzaga.GameComponents;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.event.*;
 
 /*
 *  This Program lets a user play single player yahtzee using a Graphical User Interface. Game settings are customizable, 
@@ -19,14 +20,18 @@ import java.awt.*;
 /** Class customizing the java swing element JRadioButton */
 public class GameRadioButton extends JRadioButton{
 
-    private ImageIcon defaultIconImage = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\DefaultRadioButton.png");
-    private ImageIcon rolloverIconImage = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\RolloverRadioButton.png");
-    private ImageIcon pressedIconImage = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\SelectedRadioButton.png");
-    private ImageIcon selectedIconImage = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\SelectedRadioButton.png");
+    private String directory = System.getProperty("user.dir") + "\\src\\media\\";
+    private ImageIcon defaultIconImage = new ImageIcon(directory + "DefaultRadioButton.png");
+    private ImageIcon rolloverIconImage = new ImageIcon(directory + "RolloverRadioButton.png");
+    private ImageIcon pressedIconImage = new ImageIcon(directory + "SelectedRadioButton.png");
+    private ImageIcon selectedIconImage = new ImageIcon(directory + "SelectedRadioButton.png");
+    private ImageIcon crossIconImage = new ImageIcon(directory + "CrossRadioButton.png");
+    private ImageIcon emptyIconImage = new ImageIcon(directory + "Blank.png");
     private Icon defaultIcon;
     private Icon rolloverIcon;
     private Icon pressedIcon;
     private Icon selectedIcon;
+    //private Icon crossIcon;
 
     public GameRadioButton(){
         resizeImages(17, 17);
@@ -35,6 +40,38 @@ public class GameRadioButton extends JRadioButton{
         this.setRolloverIcon(rolloverIcon);
         this.setPressedIcon(pressedIcon);
         this.setSelectedIcon(selectedIcon);
+        //setBackground(ColorPalette.red);
+        //setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 2));
+    }
+
+    public GameRadioButton(int type){
+        resizeImages(17, 17);
+        //assignAltIcons();
+        assignAltIcons();
+        this.setIcon(defaultIcon);
+        this.setRolloverIcon(rolloverIcon);
+        this.setPressedIcon(pressedIcon);
+        this.setSelectedIcon(selectedIcon);
+        setHorizontalAlignment(SwingConstants.CENTER);
+        setVerticalAlignment(SwingConstants.CENTER);
+        setBackground(ColorPalette.white);
+        setBorderPainted(true);
+        setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 2));
+        addChangeListener(new ChangeListener(){
+            @Override
+            public void stateChanged(ChangeEvent event){
+                if (getModel().isPressed()){
+                    //setBackground(new Color(220, 220, 220));
+                    setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 2));
+                } else if (getModel().isRollover()){
+                    //setBackground(ColorPalette.white);
+                    setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 1));
+                } else{
+                    //setBackground(ColorPalette.white);
+                    setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 2));
+                }
+            }
+        });
     }
 
     public void resizeImages(int width, int height){
@@ -54,6 +91,14 @@ public class GameRadioButton extends JRadioButton{
         image = selectedIconImage.getImage(); // transform it 
         newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         selectedIconImage = new ImageIcon(newimg);
+
+        image = crossIconImage.getImage(); // transform it 
+        newimg = image.getScaledInstance(15, 15,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        crossIconImage = new ImageIcon(newimg);
+
+        image = emptyIconImage.getImage(); // transform it 
+        newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        emptyIconImage = new ImageIcon(newimg);
     }
 
     public void assignIcons(){
@@ -61,6 +106,13 @@ public class GameRadioButton extends JRadioButton{
         rolloverIcon = rolloverIconImage;
         pressedIcon = pressedIconImage;
         selectedIcon = selectedIconImage;
+    }
+
+    public void assignAltIcons(){
+        defaultIcon = emptyIconImage;
+        rolloverIcon = emptyIconImage;
+        pressedIcon = emptyIconImage;
+        selectedIcon = crossIconImage;
     }
     
 }
