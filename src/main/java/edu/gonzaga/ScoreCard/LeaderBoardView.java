@@ -17,14 +17,14 @@ public class LeaderBoardView extends JPanel{
         winnerLabel = new GameLabel("Not Assigned", SwingConstants.CENTER);
         this.players = players;
         this.setSize(scoreTableView.getWidth(), scoreTableView.getHeight() + 30);
-        setWinnerLabel();
         configureView();
     }
 
     public void setWinnerLabel(){
         Player winner = players.get(0);
         for(int i = 0; i < players.size(); i++){
-            if(winner.getFinalScore()< players.get(i).getFinalScore()){
+            if(winner.getFinalScore() < players.get(i).getFinalScore()){
+                System.out.println(winner.getFinalScore() + ", " + players.get(i).getFinalScore());
                 winner = players.get(i);
             }
         }
@@ -42,6 +42,7 @@ public class LeaderBoardView extends JPanel{
         }});
         addPlayerScores();
         scoreTableView.color(ColorPalette.darkRed, ColorPalette.lightRed, ColorPalette.red);
+        setWinnerLabel();
         this.add(scoreTableView);
         this.add(winnerLabel);
     }
@@ -59,6 +60,10 @@ public class LeaderBoardView extends JPanel{
                 scoreTableView.getTotalLineViews().get(rowIndex).updateScoreCell(newScore, scoreColumn);
             }
         }
+    }
+
+    public GameLabel getWinnerLabel(){
+        return winnerLabel;
     }
 
 }

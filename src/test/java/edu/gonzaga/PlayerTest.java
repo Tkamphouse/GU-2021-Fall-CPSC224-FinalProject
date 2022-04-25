@@ -13,7 +13,7 @@ public class PlayerTest {
         int actualScore = dummyPlayer.getScore(1);
         int expectedScore = 4;
         assertEquals(expectedScore, actualScore);
-    }
+    } 
 
     @Test
     void testGetFinalScore(){

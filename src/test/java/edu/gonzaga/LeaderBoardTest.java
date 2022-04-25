@@ -13,7 +13,7 @@ public class LeaderBoardTest {
 
     @Test
     void testWinner(){
-        /*Player player = new Player("Jack");
+        Player player = new Player("Jack");
         Player player2 = new Player("John");
         for(int i = 1; i <= 13; i++){
             player.recordScore(i, 1);
@@ -25,7 +25,7 @@ public class LeaderBoardTest {
         }});
         String expectedWinner = "John is the winner!";
         String actualWinner = dummyBoard.getLeaderBoardView().getWinnerLabel().getText();
-        assertEquals(expectedWinner, actualWinner);*/
+        assertEquals(expectedWinner, actualWinner);
     }
     
 }

@@ -85,7 +85,9 @@ public class Player {
     public int getFinalScore(){
         //int index = playerScoreCard.getScores().size() - 1;
         //return playerScoreCard.getScores().get(index);
+        //return playerScoreCard.getFinalScore();
         return playerScoreCard.getFinalScore();
+        //return 4;
     }
 
     public PlayerScoreCardView getView(){
@@ -123,7 +125,7 @@ public class Player {
     }
 
     public void recordScore(){
-        playerScoreCard.score();
+        playerScoreCard.score(); 
     }
 
     public void recordScore(int row, int score){

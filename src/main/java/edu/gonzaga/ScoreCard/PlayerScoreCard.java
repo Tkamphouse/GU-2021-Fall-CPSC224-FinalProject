@@ -46,6 +46,9 @@ public class PlayerScoreCard extends ScoreCard{
 
     public void manualSetScore(int scoringRow, int score){
         super.setScore(scoringRow, 1, score);
+        for(int i = 0; i < 6; i++){
+            super.getTotalLines().get(i).calculateScore(new Hand());
+        }
     }
 
     public void hideScoringMenu(){
