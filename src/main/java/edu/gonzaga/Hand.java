@@ -18,7 +18,6 @@ public class Hand
 {
     private static final int NUM_DICE = 5;
 
-    private static final Color backgroundColor = new Color(228, 216, 200);
     private static final int DEFAULT_COMPONENT_LENGTH = 30;
     private static final int ROLL_LABEL_X_COORDINATE = 0;
     private static final int ROLL_LABEL_Y_COORDINATE = 0;
@@ -57,7 +56,7 @@ public class Hand
         return dice;
     }
 
-    public int returnValue(int index)
+    public int ruturnValue(int index)
     {
         int value = 0;
         if (index < numDice && index >= 0)
@@ -198,7 +197,7 @@ public class Hand
     {
         curPanel = new JPanel();
         curPanel.setLayout(null);
-        curPanel.setBackground(backgroundColor);
+        curPanel.setOpaque(false);
         curPanel.setSize(160, length);
         curPanel.add(numRollsLabel);
         curPanel.add(rollTextLabel);
