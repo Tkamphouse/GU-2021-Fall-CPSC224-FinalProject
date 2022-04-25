@@ -21,13 +21,6 @@ public class HandTest {
             assertEquals(hand.returnValue(i), expectedFill);
     }
 
-    // @Test
-    // void testHandSize() {
-    //     Hand hand = new Hand();
-    //     int expectedSize = 5;
-    //     assertEquals(expectedSize, hand.getSize());
-    // }
-
     @Test
     void testHandRollNew() {
         Hand hand = new Hand();

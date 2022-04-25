@@ -56,7 +56,7 @@ public class Hand
         return dice;
     }
 
-    public int ruturnValue(int index)
+    public int returnValue(int index)
     {
         int value = 0;
         if (index < numDice && index >= 0)
