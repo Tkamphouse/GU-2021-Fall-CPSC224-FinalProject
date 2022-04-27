@@ -29,7 +29,7 @@ public class Hand
     private static final int ROLL_BUTTON_WIDTH = 120;
 
     private Die[] dice;
-    private int length = 600;
+    private int length = 550;
     private int numDice = NUM_DICE;
     private int rollCount;
 
@@ -47,7 +47,6 @@ public class Hand
         for(int i = 0; i < NUM_DICE; i++){
             dice[i] = new Die();
         }
-        // IMLEMENT WHEN VIEWS START BEING DONE
         configureView();
     }
 
@@ -56,7 +55,7 @@ public class Hand
         return dice;
     }
 
-    public int returnValue(int index)
+    public int ruturnValue(int index)
     {
         int value = 0;
         if (index < numDice && index >= 0)
@@ -199,6 +198,7 @@ public class Hand
         curPanel.setLayout(null);
         curPanel.setOpaque(false);
         curPanel.setSize(160, length);
+        numRollsLabel.setSize(150, 75);
         curPanel.add(numRollsLabel);
         curPanel.add(rollTextLabel);
         for(int i = 0; i < numDice; i++)
@@ -209,9 +209,9 @@ public class Hand
     public void setRollLabel(int rollsPerTurn, int rollCount)
     {
         if ((rollsPerTurn - rollCount) == 1)
-            numRollsLabel.setText("Roll " + Integer.toString(rollCount) + " (" + Integer.toString(rollsPerTurn - rollCount) + " Roll Left)");
+            numRollsLabel.setText("<html>      Roll " + Integer.toString(rollCount) + " <br>(" + Integer.toString(rollsPerTurn - rollCount) + " Roll Left)<html>");
         else
-            numRollsLabel.setText("Roll " + Integer.toString(rollCount) + " (" + Integer.toString(rollsPerTurn - rollCount) + " Rolls Left)");
+            numRollsLabel.setText("<html>      Roll " + Integer.toString(rollCount) + " <br>(" + Integer.toString(rollsPerTurn - rollCount) + " Rolls Left)<html>");
     }
 
     // sets the explanation label to "Final Hand"
