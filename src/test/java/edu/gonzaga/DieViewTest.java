@@ -33,6 +33,8 @@ public class DieViewTest {
 
     @Test
     void testFileImport() {
+        DieView dieView = new DieView(3);
+        dieView.updateDieAppearance(2);
         //?
     }
 

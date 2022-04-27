@@ -14,7 +14,7 @@ import java.util.Random;
 public class Die implements Comparable<Die> {
 
     private Integer sideUp; // Current die 'value' in range 1..numSides
-    private Integer numSides; // Sides on the die (should be 1...INF integer)
+    private Integer numSides;// Sides on the die (should be 1...INF integer)
     private Boolean locked;
     private static final Integer DEFAULT_NUM_SIDES = 6;
     private static final Integer DEFAULT_SIDE_UP = 1;
