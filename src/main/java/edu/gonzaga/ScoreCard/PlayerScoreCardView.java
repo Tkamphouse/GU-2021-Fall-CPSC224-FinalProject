@@ -40,7 +40,7 @@ public class PlayerScoreCardView extends JPanel{
         setComponentSizes();
         setComponentLocations();
         scoreTable.color(titleColor, columnHeadersColor, possibleScoreColor);
-        height = scoreTable.getHeight() + possibleScoreExplanation.getHeight();
+        height = scoreTable.getHeight() + possibleScoreExplanation.getHeight() + 10;
         width = scoreTable.getWidth() + scoringMenu.getWidth();
         this.setSize(width, height);
         this.add(scoreTable);
@@ -61,7 +61,7 @@ public class PlayerScoreCardView extends JPanel{
     public void setComponentLocations(){
         scoreTable.setLocation(0, 0);
         scoringMenu.setLocation(scoreTable.getRowWidth(), 0);
-        possibleScoreExplanation.setLocation(0, scoreTable.getHeight());
+        possibleScoreExplanation.setLocation(0, scoreTable.getHeight() + 10);
     }
 
     public int getSelectedScoringIndex(){
