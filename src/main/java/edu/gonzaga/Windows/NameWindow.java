@@ -132,6 +132,7 @@ public class NameWindow extends JPanel{
 
         constraintNotice = new JLabel("*must enter a name for each player*");
         constraintNotice.setFont(new Font("Serif", Font.PLAIN, 20));
+        constraintNotice.setVisible(false);
 
         contentSouth.add(constraintNotice, layout);
     }
@@ -146,10 +147,21 @@ public class NameWindow extends JPanel{
     public void setSwitchButton(JFrame main, TitleWindow titleWindow){
         toGameWindow.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
-                GameWindow gameWindow = new GameWindow(main, titleWindow, playerNameCollectors);
-                main.add(gameWindow);
-                gameWindow.setVisible(true);
-                setVisible(false);
+                Boolean allNamesEntered = true;
+                for(int i = 0; i < playerNameCollectors.size(); i++){
+                    if(playerNameCollectors.get(i).getText().equals("")){
+                        allNamesEntered = false;
+                    }
+                }
+                if(allNamesEntered){
+                    GameWindow gameWindow = new GameWindow(main, titleWindow, playerNameCollectors);
+                    main.add(gameWindow);
+                    gameWindow.setVisible(true);
+                    setVisible(false);
+                }else{
+                    constraintNotice.setVisible(true);
+                }
+                
             }
         });
     }
