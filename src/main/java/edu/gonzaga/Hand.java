@@ -209,9 +209,9 @@ public class Hand
     public void setRollLabel(int rollsPerTurn, int rollCount)
     {
         if ((rollsPerTurn - rollCount) == 1)
-            numRollsLabel.setText("<html>      Roll " + Integer.toString(rollCount) + " <br>(" + Integer.toString(rollsPerTurn - rollCount) + " Roll Left)<html>");
+            numRollsLabel.setText("<html>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roll " + Integer.toString(rollCount) + " <br>(" + Integer.toString(rollsPerTurn - rollCount) + " Roll Left)<html>");
         else
-            numRollsLabel.setText("<html>      Roll " + Integer.toString(rollCount) + " <br>(" + Integer.toString(rollsPerTurn - rollCount) + " Rolls Left)<html>");
+            numRollsLabel.setText("<html>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roll " + Integer.toString(rollCount) + " <br>(" + Integer.toString(rollsPerTurn - rollCount) + " Rolls Left)<html>");
     }
 
     // sets the explanation label to "Final Hand"
