@@ -140,4 +140,18 @@ public class ScoreLineView extends JPanel{
         scoreCells.get(0).setForeground(Color.BLACK);
     }*/
 
+    public GameLabel getCell(int column){
+        if(column == 1){
+            return nameCell;
+        } else if(column == 2){
+            return scoringExplanationCell;
+        } else{
+            return scoreCells.get(column - 3);
+        }
+    }
+
+    /*public GameLabel getScoreCell(int column){
+        return scoreCells.get(column - 1);
+    }*/
+
 }

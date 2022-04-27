@@ -4,9 +4,20 @@ import javax.swing.*;
 import java.util.ArrayList;
 import edu.gonzaga.Player;
 import edu.gonzaga.GameComponents.*;
+import java.awt.*;
 
 public class LeaderBoardView extends JPanel{
     
+    private Color[][] possibleColors = {
+        {ColorPalette.lightRed, ColorPalette.red, ColorPalette.darkRed},
+        {ColorPalette.lightGreen, ColorPalette.green, ColorPalette.darkGreen},
+        {ColorPalette.lightBlue, ColorPalette.blue, ColorPalette.darkBlue},
+        {ColorPalette.lightGrey, ColorPalette.grey, ColorPalette.darkGrey},
+        {ColorPalette.lightPurple, ColorPalette.purple, ColorPalette.darkPurple},
+        {ColorPalette.lightTeal, ColorPalette.teal, ColorPalette.darkTeal},
+        {ColorPalette.lightBrown, ColorPalette.brown, ColorPalette.darkBrown},
+        {ColorPalette.lightOrange, ColorPalette.orange, ColorPalette.darkOrange}
+    };
     private ScoreCardView scoreTableView;
     private GameLabel winnerLabel;
     private ArrayList<Player> players;
@@ -42,9 +53,24 @@ public class LeaderBoardView extends JPanel{
         }});
         addPlayerScores();
         scoreTableView.color(ColorPalette.darkRed, ColorPalette.lightRed, ColorPalette.red);
+        //scoreTableView.color(titleColor, columnHeadersColor, possibleScoreColor);
+        colorPlayerColumns();
         setWinnerLabel();
         this.add(scoreTableView);
         this.add(winnerLabel);
+    }
+
+    public void colorPlayerColumns(){///////////////////////////////////////////////////////////////////////////////////////////////
+        for(int i = 0; i < players.size(); i++){
+            scoreTableView.colorTitleCell(possibleColors[i][1], 1, i + 3);
+            scoreTableView.colorTitleCell(possibleColors[i][1], 2, i + 3);
+            for(int j = 1; j <= 13; j++){
+                scoreTableView.colorScoreCell(possibleColors[i][0], j, i + 3);
+            }
+            for(int j = 1; j <= 6; j++){
+                scoreTableView.colorTotalCell(possibleColors[i][0], j, i + 3);
+            }
+        }
     }
 
     public void addPlayerScores(){

@@ -115,4 +115,22 @@ public class ScoreCardView extends JPanel{
         titleLines.get(1).setLineBackground(columnHeadersColor);
     }
 
+    public void colorTitleCell(Color color, int titleRow, int column){
+        if(titleRow == 1){
+            titleLines.get(0).getCell(column).setBackground(color);
+        } else{
+            titleLines.get(1).getCell(column).setBackground(color);
+        }
+    }
+
+    public void colorScoreCell(Color color, int row, int column){
+        scoreLines.get(row - 1).getCell(column).setBackground(color);
+        scoreLines.get(row - 1).getCell(column).setOpaque(true);
+    }
+
+    public void colorTotalCell(Color color, int row, int column){
+        totalLines.get(row -1).getCell(column).setBackground(color);
+        totalLines.get(row -1).getCell(column).setOpaque(true);
+    }
+
 }

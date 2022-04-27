@@ -55,12 +55,12 @@ public class ScoreCard{
     }
 
     public void configureScoreLines(int numPlayers){
-        ones = new UpperScoreLine("Aces 1's", "Count and Add Only Aces", 1, numPlayers);
-        twos = new UpperScoreLine("Twos 2's", "Count and Add Only Twos", 2, numPlayers);
-        threes = new UpperScoreLine("Threes 3's", "Count and Add Only Threes", 3, numPlayers);
-        fours = new UpperScoreLine("Fours 4's", "Count and Add Only Fours", 4, numPlayers);
-        fives = new UpperScoreLine("Fives 5's", "Count and Add Only Fives", 5, numPlayers);
-        sixes = new UpperScoreLine("Sixes 6's", "Count and Add Only Sixes", 6, numPlayers);
+        ones = new UpperScoreLine(" Aces 1's", "Count and Add Only Aces", 1, numPlayers);
+        twos = new UpperScoreLine(" Twos 2's", "Count and Add Only Twos", 2, numPlayers);
+        threes = new UpperScoreLine(" Threes 3's", "Count and Add Only Threes", 3, numPlayers);
+        fours = new UpperScoreLine(" Fours 4's", "Count and Add Only Fours", 4, numPlayers);
+        fives = new UpperScoreLine(" Fives 5's", "Count and Add Only Fives", 5, numPlayers);
+        sixes = new UpperScoreLine(" Sixes 6's", "Count and Add Only Sixes", 6, numPlayers);
         upperScoreLines.add(ones);
         upperScoreLines.add(twos);
         upperScoreLines.add(threes);

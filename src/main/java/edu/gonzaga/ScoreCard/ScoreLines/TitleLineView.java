@@ -14,5 +14,7 @@ public class TitleLineView extends ScoreLineView{
             updateScoreCell(scoreHeaders.get(i), i + 1);
         }
     }
+
+    
     
 }
