@@ -27,7 +27,7 @@ public class LeaderBoardView extends JPanel{
         scoreTableView = scoreTableRef;
         winnerLabel = new GameLabel("Not Assigned", SwingConstants.CENTER);
         this.players = players;
-        this.setSize(scoreTableView.getWidth(), scoreTableView.getHeight() + 30);
+        this.setSize(scoreTableView.getWidth(), scoreTableView.getHeight() + 50 + 10);
         configureView();
     }
 
@@ -40,12 +40,13 @@ public class LeaderBoardView extends JPanel{
             }
         }
         winnerLabel.setText(winner.getName() + " is the winner!");
-        winnerLabel.setSize(scoreTableView.getWidth(), 30);
+        winnerLabel.setTextSize(30);
+        winnerLabel.setSize(scoreTableView.getWidth(), 50);
     }
 
     public void configureView(){
         scoreTableView.setLocation(0, 0);
-        winnerLabel.setLocation(0, scoreTableView.getHeight());
+        winnerLabel.setLocation(0, scoreTableView.getHeight() + 10);
         scoreTableView.setUpperScoreCardTitles(new ArrayList<String>(){{
             for(int i = 0; i < players.size(); i++){
                 add(players.get(i).getName());

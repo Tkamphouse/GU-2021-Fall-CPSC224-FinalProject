@@ -1,8 +1,11 @@
 package edu.gonzaga.Windows;
 
 import javax.swing.*;
+import javax.swing.plaf.DimensionUIResource;
+
 import java.awt.*;
 import java.awt.event.*;
+import edu.gonzaga.GameComponents.*;
 
 /**
  * Class for the introduction window. That is,
@@ -14,14 +17,15 @@ import java.awt.event.*;
  */
 public class TitleWindow extends JPanel{
     JFrame window;
+    private ImageIcon yahtzeeLogoIconImage = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\YahtzeeLogo.png");
     NameWindow nextPanel;
     JPanel contentCenter;
     JPanel contentSouth;
     JLabel yahtzeeTitle;
-    JLabel boxLabel;
+    GameLabel boxLabel;
     Integer[] numPlayerOptions = {1, 2, 3, 4, 5, 6, 7, 8};
     JComboBox<Integer> numPlayerDropBox = new JComboBox<>(numPlayerOptions);
-    JButton toNameWindow;
+    GameButton toNameWindow;
     DefaultListCellRenderer renderer;
 
     /**
@@ -31,8 +35,9 @@ public class TitleWindow extends JPanel{
      * @see Yahtzee.java
      */
     public TitleWindow(){
+        this.setSize(800, 800);
         JPanel spacer = new JPanel();
-        spacer.setPreferredSize(new Dimension(800, 200));
+        spacer.setPreferredSize(new Dimension(800, 150));
         add(spacer, BorderLayout.NORTH);
 
         setCenterContent();
@@ -51,15 +56,20 @@ public class TitleWindow extends JPanel{
     private void setCenterContent(){
         contentCenter = new JPanel();
         contentCenter.setLayout(new BoxLayout(contentCenter, BoxLayout.Y_AXIS));
-        contentCenter.setPreferredSize(new Dimension(450, 300));
+        contentCenter.setPreferredSize(new Dimension(640, 460));
 
-        yahtzeeTitle = new JLabel("Yahtzee");
-        yahtzeeTitle.setFont(new Font("Serif", Font.PLAIN, 120));
+        resizeYahtzeeLogo(640, 243);
+        yahtzeeTitle = new JLabel(yahtzeeLogoIconImage);
         yahtzeeTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         contentCenter.add(yahtzeeTitle);
+        contentCenter.add(new GameLabel("I exist"){{
+            setAlignmentX(Component.CENTER_ALIGNMENT);
+            setSize(5,10);
+            setForeground(ColorPalette.backgroundColor);
+        }});
     
-        numPlayerDropBox.setFont(new Font("Serif", Font.PLAIN, 30));
+        numPlayerDropBox.setFont(new Font("Bookman Old Style", Font.PLAIN, 30));
         numPlayerDropBox.setMaximumSize(new Dimension(150, 30));
         renderer = new DefaultListCellRenderer();
         renderer.setHorizontalAlignment(DefaultListCellRenderer.CENTER);
@@ -67,12 +77,23 @@ public class TitleWindow extends JPanel{
         numPlayerDropBox.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         contentCenter.add(numPlayerDropBox);
+        contentCenter.add(new GameLabel("I exist"){{
+            setAlignmentX(Component.CENTER_ALIGNMENT);
+            setSize(5,10);
+            setForeground(ColorPalette.backgroundColor);
+        }});
 
-        boxLabel = new JLabel("Players");
-        boxLabel.setFont(new Font("Serif", Font.PLAIN, 30));
+        boxLabel = new GameLabel("Players");
+        boxLabel.setTextSize(30);
         boxLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         contentCenter.add(boxLabel);
+    }
+
+    public void resizeYahtzeeLogo(int width, int height){
+        Image image = yahtzeeLogoIconImage.getImage(); // transform it 
+        Image newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        yahtzeeLogoIconImage = new ImageIcon(newimg);  // transform it back
     }
 
     /**
@@ -83,10 +104,13 @@ public class TitleWindow extends JPanel{
      */
     private void setSouthContent(){
         contentSouth = new JPanel(new FlowLayout(FlowLayout.CENTER, 90, 40));
-        contentSouth.setPreferredSize(new Dimension(450, 150));
+        contentSouth.setPreferredSize(new Dimension(800, 140));
+        contentSouth.setBackground(ColorPalette.darkRed);
+        contentSouth.setOpaque(true);
 
-        toNameWindow = new JButton("Start");
-        toNameWindow.setFont(new Font("Serif", Font.PLAIN, 30));
+        toNameWindow = new GameButton("Start");
+        toNameWindow.setPreferredSize(new Dimension(150, 50));
+        toNameWindow.setTextSize(30);
         
         contentSouth.add(toNameWindow);
     }
@@ -116,8 +140,8 @@ public class TitleWindow extends JPanel{
     public JPanel getContentCenter() { return contentCenter; }
     public JPanel getContentSouth() { return contentSouth; }
     public JLabel getTitle() { return yahtzeeTitle; }
-    public JLabel getBoxLabel() { return boxLabel; }
+    public GameLabel getBoxLabel() { return boxLabel; }
     public JComboBox<Integer> getNumPlayerDropBox() { return numPlayerDropBox; }
-    public JButton getToNameWindow() { return toNameWindow; }
+    public GameButton getToNameWindow() { return toNameWindow; }
     public JPanel getNamePanel() { return nextPanel; }
 }

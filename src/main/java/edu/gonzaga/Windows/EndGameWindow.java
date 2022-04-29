@@ -6,6 +6,7 @@ import java.awt.*;
 import edu.gonzaga.*;
 import edu.gonzaga.ScoreCard.*;
 import java.awt.event.*;
+import edu.gonzaga.GameComponents.*;
 
 /**
  * Class to make a final window with results of the game.
@@ -17,7 +18,7 @@ public class EndGameWindow extends JPanel{
 
     LeaderBoard leaderBoard;
     JLabel winner;
-    JButton toTitleScreen;
+    GameButton toTitleScreen;
     ArrayList<Player> players;
 
     /**
@@ -32,10 +33,13 @@ public class EndGameWindow extends JPanel{
         this.setSize(800, 800);
 
         leaderBoard = new LeaderBoard(players);
+        leaderBoard.getLeaderBoardView().setLocation(400 - (leaderBoard.getLeaderBoardView().getWidth()/2) - 5, 60);
         add(leaderBoard.getLeaderBoardView(), BorderLayout.CENTER);
 
-        toTitleScreen = new JButton("Return to Title");
-        // add(toTitleScreen, BorderLayout.SOUTH);
+        toTitleScreen = new GameButton("Return to Title");
+        toTitleScreen.setSize(150, 30);
+        toTitleScreen.setLocation(400 - 75  , 60 + leaderBoard.getLeaderBoardView().getHeight() + 10);
+        add(toTitleScreen);
     }
 
     /**
@@ -43,9 +47,12 @@ public class EndGameWindow extends JPanel{
      * 
      * @param titleWindow reference to the title window
      */
-    public void setSwitchButton(JPanel titleWindow){
+    public void setSwitchButton(JFrame main, JPanel titleWindow){
         toTitleScreen.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
+                TitleWindow titleWindow = new TitleWindow();
+                titleWindow.setSwitchButton(main, titleWindow);
+                main.add(titleWindow);
                 titleWindow.setVisible(true);
                 setVisible(false);
             }
@@ -54,6 +61,6 @@ public class EndGameWindow extends JPanel{
 
     // getters for unit testing purposes
     public LeaderBoard getLeaderBoard(){ return leaderBoard; }
-    public JButton getToTitleScreen(){ return toTitleScreen; }
+    public GameButton getToTitleScreen(){ return toTitleScreen; }
     
 }

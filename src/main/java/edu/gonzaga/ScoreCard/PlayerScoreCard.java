@@ -89,5 +89,9 @@ public class PlayerScoreCard extends ScoreCard{
         //return super.getScoreLines().get(12).getScores().get(0);
         return super.getTotalLines().get(5).getScore(1);
     }
+
+    public void resetCount(){
+        cardCount = 0;
+    }
     
 }

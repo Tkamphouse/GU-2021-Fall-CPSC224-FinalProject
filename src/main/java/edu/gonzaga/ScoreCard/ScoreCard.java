@@ -105,6 +105,7 @@ public class ScoreCard{
         lowerUpperTotalLine = new TotalScoreLine(" Total (upper)", "--->", numPlayers, allUpperLines);
         ArrayList<ScoreLine> allLines = new ArrayList<>() {{ add(lowerTotalLine); add(lowerUpperTotalLine); }};
         grandTotalScoreLine = new TotalScoreLine(" Grand Total", "--->", numPlayers, allLines);
+        grandTotalScoreLine.setBottomBorder();
         
         totalLines.add(upperTotalLine);
         totalLines.add(upperBonusLine);

@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class ScoreLineView extends JPanel{
 
-    private static final Color darkBrown = new Color(27, 25, 21);
+    //private static final Color darkBrown = new Color(27, 25, 21);
     private static final int NAME_CELL_WIDTH = 100;
     private static final int SCORING_EXPLANATION_CELL_WIDTH = 250;
     private static final int SCORE_CELL_WIDTH = 50;
@@ -90,10 +90,13 @@ public class ScoreLineView extends JPanel{
     }
 
     public void setCellBorders(){
-        nameCell.setBorder(BorderFactory.createLineBorder(darkBrown));
-        scoringExplanationCell.setBorder(BorderFactory.createLineBorder(darkBrown));
+        nameCell.setBorder(BorderFactory.createMatteBorder(1, 3, 1, 1, ColorPalette.textColor));
+        scoringExplanationCell.setBorder(BorderFactory.createLineBorder(ColorPalette.textColor));
         for(int i = 0; i < scoreCells.size(); i++){
-            scoreCells.get(i).setBorder(BorderFactory.createLineBorder(darkBrown));
+            scoreCells.get(i).setBorder(BorderFactory.createLineBorder(ColorPalette.textColor));
+            if(i == scoreCells.size() - 1){
+                scoreCells.get(i).setBorder(BorderFactory.createMatteBorder(1, 1, 1, 3, ColorPalette.textColor));
+            }
         }
     }
 
@@ -153,5 +156,16 @@ public class ScoreLineView extends JPanel{
     /*public GameLabel getScoreCell(int column){
         return scoreCells.get(column - 1);
     }*/
+
+    public void setBottomBorder(){
+        nameCell.setBorder(BorderFactory.createMatteBorder(1, 3, 3, 1, ColorPalette.textColor));
+        scoringExplanationCell.setBorder(BorderFactory.createMatteBorder(1, 1, 3, 1, ColorPalette.textColor));
+        for(int i = 0; i < scoreCells.size(); i++){
+            scoreCells.get(i).setBorder(BorderFactory.createMatteBorder(1, 1, 3, 1, ColorPalette.textColor));
+            if(i == scoreCells.size() - 1){
+                scoreCells.get(i).setBorder(BorderFactory.createMatteBorder(1, 1, 3, 3, ColorPalette.textColor));
+            }
+        }
+    }
 
 }
