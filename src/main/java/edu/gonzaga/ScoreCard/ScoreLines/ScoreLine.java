@@ -80,4 +80,8 @@ public abstract class ScoreLine {
         view.setLineBackground(backgroundColor);
     }
 
+    public void setBottomBorder(){
+        view.setBottomBorder();
+    }
+
 }

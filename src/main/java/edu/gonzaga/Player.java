@@ -25,9 +25,9 @@ import edu.gonzaga.ScoreCard.PlayerScoreCardView;
 
 public class Player {
 
-    PlayerScoreCard playerScoreCard;
-    String name;
-    Boolean playing = false;
+    private PlayerScoreCard playerScoreCard;
+    private String name;
+    private Boolean playing = false;
 
     public Player(String name){
         this.name = name;

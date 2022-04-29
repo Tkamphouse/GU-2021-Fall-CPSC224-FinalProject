@@ -1,9 +1,14 @@
 package edu.gonzaga.Windows;
 
 import javax.swing.*;
+import javax.swing.text.AttributeSet.ColorAttribute;
+
 import java.awt.event.*;
 import edu.gonzaga.*;
+import edu.gonzaga.GameComponents.*;
+
 import java.util.ArrayList;
+import java.util.Currency;
 
 /**
  * Class to create and update the actual game mechanics
@@ -15,10 +20,13 @@ import java.util.ArrayList;
  */
 public class GameWindow extends JPanel{
 
-    JLabel currentPlayerName = new JLabel();
+    //JFra
+    GameLabel currentPlayerName = new GameLabel();
+    GameLabel footer = new GameLabel();
     JPanel currentPlayerScoreCardView = new JPanel();
-    JButton toEndScreen;
-    JButton endTurn;
+    GameButton toEndScreen;
+    GameButton toTitleScreen;
+    GameButton endTurn;
     Hand gameHand;
     ArrayList<Player> players;
     Player currentPlayer;
@@ -34,8 +42,11 @@ public class GameWindow extends JPanel{
         this.setLayout(null);
         this.setSize(800, 800);
         gameHand = new Hand();
-        toEndScreen = new JButton("Finish Game");
-        endTurn = new JButton("End Turn");
+        toEndScreen = new GameButton("Finish Game");
+        toTitleScreen = new GameButton("Return to Title");
+        endTurn = new GameButton("End Turn");
+        footer.setBackground(ColorPalette.darkRed);
+        footer.setOpaque(true);
         initPlayers(nameCollectors);
         players.get(0).setPlaying();
         setRollButtonMechanics();
@@ -58,6 +69,10 @@ public class GameWindow extends JPanel{
         }
         currentPlayer = players.get(0);
         currentPlayerName.setText(currentPlayer.getName() + "'s Turn");
+        currentPlayerName.setBackground(ColorPalette.darkRed);
+        currentPlayerName.setOpaque(true);
+        currentPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
+        currentPlayerName.setTextBold();
     }
 
     /*public void updatePlayerLabel(Player currentPlayer){
@@ -133,6 +148,7 @@ public class GameWindow extends JPanel{
                 currentPlayer.hideScoringMenu();
                 if(checkCurrentPlayerLastPlayer() && currentPlayer.checkScoreCardFull()){
                     toEndScreen.setVisible(true);
+                    toTitleScreen.setVisible(false);
                 }else{
                     incrementCurrentPlayer();
                     gameHand.reset();
@@ -153,10 +169,21 @@ public class GameWindow extends JPanel{
         toEndScreen.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
                 EndGameWindow endGameWindow = new EndGameWindow(players);
-                endGameWindow.setSwitchButton(titleWindow);
+                endGameWindow.setSwitchButton(main, titleWindow);
                 main.add(endGameWindow);
                 endGameWindow.setVisible(true);
                 setVisible(false);
+                players.get(0).getScoreCard().resetCount();
+            }
+        });
+        toTitleScreen.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event){
+                TitleWindow titleWindow = new TitleWindow();
+                titleWindow.setSwitchButton(main, titleWindow);
+                main.add(titleWindow);
+                titleWindow.setVisible(true);
+                setVisible(false);
+                players.get(0).getScoreCard().resetCount();
             }
         });
     }
@@ -184,9 +211,11 @@ public class GameWindow extends JPanel{
      * @see configureView method
      */
     public void setComponentSizes(){
-        currentPlayerName.setSize(150, 30);
+        currentPlayerName.setSize(800, 30);
         toEndScreen.setSize(150, 30);
-        endTurn.setSize(150, 30);
+        toTitleScreen.setSize(150, 30);
+        endTurn.setSize(120, 30);
+        footer.setSize(800, 100);
     }
 
     /**
@@ -195,11 +224,16 @@ public class GameWindow extends JPanel{
      * @see configureView method
      */
     public void setComponentLocations(){
-        currentPlayerName.setLocation(10, 10);
-        currentPlayerScoreCardView.setLocation(10, currentPlayerName.getHeight() + 20);
-        gameHand.getAppearance().setLocation(currentPlayerScoreCardView.getWidth() + 20, currentPlayerName.getHeight() + 20);
-        toEndScreen.setLocation(10, currentPlayerName.getHeight() + currentPlayerScoreCardView.getHeight() + 30);
-        endTurn.setLocation(170, currentPlayerName.getHeight() + currentPlayerScoreCardView.getHeight() + 30);
+        currentPlayerName.setLocation(0, 0);
+        currentPlayerScoreCardView.setLocation(30, currentPlayerName.getHeight() + 40);
+        gameHand.getAppearance().setLocation(currentPlayerScoreCardView.getWidth() + 20, currentPlayerName.getHeight() + 40);
+        //toEndScreen.setLocation(10, currentPlayerName.getHeight() + currentPlayerScoreCardView.getHeight() + 50);
+        //toTitleScreen.setLocation(10 + toEndScreen.getWidth() + 10, currentPlayerName.getHeight() + currentPlayerScoreCardView.getHeight() + 50);
+        toEndScreen.setLocation(400 - 75, 705);
+        toTitleScreen.setLocation(400 - 75, 705);
+        //endTurn.setLocation(170, currentPlayerName.getHeight() + currentPlayerScoreCardView.getHeight() + 50);
+        endTurn.setLocation(currentPlayerScoreCardView.getWidth() + 20 + 20, currentPlayerName.getHeight() + gameHand.getAppearance().getHeight() - endTurn.getHeight() + 40);
+        footer.setLocation(0, 680);
     }
 
     /**
@@ -208,11 +242,13 @@ public class GameWindow extends JPanel{
      * @see configureView method
      */
     public void addComponents(){
+        this.add(endTurn);
         this.add(currentPlayerName);
         this.add(currentPlayerScoreCardView);
         this.add(gameHand.getAppearance());
         this.add(toEndScreen);
-        this.add(endTurn);
+        this.add(toTitleScreen);
+        this.add(footer);
     }
 
     /**

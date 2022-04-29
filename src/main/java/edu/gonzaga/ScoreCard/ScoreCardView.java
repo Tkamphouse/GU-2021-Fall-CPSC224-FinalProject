@@ -3,14 +3,14 @@ package edu.gonzaga.ScoreCard;
 import javax.swing.JPanel;
 import java.util.ArrayList;
 
-import edu.gonzaga.GameComponents.GameLabel;
+import edu.gonzaga.GameComponents.*;
 import edu.gonzaga.ScoreCard.ScoreLines.*;
 import java.awt.*;
 import javax.swing.*;
 
 public class ScoreCardView extends JPanel{
     
-    private static final Color darkBrown = new Color(27, 25, 21);
+    //private static final Color darkBrown = new Color(27, 25, 21);
     
     private GameLabel title;
     private ArrayList<ScoreLineView> scoreLines = new ArrayList<>();
@@ -55,7 +55,8 @@ public class ScoreCardView extends JPanel{
 
     public void setComponentSizes(){
         title.setSize(width, rowHeight);
-        title.setBorder(BorderFactory.createLineBorder(darkBrown));
+        //title.setBorder(BorderFactory.createLineBorder(darkBrown));
+        title.setBorder(BorderFactory.createMatteBorder(3, 3, 1, 3, ColorPalette.textColor));
     }
 
     public void setComponentLocations(){

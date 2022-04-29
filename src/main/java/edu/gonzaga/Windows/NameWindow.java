@@ -1,9 +1,12 @@
 package edu.gonzaga.Windows;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import edu.gonzaga.GameComponents.*;
 
 /**
  * Class defining the window to add names for the number of 
@@ -17,11 +20,11 @@ public class NameWindow extends JPanel{
     JPanel contentNorth;
     JPanel contentCenter;
     JPanel contentSouth;
-    JLabel instructions;
-    JLabel constraintNotice;
-    ArrayList<JLabel> playerNumLabels;
+    GameLabel instructions;
+    GameLabel constraintNotice;
+    ArrayList<GameLabel> playerNumLabels;
     ArrayList<JTextField> playerNameCollectors;
-    JButton toGameWindow;
+    GameButton toGameWindow;
     int numPlayers;
 
     /**
@@ -57,9 +60,9 @@ public class NameWindow extends JPanel{
         playerNameCollectors = new ArrayList<>();
 
         for(int i = 0; i < numPlayers; i++){
-            JLabel tempJLabel = new JLabel("Player " + (i + 1) + ": ");
+            GameLabel tempGameLabel = new GameLabel("Player " + (i + 1) + ": ");
             JTextField tempTextField = new JTextField(10);
-            playerNumLabels.add(i, tempJLabel);
+            playerNumLabels.add(i, tempGameLabel);
             playerNameCollectors.add(i, tempTextField);
         }
     }
@@ -71,10 +74,13 @@ public class NameWindow extends JPanel{
      */
     private void setNorthContent(){
         contentNorth = new JPanel();
-        contentNorth.setPreferredSize(new Dimension(450, 100));
+        contentNorth.setLayout(new BorderLayout());
+        contentNorth.setPreferredSize(new Dimension(800, 100));
+        contentNorth.setBackground(ColorPalette.darkRed);
 
-        instructions = new JLabel("Enter Player Names");
-        instructions.setFont(new Font("Serif", Font.PLAIN, 50));
+        instructions = new GameLabel("Enter Player Names");
+        instructions.setTextSize(50);
+        instructions.setHorizontalAlignment(SwingConstants.CENTER);
         
         contentNorth.add(instructions);
     }
@@ -93,7 +99,8 @@ public class NameWindow extends JPanel{
         contentCenter.setPreferredSize(new Dimension(600, 500));
 
         for (int i = 0; i < numPlayers; i++) {
-            playerNumLabels.get(i).setFont(new Font("Serif", Font.PLAIN, 30));
+            //playerNumLabels.get(i).setFont(new Font("Serif", Font.PLAIN, 30));
+            playerNumLabels.get(i).setTextSize(30);
 
             gbc.gridx = 0;
             gbc.gridy = i;
@@ -103,7 +110,7 @@ public class NameWindow extends JPanel{
 
             contentCenter.add(playerNumLabels.get(i), gbc);
 
-            playerNameCollectors.get(i).setFont(new Font("Serif", Font.PLAIN, 30));
+            playerNameCollectors.get(i).setFont(new Font("Candara", Font.PLAIN, 30));
 
             gbc.gridx = 1;
             gbc.gridy = i;
@@ -125,13 +132,16 @@ public class NameWindow extends JPanel{
         BoxLayout layout = new BoxLayout(contentSouth , BoxLayout.Y_AXIS);
         contentSouth.setPreferredSize(new Dimension(450, 150));
 
-        toGameWindow = new JButton("Start Game");
-        toGameWindow.setFont(new Font("Serif", Font.PLAIN, 30));
+        toGameWindow = new GameButton("Start Game");
+        //toGameWindow.setFont(new Font("Serif", Font.PLAIN, 30));
+        toGameWindow.setTextSize(30);
+        toGameWindow.setPreferredSize(new Dimension(200, 50));
 
         contentSouth.add(toGameWindow, layout);
 
-        constraintNotice = new JLabel("*must enter a name for each player*");
-        constraintNotice.setFont(new Font("Serif", Font.PLAIN, 20));
+        constraintNotice = new GameLabel("*must enter a name for each player*");
+        constraintNotice.setTextSize(20);
+        //constraintNotice.setFont(new Font("Serif", Font.PLAIN, 20));
         constraintNotice.setVisible(false);
 
         contentSouth.add(constraintNotice, layout);
@@ -167,11 +177,11 @@ public class NameWindow extends JPanel{
     }
 
     // to be used for unit testing purposes
-    public ArrayList<JLabel> getPlayerNumLabels(){ return playerNumLabels; }
+    public ArrayList<GameLabel> getPlayerNumLabels(){ return playerNumLabels; }
     public ArrayList<JTextField> getPlayerNameCollectors() { return playerNameCollectors; }
-    public JLabel getInstructions() { return instructions; }
-    public JLabel getConstraintNotice() { return constraintNotice; }
-    public JButton getToGameWindow() { return toGameWindow; }
+    public GameLabel getInstructions() { return instructions; }
+    public GameLabel getConstraintNotice() { return constraintNotice; }
+    public GameButton getToGameWindow() { return toGameWindow; }
     public JPanel getContentNorth() { return contentNorth; }
     public JPanel getContentCenter() { return contentCenter; }
     public JPanel getContentSouth() { return contentSouth; }

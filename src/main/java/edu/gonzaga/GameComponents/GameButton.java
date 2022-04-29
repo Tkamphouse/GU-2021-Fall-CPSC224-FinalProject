@@ -21,15 +21,6 @@ import javax.swing.border.BevelBorder;
 /** Class customizing java swing component JButton */
 public class GameButton extends JButton{
 
-    /*private static final Color darkBrown = new Color(27, 25, 21);
-    private static final Color lightRed = new Color(177, 107, 73);
-    private static final Color darkRed = new Color(150, 70, 47);
-    private static final Color lightGreen = new Color(151, 158, 131);
-    private static final Color darkGreen = new Color(100, 110, 86);
-    private static final Color lightBlue = new Color(159, 188, 170);
-    private static final Color darkBlue = new Color(111, 147, 131);*/
-
-    //FormatSample palette = new FormatSample();
     private Color mainColor = ColorPalette.red;
     private Color clickedColor = ColorPalette.darkRed;
 
@@ -37,18 +28,20 @@ public class GameButton extends JButton{
         super(text);
         this.setColorSettings();
         this.setFont(new Font("Candara", Font.PLAIN, 20));
-        this.setVerticalAlignment(SwingConstants.CENTER);
+        //this.setVerticalAlignment(SwingConstants.CENTER);
+        //this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setFocusPainted(false);
         this.setContentAreaFilled(false);
         this.setOpaque(true);
         this.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     }
 
-    public GameButton(String text, int gameType){
+    public GameButton(String text, int gameType){ 
         super(text);
         this.setColorSettings();
-        this.setFont(new Font("Bookman Old Style", Font.PLAIN, 20));
-        this.setVerticalAlignment(SwingConstants.CENTER);
+        this.setFont(new Font("Candara", Font.PLAIN, 20));
+        //this.setVerticalAlignment(SwingConstants.CENTER);
+        //this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setFocusPainted(false);
         this.setContentAreaFilled(false);
         this.setOpaque(true);
@@ -94,6 +87,10 @@ public class GameButton extends JButton{
         this.mainColor = mainColor;
         this.clickedColor = clickedColor;
         setColorSettings();
+    }
+
+    public void setTextSize(int textSize){
+        this.setFont(new Font("Candara", Font.PLAIN, textSize));
     }
 
     /**
