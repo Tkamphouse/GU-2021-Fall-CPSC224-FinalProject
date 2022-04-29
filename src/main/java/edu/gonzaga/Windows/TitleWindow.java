@@ -17,7 +17,7 @@ import edu.gonzaga.GameComponents.*;
  */
 public class TitleWindow extends JPanel{
     JFrame window;
-    private ImageIcon yahtzeeLogoIconImage = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\YahtzeeLogo.png");
+    private ImageIcon yahtzeeLogoIconImage = new ImageIcon(System.getProperty("user.dir") + "/src/media/YahtzeeLogo.png");
     NameWindow nextPanel;
     JPanel contentCenter;
     JPanel contentSouth;
