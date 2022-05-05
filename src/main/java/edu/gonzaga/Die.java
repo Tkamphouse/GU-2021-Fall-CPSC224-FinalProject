@@ -65,20 +65,20 @@ public class Die implements Comparable<Die> {
         }
     }
 
-    public void updateLockedState() {
+    public boolean updateLockedState() {
         if(dieView.button.isSelected()) {
             locked = true;
         }
         else {
             locked = false;
         }
+        return locked;
     }
     
     public void changeLockedState() {
         if (locked == true)
             locked = false;
-        else if (locked == false)
-            locked = true;
+        else locked = true;
     }
 
     public void setValue(int newSideUp) {

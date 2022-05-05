@@ -1,5 +1,6 @@
 package edu.gonzaga;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,7 +10,7 @@ class DieTest {
         Integer expectedValue = 1;
         Die die = new Die(6);
         System.out.println("Default value should be 1");
-        //assertEquals(expectedValue, die.getSideUp());
+        assertEquals(expectedValue, die.getSideUp());
     }
 
     @Test
@@ -17,7 +18,7 @@ class DieTest {
         Integer expectedValue = 4;
         Die die = new Die(6, expectedValue);
         System.out.println("Initialized value should be 4");
-        //assertEquals(expectedValue, die.getSideUp());
+        assertEquals(expectedValue, die.getSideUp());
     }
 
     @Test
@@ -49,27 +50,41 @@ class DieTest {
 
     @Test
     void testRoll() {
-
-    }
-
-    @Test
-    void testLockedState() {
-
+//        Die die = new Die();
+//        DieView dieView = new DieView(1);
+//        dieView.button.setSelected(true);
+//        die.updateLockedState();
+//        assertTrue(die.updateLockedState() == true);
     }
 
     @Test
     void testSetValue() {
-
+        Die die = new Die();
+        boolean passed = true;
+        int num_Array[] = {1, 5, 3};
+        for(int i = 0; i < 2; i++) {
+            die.setValue(num_Array[i]);
+            if(die.getSideUp() != num_Array[i]) {
+                passed = false;
+            }
+        }
+        assertTrue(passed == true);
     }
 
     @Test
     void testGetNumSides() {
-
+        int numSides = 0;
+        Die die = new Die();
+        numSides = die.getNumSides();
+        assertTrue(numSides == 6);
     }
 
     @Test
     void testGetSideUp() {
-
+        Die die = new Die();
+        int num;
+        num = die.getSideUp();
+        assertTrue(num >= 0);
     }
 
 }
