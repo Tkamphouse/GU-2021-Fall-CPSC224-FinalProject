@@ -2,29 +2,37 @@ package edu.gonzaga;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import javax.swing.*;
 import edu.gonzaga.Windows.*;
 import java.util.ArrayList;
 
 public class EndGameTest {
     @Test
-    public void testEndPanelInit() {
-        ArrayList<Player> players = new ArrayList<>(1);
+    public void testPlayerAccess() {
+        ArrayList<Player> players = new ArrayList<Player>();
+        Player newPlayer = new Player("First");
+        players.add(newPlayer);
+
         EndGameWindow test = new EndGameWindow(players);
-        Assertions.assertNotNull(test);
+        Assertions.assertEquals("First", test.getPlayers().get(0).getName());
+    }
+
+    @Test
+    public void testTitleButtonInit() {
+        ArrayList<Player> players = new ArrayList<Player>();
+        Player newPlayer = new Player("First");
+        players.add(newPlayer);
+
+        EndGameWindow test = new EndGameWindow(players);
+        Assertions.assertEquals("Return to Title", test.getToTitleScreen().getText());
     }
 
     @Test
     public void testLeaderBoardInit() {
-        ArrayList<Player> players = new ArrayList<>(1);
-        EndGameWindow test = new EndGameWindow(players);
-        Assertions.assertNotNull(test.getLeaderBoard());
-    }
+        ArrayList<Player> players = new ArrayList<Player>();
+        Player newPlayer = new Player("First");
+        players.add(newPlayer);
 
-    @Test
-    public void testButtonInit() {
-        ArrayList<Player> players = new ArrayList<>(1);
         EndGameWindow test = new EndGameWindow(players);
-        Assertions.assertNotNull(test.getToTitleScreen());
+        Assertions.assertEquals("First is the winner!", test.getLeaderBoard().getLeaderBoardView().getWinnerLabel().getText());
     }
 }

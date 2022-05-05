@@ -62,5 +62,5 @@ public class EndGameWindow extends JPanel{
     // getters for unit testing purposes
     public LeaderBoard getLeaderBoard(){ return leaderBoard; }
     public GameButton getToTitleScreen(){ return toTitleScreen; }
-    
+    public ArrayList<Player> getPlayers(){ return players; }
 }

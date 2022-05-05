@@ -1,27 +1,11 @@
 package edu.gonzaga;
 
-import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
 import java.awt.event.*;
 import edu.gonzaga.ScoreCard.PlayerScoreCard;
 import edu.gonzaga.ScoreCard.PlayerScoreCardView;
-
-
-/*
-* End game window - jonathan
-* smooth design elements
-* presentation uml - Tyler
-
-* smooth code 
-* unit testing - individuals
-* integration testing
-
-* final report
-* presentation
-*/
 
 public class Player {
 
