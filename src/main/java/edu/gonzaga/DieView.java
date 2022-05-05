@@ -3,6 +3,7 @@ package edu.gonzaga;
 import javax.swing.*;
 import java.awt.*;
 
+/** Class to change how a single die is viewed. */
 public class DieView extends JPanel {
 
     private static final int IMAGE_XCOORDINATE = 0;
@@ -26,6 +27,12 @@ public class DieView extends JPanel {
     ImageIcon d6Side6 = new ImageIcon(System.getProperty("user.dir") + "/src/media/D6S6.png");
     ImageIcon[] icons = new ImageIcon[6];
 
+    /**
+     * constructor for DieView class
+     *
+     * @param sideUp
+     * @return nothing
+     */
     public DieView(int sideUp){
         this.setLayout(null);
         setIcons(50, 50);
@@ -34,10 +41,21 @@ public class DieView extends JPanel {
         configureView();
     }
 
+    /**
+     * updates the die face to be the number passed into parameters
+     *
+     * @param sideUp
+     * @return nothing
+     */
     public void updateDieAppearance(int sideUp) {
         icon.setIcon(icons[sideUp - 1]);
     }
 
+    /**
+     * pushes an icon and button onto the JPanel
+     *
+     * @return nothing
+     */
     public void configureView(){
         icon.setBounds(IMAGE_XCOORDINATE, IMAGE_YCOORDINATE, IMAGE_WIDTH, IMAGE_HEIGHT);
         button.setBounds(BUTTON_XCOORDINATE, BUTTON_YCOORDINATE, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -48,10 +66,21 @@ public class DieView extends JPanel {
         this.add(button);
     }
 
+    /**
+     * returns a radio button
+     *
+     * @return radioButton
+     */
     public JRadioButton getRadioButton() {
         return button;
     }
 
+    /**
+     * can change the sizes of the dice images
+     *
+     * @param height and width
+     * @return nothing
+     */
     public void setIcons(int width, int height){
 
         Image image = d6Side1.getImage(); // transform it 
@@ -83,7 +112,6 @@ public class DieView extends JPanel {
         newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
         d6Side6 = new ImageIcon(newimg);  // transform it back
         icons[5] = d6Side6;
-
     }
 
 }

@@ -49,15 +49,6 @@ class DieTest {
     }
 
     @Test
-    void testRoll() {
-//        Die die = new Die();
-//        DieView dieView = new DieView(1);
-//        dieView.button.setSelected(true);
-//        die.updateLockedState();
-//        assertTrue(die.updateLockedState() == true);
-    }
-
-    @Test
     void testSetValue() {
         Die die = new Die();
         boolean passed = true;

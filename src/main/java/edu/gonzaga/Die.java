@@ -20,6 +20,11 @@ public class Die implements Comparable<Die> {
     private static final Integer DEFAULT_SIDE_UP = 1;
     private DieView dieView;
 
+    /**
+     * die constructor #1, default
+     *
+     * @return nothing
+     */
     public Die() {
         this.numSides = DEFAULT_NUM_SIDES;
         this.sideUp = DEFAULT_SIDE_UP;
@@ -32,6 +37,12 @@ public class Die implements Comparable<Die> {
         });
     }
 
+    /**
+     * die constructor #2, number of sides is specified
+     *
+     * @param numSides
+     * @return nothing
+     */
     public Die(Integer numSides) {
         this.numSides = numSides;
         this.sideUp = DEFAULT_SIDE_UP;
@@ -44,6 +55,12 @@ public class Die implements Comparable<Die> {
         });
     }
 
+    /**
+     * die constructor #3, number of sides and starting side is specified
+     *
+     * @param numSides and startingSide
+     * @return nothing
+     */
     public Die(Integer numSides, Integer startingSide) {
         this.numSides = numSides;
         this.sideUp = startingSide;
@@ -56,7 +73,11 @@ public class Die implements Comparable<Die> {
         });
     }
 
-    /** Rolls the die once, getting new random value. */
+    /**
+     * rolls the die once generating a new random value
+     *
+     * @return nothing
+     */
     public void roll() {
         if(!locked) {
             Random rand = new Random();
@@ -65,6 +86,11 @@ public class Die implements Comparable<Die> {
         }
     }
 
+    /**
+     * checks whether the button is selected or not, if it is locked = true, if not locked = false
+     *
+     * @return locked status
+     */
     public boolean updateLockedState() {
         if(dieView.button.isSelected()) {
             locked = true;
@@ -74,33 +100,74 @@ public class Die implements Comparable<Die> {
         }
         return locked;
     }
-    
+
+    /**
+     * changes the lacked state of the button
+     *
+     * @return nothing
+     */
     public void changeLockedState() {
         if (locked == true)
             locked = false;
         else locked = true;
     }
 
+    /**
+     * sets the dice face value to the number specified in the parameters
+     *
+     * @param newSideUp
+     * @return nothing
+     */
     public void setValue(int newSideUp) {
         this.sideUp = newSideUp;
         dieView.updateDieAppearance(newSideUp);
     }
 
+    /**
+     * deselects the button manually
+     *
+     * @return nothing
+     */
     public void deselectButton() {
         dieView.button.setSelected(false);
         updateLockedState();
     }
 
+    /**
+     * sets the button's visibility on the JPanel to false
+     *
+     * @return nothing
+     */
     public void setButtonInvisibility() { dieView.button.setVisible(false); }
 
+    /**
+     * sets the button's visibility on the JPanel to true
+     *
+     * @return nothing
+     */
     public void setButtonVisibility() { dieView.button.setVisible(true); }
 
+    /**
+     * returns dieView JPanel
+     *
+     * @return dieView (JPanel)
+     */
     public JPanel getView() {
         return dieView;
     }
 
+    /**
+     * returns the current side up on the dice
+     *
+     * @return sideUp
+     */
     public int getSideUp() {return sideUp; }
 
+    /**
+     * returns the number of sides on the dice in total
+     *
+     * @return numSides
+     */
     public int getNumSides() { return numSides; }
 
     /**
