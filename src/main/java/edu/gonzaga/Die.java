@@ -1,16 +1,14 @@
 /* (C)2021 */
 package edu.gonzaga;
-
-/*
-* Class for a Die used in Yahtzee.
-*/
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-/** Class to store the state of a single die. */
+/** Class to store the state of a single die.
+ *
+ * @author Hailey Boe
+ * @version final 5/5/2022  */
 public class Die implements Comparable<Die> {
 
     private Integer sideUp; // Current die 'value' in range 1..numSides
@@ -38,7 +36,8 @@ public class Die implements Comparable<Die> {
     }
 
     /**
-     * die constructor #2, number of sides is specified
+     * die constructor #2, number of sides is
+     * specified
      *
      * @param numSides
      * @return nothing
@@ -56,7 +55,8 @@ public class Die implements Comparable<Die> {
     }
 
     /**
-     * die constructor #3, number of sides and starting side is specified
+     * die constructor #3, number of sides and
+     * starting side is specified
      *
      * @param numSides and startingSide
      * @return nothing
@@ -74,7 +74,8 @@ public class Die implements Comparable<Die> {
     }
 
     /**
-     * rolls the die once generating a new random value
+     * rolls the die once generating a new
+     * random value
      *
      * @return nothing
      */
@@ -87,7 +88,9 @@ public class Die implements Comparable<Die> {
     }
 
     /**
-     * checks whether the button is selected or not, if it is locked = true, if not locked = false
+     * checks whether the button is selected or
+     * not, if it is locked = true, if not
+     * locked = false
      *
      * @return locked status
      */
@@ -113,7 +116,8 @@ public class Die implements Comparable<Die> {
     }
 
     /**
-     * sets the dice face value to the number specified in the parameters
+     * sets the dice face value to the number
+     * specified in the parameters
      *
      * @param newSideUp
      * @return nothing
@@ -134,14 +138,16 @@ public class Die implements Comparable<Die> {
     }
 
     /**
-     * sets the button's visibility on the JPanel to false
+     * sets the button's visibility on the
+     * JPanel to false
      *
      * @return nothing
      */
     public void setButtonInvisibility() { dieView.button.setVisible(false); }
 
     /**
-     * sets the button's visibility on the JPanel to true
+     * sets the button's visibility on the
+     * JPanel to true
      *
      * @return nothing
      */
@@ -164,14 +170,16 @@ public class Die implements Comparable<Die> {
     public int getSideUp() {return sideUp; }
 
     /**
-     * returns the number of sides on the dice in total
+     * returns the number of sides on the dice
+     * in total
      *
      * @return numSides
      */
     public int getNumSides() { return numSides; }
 
     /**
-    * Provides the ability to convert the Die object into a string. representation, both with
+    * Provides the ability to convert the Die
+     * object into a string. representation, both with
     * .toString(), but also in System.out.println()
     *
     * @return String of whatever you want this die to say for itself

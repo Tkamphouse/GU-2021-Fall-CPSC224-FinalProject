@@ -1,11 +1,8 @@
 package edu.gonzaga;
 
 import org.junit.jupiter.api.Test;
-
 import javax.swing.*;
-
 import java.awt.*;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DieViewTest {
