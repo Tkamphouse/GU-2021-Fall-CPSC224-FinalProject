@@ -50,6 +50,19 @@ public class Hand
         configureView();
     }
 
+    public Hand(int[] values)
+    {
+        rollCount = 0;
+        dice = new Die[NUM_DICE];
+        for(int i = 0; i < NUM_DICE; i++){
+            dice[i] = new Die();
+        }
+        for (int i = 0; i < this.numDice; ++i){
+            dice[i].setValue(values[i]);
+        }
+        configureView();
+    }
+
     public Die[] returnHand()
     {
         return dice;
