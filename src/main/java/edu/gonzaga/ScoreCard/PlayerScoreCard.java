@@ -39,7 +39,7 @@ public class PlayerScoreCard extends ScoreCard{
 
     public void score(){
         int scoringRow = playerView.getSelectedScoringIndex() + 1;
-        int score = super.getScoreLines().get(scoringRow - 1).getPossibleScore(0);
+        int score = super.getScoreLines().get(scoringRow - 1).getPossibleScore(1);
         manualSetScore(scoringRow, score);
         playerView.deleteScoringOption(scoringRow);
         for(int i = 0; i < 6; i++){

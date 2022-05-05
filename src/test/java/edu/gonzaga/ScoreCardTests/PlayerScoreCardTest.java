@@ -60,17 +60,28 @@ public class PlayerScoreCardTest {
         assertEquals(expectedPossibleScoe, actualPossibleScore);
     }
 
-    /*@Test
-    void testScore(){
+    @Test
+    void testScoreFirstLine(){
         PlayerScoreCard dummyCard = new PlayerScoreCard("John",6);
         Hand dummyHand = new Hand();
         dummyCard.displayPossibleScores(dummyHand);
-        dummyCard.getPlayerScoreCardView().getScoringMenu().getButtons().get(0).setSelected(true);;
-        //System.out.println(dummyCard.getPlayerScoreCardView().getScoringMenu().getButtons().get(0).isSelected());
+        dummyCard.getPlayerScoreCardView().getScoringMenu().getButtons().get(0).setSelected(true);
         dummyCard.score();
         int expectedRecordedScore = 5;
         int actualRecordedScore = dummyCard.getScoreLines().get(0).getScore(1);
         assertEquals(expectedRecordedScore, actualRecordedScore);
-    }*/
+    }
+
+    @Test
+    void testScoreLastLine(){
+        PlayerScoreCard dummyCard = new PlayerScoreCard("John",6);
+        Hand dummyHand = new Hand();
+        dummyCard.displayPossibleScores(dummyHand);
+        dummyCard.getPlayerScoreCardView().getScoringMenu().getButtons().get(0).setSelected(true);
+        dummyCard.score();
+        int expectedRecordedScore = 5;
+        int actualRecordedScore = dummyCard.getScoreLines().get(0).getScore(1);
+        assertEquals(expectedRecordedScore, actualRecordedScore);
+    }
     
 }
