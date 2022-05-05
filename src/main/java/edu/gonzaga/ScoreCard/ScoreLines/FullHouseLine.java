@@ -22,7 +22,7 @@ public class FullHouseLine extends ScoreLine{
             boolean matchOfThree = false;
             boolean matchOfTwo = false;
             int count = 0;
-            for(int i = 1; i <= 6; i++){ //loop through 6 sides ///////////////////////////////to be changed if lizard spock
+            for(int i = 1; i <= playerHand.getSize(); i++){ //loop through die sides
                 count = 0;
                 for(int j = 0; j < playerHand.getSize(); j++){ //loop through dice
                     if(playerHand.getDie(j).getSideUp() == i){ // count occurances of current specified side

@@ -1,9 +1,11 @@
-package edu.gonzaga;
+package edu.gonzaga.ScoreCardTests.ScoreLineTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import javax.swing.*;
+
+import edu.gonzaga.Hand;
 import edu.gonzaga.ScoreCard.ScoreLines.ScoreLine;
 import java.util.ArrayList;
 
@@ -15,7 +17,7 @@ class DummyScoreLine extends ScoreLine{
 
     @Override
     public void calculateScore(Hand currentHand) {
-        // TODO Auto-generated method stub
+        //do nothing
     }
 
 }
@@ -51,14 +53,14 @@ public class ScoreLineTest {
     @Test
     void testPossibleScoresInstantiation(){
         DummyScoreLine dummyLine = new DummyScoreLine();
-        Integer dummyPossibleScore = dummyLine.getPossibleScore(0);
+        Integer dummyPossibleScore = dummyLine.getPossibleScore(1);
         assertNotNull(dummyPossibleScore);
     }
 
     @Test
     void testGetEmptyPossibleScore(){
         DummyScoreLine dummyLine = new DummyScoreLine();
-        Integer actualPossibleScore = dummyLine.getPossibleScore(0);
+        Integer actualPossibleScore = dummyLine.getPossibleScore(1);
         Integer expectedPossibleScore = -1;
         assertEquals(expectedPossibleScore, actualPossibleScore);
     }
@@ -79,6 +81,29 @@ public class ScoreLineTest {
         int actualPossibleScore = dummyLine.getPossibleScore(1);
         int expectedPossibleScore = 10;
         assertEquals(expectedPossibleScore, actualPossibleScore);
+    }
+
+    @Test
+    void testResetPossibleScore(){
+        DummyScoreLine dummyLine = new DummyScoreLine();
+        dummyLine.setPossibleScore(1, 10);
+        dummyLine.resetPossibleScore(1);
+        int actualPossibleScore = dummyLine.getPossibleScore(1);
+        int expectedPossibleScore = -1;
+        assertEquals(expectedPossibleScore, actualPossibleScore);
+    }
+
+    @Test
+    void testCheckUsedNotUsedLine(){
+        DummyScoreLine dummyLine = new DummyScoreLine();
+        assertEquals(false, dummyLine.checkUsed());
+    }
+
+    @Test
+    void testCheckUsedUsedLine(){
+        DummyScoreLine dummyLine = new DummyScoreLine();
+        dummyLine.setScore(1, 10);
+        assertEquals(true, dummyLine.checkUsed());
     }
     
 }

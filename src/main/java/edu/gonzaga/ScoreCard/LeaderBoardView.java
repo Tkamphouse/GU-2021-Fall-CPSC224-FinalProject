@@ -54,14 +54,13 @@ public class LeaderBoardView extends JPanel{
         }});
         addPlayerScores();
         scoreTableView.color(ColorPalette.darkRed, ColorPalette.lightRed, ColorPalette.red);
-        //scoreTableView.color(titleColor, columnHeadersColor, possibleScoreColor);
         colorPlayerColumns();
         setWinnerLabel();
         this.add(scoreTableView);
         this.add(winnerLabel);
     }
 
-    public void colorPlayerColumns(){///////////////////////////////////////////////////////////////////////////////////////////////
+    public void colorPlayerColumns(){
         for(int i = 0; i < players.size(); i++){
             scoreTableView.colorTitleCell(possibleColors[i][1], 1, i + 3);
             scoreTableView.colorTitleCell(possibleColors[i][1], 2, i + 3);

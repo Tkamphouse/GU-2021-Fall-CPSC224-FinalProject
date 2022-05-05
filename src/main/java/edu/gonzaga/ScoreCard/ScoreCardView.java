@@ -10,8 +10,6 @@ import javax.swing.*;
 
 public class ScoreCardView extends JPanel{
     
-    //private static final Color darkBrown = new Color(27, 25, 21);
-    
     private GameLabel title;
     private ArrayList<ScoreLineView> scoreLines = new ArrayList<>();
     private ArrayList<ScoreLineView> totalLines = new ArrayList<>();
@@ -55,7 +53,6 @@ public class ScoreCardView extends JPanel{
 
     public void setComponentSizes(){
         title.setSize(width, rowHeight);
-        //title.setBorder(BorderFactory.createLineBorder(darkBrown));
         title.setBorder(BorderFactory.createMatteBorder(3, 3, 1, 3, ColorPalette.textColor));
     }
 

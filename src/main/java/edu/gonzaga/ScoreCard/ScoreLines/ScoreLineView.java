@@ -8,7 +8,6 @@ import javax.swing.*;
 
 public class ScoreLineView extends JPanel{
 
-    //private static final Color darkBrown = new Color(27, 25, 21);
     private static final int NAME_CELL_WIDTH = 100;
     private static final int SCORING_EXPLANATION_CELL_WIDTH = 250;
     private static final int SCORE_CELL_WIDTH = 50;
@@ -126,7 +125,6 @@ public class ScoreLineView extends JPanel{
     }
 
     public void setLineBackground(Color backgroundColor){
-        //System.out.println("called");
         nameCell.setOpaque(true);
         nameCell.setBackground(backgroundColor);
         scoringExplanationCell.setOpaque(true);
@@ -134,14 +132,8 @@ public class ScoreLineView extends JPanel{
         for(int i = 0; i < scoreCells.size(); i++){
             scoreCells.get(i).setOpaque(true);;
             scoreCells.get(i).setBackground(backgroundColor);
-            //System.out.println("hey");
         }
     }
-
-    /*public void updateScoreCell(String newScoreText, int scoreColumn, Color scoreColor){
-        scoreCells.get(scoreColumn - 1).setText(newScoreText);
-        scoreCells.get(0).setForeground(Color.BLACK);
-    }*/
 
     public GameLabel getCell(int column){
         if(column == 1){
@@ -152,10 +144,6 @@ public class ScoreLineView extends JPanel{
             return scoreCells.get(column - 3);
         }
     }
-
-    /*public GameLabel getScoreCell(int column){
-        return scoreCells.get(column - 1);
-    }*/
 
     public void setBottomBorder(){
         nameCell.setBorder(BorderFactory.createMatteBorder(1, 3, 3, 1, ColorPalette.textColor));

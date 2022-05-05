@@ -35,7 +35,6 @@ public class ScoreCard{
     private ArrayList<TitleLineView> titleLines = new ArrayList<>();
 
     private ArrayList<ScoreLine> scoreLines = new ArrayList<>();
-    //private ArrayList<Integer> scores = new ArrayList<>();
     private String name;
     private ScoreCardView view;
     private int numUpperScoringRows; 
@@ -43,15 +42,10 @@ public class ScoreCard{
     public ScoreCard(String name, int numDiceSides, int numPlayers){
         this.name = name;
         this.numUpperScoringRows = numDiceSides;
-        /*for(int i = 0; i < numDiceSides + 7; i++){
-            scores.add(-1);
-        }*/
         configureScoreLines(numPlayers);
         configureTotalLines(numPlayers);
         configureTitleLines(numPlayers);
-        //System.out.println("1");
-        configureView();
-        //System.out.println("2");
+        configureView(); 
     }
 
     public void configureScoreLines(int numPlayers){
@@ -94,7 +88,7 @@ public class ScoreCard{
 
     public void configureTotalLines(int numPlayers){
         upperTotalLine = new TotalScoreLine(" Total Score", "--->", numPlayers, upperScoreLines);
-        upperBonusLine = new BonusLine(" Bonus", "--->", numPlayers, upperTotalLine);
+        upperBonusLine = new BonusLine(" Bonus", "If total score over 62, score 35", numPlayers, upperTotalLine);
         ArrayList<ScoreLine> allUpperLines = new ArrayList<>();
         for(int i = 0; i < upperScoreLines.size(); i++){
             allUpperLines.add(upperScoreLines.get(i));
@@ -154,15 +148,8 @@ public class ScoreCard{
         return totalLines;
     }
 
-    /*public ArrayList<Integer> getScores(){
-        return scores;
-    }*/
-
     public void setScore(int scoringRow, int scoringColumn, int score){
         scoreLines.get(scoringRow - 1).setScore(scoringColumn, score);
-        //scores.set()
     }
-
-    //public void getF
 
 }

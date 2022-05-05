@@ -60,7 +60,7 @@ public abstract class ScoreLine {
     }
 
     public int getPossibleScore(int scoreColumn){
-        return possibleScores.get(scoreColumn);
+        return possibleScores.get(scoreColumn - 1);
     }
 
     public int getScore(int scoreColumn){

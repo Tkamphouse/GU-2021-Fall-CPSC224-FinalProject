@@ -18,8 +18,7 @@ public class ChanceLine extends ScoreLine{
 
     public void calculateScore(Hand playerHand){
         if(!super.checkUsed()){
-            super.setPossibleScore(1, playerHand.sum()); //////////////////////////////////////////////////////////to fix!!!!!!!!!!!!!!
-            //super.setPossibleScore(1, 0);
+            super.setPossibleScore(1, playerHand.sum());
         }
     }
     

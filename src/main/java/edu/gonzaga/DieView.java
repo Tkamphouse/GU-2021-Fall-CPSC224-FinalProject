@@ -1,6 +1,7 @@
 package edu.gonzaga;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class DieView extends JPanel {
 
@@ -23,10 +24,11 @@ public class DieView extends JPanel {
     ImageIcon d6Side4 = new ImageIcon(System.getProperty("user.dir") + "/src/media/D6S4.png");
     ImageIcon d6Side5 = new ImageIcon(System.getProperty("user.dir") + "/src/media/D6S5.png");
     ImageIcon d6Side6 = new ImageIcon(System.getProperty("user.dir") + "/src/media/D6S6.png");
-    ImageIcon[] icons = {d6Side1, d6Side2, d6Side3, d6Side4, d6Side5, d6Side6};
+    ImageIcon[] icons = new ImageIcon[6];
 
     public DieView(int sideUp){
         this.setLayout(null);
+        setIcons(50, 50);
         icon = new JLabel(icons[sideUp - 1]);
         button = new JRadioButton();
         configureView();
@@ -48,6 +50,40 @@ public class DieView extends JPanel {
 
     public JRadioButton getRadioButton() {
         return button;
+    }
+
+    public void setIcons(int width, int height){
+
+        Image image = d6Side1.getImage(); // transform it 
+        Image newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        d6Side1 = new ImageIcon(newimg);  // transform it back
+        icons[0] = d6Side1;
+
+        image = d6Side2.getImage(); // transform it 
+        newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        d6Side2 = new ImageIcon(newimg);  // transform it back
+        icons[1] = d6Side2;
+
+        image = d6Side3.getImage(); // transform it 
+        newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        d6Side3 = new ImageIcon(newimg);  // transform it back
+        icons[2] = d6Side3;
+        
+        image = d6Side4.getImage(); // transform it 
+        newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        d6Side4 = new ImageIcon(newimg);  // transform it back
+        icons[3] = d6Side4;
+
+        image = d6Side5.getImage(); // transform it 
+        newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        d6Side5 = new ImageIcon(newimg);  // transform it back
+        icons[4] = d6Side5;
+
+        image = d6Side6.getImage(); // transform it 
+        newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        d6Side6 = new ImageIcon(newimg);  // transform it back
+        icons[5] = d6Side6;
+
     }
 
 }

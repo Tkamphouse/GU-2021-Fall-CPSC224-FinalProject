@@ -21,7 +21,7 @@ public class OfAKindLine extends ScoreLine{
             int finalScore;
             boolean matchFound = false;
             int count;
-            for(int i = 1; i <= 6; i++){ //loop through 6 sides ////////////////////////////////////////////////////to be changed if lizard spock
+            for(int i = 1; i <= playerHand.getSize(); i++){ //loop through die sides 
                 count = 0;
                 for(int j = 0; j < playerHand.getSize(); j++){ //loop through all dice
                     if(playerHand.getDie(j).getSideUp() == i){ //counts each occurance of current side vlaue
@@ -38,9 +38,8 @@ public class OfAKindLine extends ScoreLine{
             else if(howManyOfAKind == 5){ //score 50 if yahtzee
                 finalScore = 50;
             }
-            else{ //add up dice values if 3/4 of a kind ///////////////////////////////////////////////////////////to fix!!!!!!!!!!!!!!!!!!!
+            else{ //add up dice values if 3/4 of a kind 
                 finalScore = playerHand.sum();
-                //finalScore = 0; 
             }
             super.setPossibleScore(1, finalScore);
         }

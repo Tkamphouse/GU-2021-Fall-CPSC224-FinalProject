@@ -11,7 +11,6 @@ public class PlayerScoreCard extends ScoreCard{
 
     public PlayerScoreCard(String playerName, int numDiceSides){
         super(playerName + "'s ScoreCard", numDiceSides, 1);
-        //System.out.println("1");
         cardCount++;
         id = cardCount;
         scoreTable = super.getView();
@@ -27,6 +26,10 @@ public class PlayerScoreCard extends ScoreCard{
             super.getScoreLines().get(i).calculateScore(currentHand);
         }
     }
+
+    /*public void getPossibleScore(int row){
+        scoreTable.get
+    }*/
 
     public void resetPossibleScores(){
         for(int i = 0; i < 13; i++){
@@ -86,12 +89,11 @@ public class PlayerScoreCard extends ScoreCard{
     }
 
     public int getFinalScore(){
-        //return super.getScoreLines().get(12).getScores().get(0);
         return super.getTotalLines().get(5).getScore(1);
     }
 
     public void resetCount(){
-        cardCount = 0;
+        cardCount = 0; 
     }
     
 }

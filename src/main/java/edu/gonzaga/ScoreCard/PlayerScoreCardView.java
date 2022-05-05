@@ -40,7 +40,6 @@ public class PlayerScoreCardView extends JPanel{
         setComponentSizes();
         setComponentLocations();
         scoreTable.color(titleColor, columnHeadersColor, possibleScoreColor);
-        //scoreTable.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, ColorPalette.textColor));
         height = scoreTable.getHeight() + possibleScoreExplanation.getHeight() + 10;
         width = scoreTable.getWidth() + scoringMenu.getWidth();
         this.setSize(width, height);
