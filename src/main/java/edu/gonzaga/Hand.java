@@ -9,15 +9,14 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 
-/*
-*  This is the player's hand class for the Yahtzee project.
-*  It is basially an arrayList of different die.roll()s
-*   has most of the methods Yahtzee.java calls in main
-*/
-public class Hand
-{
-    private static final int NUM_DICE = 5;
-
+/**
+ * Class to create an array of Dice and manage them
+ * One per GameWindow
+ * 
+ * @author Tyler Kamphouse
+ * @version final 5/06/2022
+ */
+public class Hand{
     private static final int DEFAULT_COMPONENT_LENGTH = 30;
     private static final int ROLL_LABEL_X_COORDINATE = 0;
     private static final int ROLL_LABEL_Y_COORDINATE = 0;
@@ -27,34 +26,42 @@ public class Hand
     private static final int EXPLANATION_ROLLING_WIDTH = 160;
     private static final int ROLL_BUTTON_X_COORDINATE = 20;
     private static final int ROLL_BUTTON_WIDTH = 120;
+    private static final int LENGTH = 550;
 
     private Die[] dice;
-    private int length = 550;
-    private int numDice = NUM_DICE;
+    private int numDice = 5;
     private int rollCount;
 
-    //handViewProperties
     private JPanel[] dicePanels;
     private JPanel curPanel;
     private GameLabel numRollsLabel;
     private GameLabel rollTextLabel;
     private GameButton rollButton;
 
-    public Hand()
-    {
+    /**
+     * Default constructor for the Hand class.
+     * creates an array of 5 die
+     */
+    public Hand(){
         rollCount = 0;
-        dice = new Die[NUM_DICE];
-        for(int i = 0; i < NUM_DICE; i++){
+        dice = new Die[numDice];
+        for(int i = 0; i < numDice; i++){
             dice[i] = new Die();
         }
         configureView();
     }
 
-    public Hand(int[] values)
-    {
+    /**
+     * Overloaded constructor for the Hand class.
+     * creates an array of 5 die, initializes to param values
+     * 
+     * @param array of integer values for die to initialize to
+     * @see Hand Default Constructor
+     */
+    public Hand(int[] values){
         rollCount = 0;
-        dice = new Die[NUM_DICE];
-        for(int i = 0; i < NUM_DICE; i++){
+        dice = new Die[numDice];
+        for(int i = 0; i < numDice; i++){
             dice[i] = new Die();
         }
         for (int i = 0; i < this.numDice; ++i){
@@ -63,34 +70,60 @@ public class Hand
         configureView();
     }
 
-    public Die[] returnHand()
-    {
+    /**
+     * Method to return all of the Dice in Hand
+     * 
+     * @return (Die[]) ArrayList of all Dice in Hand
+     */
+    public Die[] returnHand(){
         return dice;
     }
 
-    public int returnValue(int index)
-    {
+    /**
+     * Method to return the value of a given Die in Hand
+     * 
+     * @param index of the Die in Hand
+     * @return (int) Value of Die at index
+     */
+    public int returnValue(int index){
         int value = 0;
-        if (index < numDice && index >= 0)
+        if (index < numDice && index >= 0){
             value = dice[index].getSideUp();
+        }
         return value;
     }
 
-    public int[] returnAllValues()
-    {
-        int[] values = new int[NUM_DICE];
-        for(int i = 0; i < NUM_DICE; i++)
+    /**
+     * Method to return all of the Dice Values in Hand
+     * 
+     * @see returnValue(int)
+     * @return (int[]) Array of values of all dice
+     */
+    public int[] returnAllValues(){
+        int[] values = new int[numDice];
+        for(int i = 0; i < numDice; i++){
             values[i] = dice[i].getSideUp();
+        }
         return values;
     }
 
-    public int rollCount()
-    {
+    /**
+     * Method to return amount of times the hand has been rolled
+     * 
+     * @see reset()
+     * @return (int) times hand has been rolled
+     */
+    public int rollCount(){
         return rollCount;
     }
 
-    public void reset() 
-    {
+    /**
+     * Method to rreset the values of Dice in Hand
+     * Resets rollCount, sets Die values to 1
+     * 
+     * @see reset()
+     */
+    public void reset(){
         rollCount = 0;
         setRollLabel(3, rollCount);
         for (int i = 0; i < this.numDice; ++i){
@@ -98,75 +131,109 @@ public class Hand
             dice[i].deselectButton();
         }
         revealRollButton();
-        //hideDiceButtons();
     }
 
-    public void RollNewHand() 
-    {
+    /**
+     * Method to roll new values for dice in Hand
+     * Increases rollCount, hides roll button when >= 3
+     * 
+     * @see rollCount()
+     * @see Die.roll()
+     */
+    public void RollNewHand(){
         rollCount++;
         setRollLabel(3, rollCount);
-        //if (rollCount < 3)
-        //{
-        for (int i = 0; i < this.numDice; ++i)
-        {
+        for (int i = 0; i < this.numDice; ++i){
             dice[i].roll();
         }
-        //rollCount++;
-        //}
-        if (rollCount == 1)
+        if (rollCount == 1){
             revealDiceButtons();
-        if (rollCount >= 3)
-        {
+        }
+        if (rollCount >= 3){
             hideDiceButtons();
             hideRollButton();
         }
     }
 
-    public Die[] getDice()
-    {
+    /**
+     * Method to return all of the dice in hand
+     * 
+     * @see getDie()
+     * @return (Die[]) Array of all the Dice in Hand
+     */
+    public Die[] getDice(){
         return dice;
     }
 
-    public Die getDie(int index)
-    {
+    /**
+     * Method to return a given Die in Hand
+     * 
+     * @param index of the Die in Hand
+     * @return (Die) Die at index
+     */
+    public Die getDie(int index){
         return dice[index];
     }
 
-    public int getSize() 
-    {
+    /**
+     * Method to return the number of dice in hand
+     * 
+     * @return (int) number of Dice
+     */
+    public int getSize(){
         return numDice;
     }
 
-    public boolean isTurnOver()
-    {
-        if (rollCount >= 3)
+    /**
+     * Method to return if the player's turn is over
+     * 
+     * @see rollCount()
+     * @return (boolean) true if rollcount >= 3, false otherwise
+     */
+    public boolean isTurnOver(){
+        if (rollCount >= 3){
             return true;
-        else
+        }
+        else{
             return false;
+        }
     }
 
-    public String toString() 
-    {
+    /**
+     * Method to return Hand as a string
+     * 
+     * @return (String) Hand as a string
+     */
+    public String toString(){
         String ret = "";
         ret += "Hand: ";
-        for (Die die : dice)
+        for (Die die : dice){
             ret += die.toString() + " | ";
+        }
         return ret;
     }
 
-    public int sum()
-    {
+    /**
+     * Method to return a sum of all the Dice values in Hand
+     * 
+     * @return (int) the sum of Die values
+     */
+    public int sum(){
         int sum = 0;
-        for(int i = 0; i < numDice; i++) 
+        for(int i = 0; i < numDice; i++){
             sum += dice[i].getSideUp();
+        }
         return sum;
     }
 
-    // ***** HandView stuff ***** //
-
-    // Sets up the visual information for the hand
-    private void configureView()
-    {
+    /**
+     * Method to setup the visual elements of Hand
+     * 
+     * @see GameLabel
+     * @see ConfigurePanel()
+     * @see setComponentLocations()
+     */
+    private void configureView(){
         numRollsLabel = new GameLabel("Not Assigned", SwingConstants.CENTER);
         setRollLabel(3, rollCount);
         numRollsLabel.setTextSize(20);
@@ -179,120 +246,153 @@ public class Hand
         configurePanel();
     }
 
-    // sets the component locations
-    private void setComponentLocations()
-    {
+    /**
+     * Method to set Location Coordinates of Visual Components
+     * 
+     * @see .setBounds(int, int, int, int)
+     * @see setDiceLocations(int)
+     */
+    private void setComponentLocations(){
         numRollsLabel.setBounds(ROLL_LABEL_X_COORDINATE, ROLL_LABEL_Y_COORDINATE, ROLL_LABEL_WIDTH, DEFAULT_COMPONENT_LENGTH);
         rollTextLabel.setBounds(EXPLANATION_ROLLING_X_COORDINATE, EXPLANATION_ROLLING_Y_COORDINATE, EXPLANATION_ROLLING_WIDTH, DEFAULT_COMPONENT_LENGTH);
-        rollButton.setBounds(ROLL_BUTTON_X_COORDINATE, length - 30, ROLL_BUTTON_WIDTH, DEFAULT_COMPONENT_LENGTH);
+        rollButton.setBounds(ROLL_BUTTON_X_COORDINATE, LENGTH - 30, ROLL_BUTTON_WIDTH, DEFAULT_COMPONENT_LENGTH);
         setDiceLocations(dice[0].getNumSides());
     }
 
-    // sets the dice locations
-    public void setDiceLocations(int typeDice)
-    {
+    /**
+     * Method to set the Location Coordinates of Dice
+     * 
+     * @param number of sides on die
+     * @see DieView.setLocation
+     */
+    public void setDiceLocations(int typeDice){
         int rowNum = 0;
         for(int i = 0; i < numDice; i++){
             dicePanels[i] = dice[i].getView(); //NEEDS TO BE CHECK FOR COMBATIBILITY WITH DIE()
-            if (i % 2 == 0)
+            if (i % 2 == 0){
                 dicePanels[i].setLocation(20 + 0, 120 + (rowNum * 75));
-            else
-            {
+            }
+            else{
                 dicePanels[i].setLocation(20 + 70, 120 + (rowNum * 75));
                 rowNum++;
             }
         }
     }
 
-    // adds visual components to the JPanel
-    public void configurePanel()
-    {
+    /**
+     * Method to initialize the Hand View Panel
+     * 
+     * @see configureView()
+     */
+    public void configurePanel(){
         curPanel = new JPanel();
         curPanel.setLayout(null);
         curPanel.setOpaque(false);
-        curPanel.setSize(160, length);
+        curPanel.setSize(160, LENGTH);
         numRollsLabel.setSize(150, 75);
         curPanel.add(numRollsLabel);
         curPanel.add(rollTextLabel);
-        for(int i = 0; i < numDice; i++)
+        for(int i = 0; i < numDice; i++){
             curPanel.add(dicePanels[i]);
+        }
         curPanel.add(rollButton);
     }
 
-    public void setRollLabel(int rollsPerTurn, int rollCount)
-    {
-        if ((rollsPerTurn - rollCount) == 1)
+    /**
+     * Method to set the Text at the top of Hand Panel
+     * 
+     * @param number of rolls per player turn
+     * @param number of rolls
+     * @see GameLabel
+     */
+    public void setRollLabel(int rollsPerTurn, int rollCount){
+        if ((rollsPerTurn - rollCount) == 1){
             numRollsLabel.setText("<html>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roll " + Integer.toString(rollCount) + " <br>(" + Integer.toString(rollsPerTurn - rollCount) + " Roll Left)<html>");
-        else
+        }
+        else{
             numRollsLabel.setText("<html>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roll " + Integer.toString(rollCount) + " <br>(" + Integer.toString(rollsPerTurn - rollCount) + " Rolls Left)<html>");
+        }
     }
 
-    // sets the explanation label to "Final Hand"
-    public void setExplanationLabelScoringMode()
-    {
+    /**
+     * Method to set Explaination Label to Final Hand
+     */
+    public void setExplanationLabelScoringMode(){
         rollTextLabel.setText("Final Hand");
     }
 
-    // resets the explanation label to "Select Dice to Keep"
-    public void resetExplanationLabelText()
-    {
+    /**
+     * Method to set Explaination Label when not Final Hand
+     */
+    public void resetExplanationLabelText(){
         rollTextLabel.setText("Select Dice to Keep");
         rollTextLabel.setVisible(true);
     }
 
-    // hides the roll button
-    public void hideRollButton()
-    {
+    /**
+     * Method to set visibility of roll button
+     */
+    public void hideRollButton(){
         rollButton.setVisible(false);
     }
 
-    // reveals roll button
-    public void revealRollButton()
-    {
+    /**
+     * Method to set invisibility of roll button
+     */
+    public void revealRollButton(){
         rollButton.setVisible(true);
     }
 
-    // hides the die radio buttons that allow the player to select die to keep
-    public void hideDiceButtons()
-    {
-        for(int i = 0; i < numDice; i++)
-        {
+    /**
+     * Method to set invisibility of roll button
+     */
+    public void hideDiceButtons(){
+        for(int i = 0; i < numDice; i++){
             dice[i].setButtonInvisibility(); 
-            //dice[i].getDieButton().setSelected(false);
         }
     }
 
-    // sets the die radio button to visible
-    public void revealDiceButtons()
-    {
-        for(int i = 0; i < numDice; i++)
+    /**
+     * Method to set visibility of roll button
+     */
+    public void revealDiceButtons(){
+        for(int i = 0; i < numDice; i++){
             dice[i].setButtonVisibility();  
+        }
     }
 
-    // hides the Rolling Explanation label
-    public void hideRollText()
-    {
+    /**
+     * Method to set invisibility of roll button
+     */
+    public void hideRollText(){
         rollTextLabel.setVisible(false);
     }
 
-    // sets the Rolling Explanation label to visible
-    public void showRollText()
-    {
+    /**
+     * Method to set visibility of roll button
+     */
+    public void showRollText(){
         rollTextLabel.setVisible(true);
     }
 
-    public JLabel getRollLabel()
-    {
+    /**
+     * Method to return the JLabel displaying Rolls
+     */
+    public JLabel getRollLabel(){
         return numRollsLabel;
     }
 
-    public JButton getRollButton()
-    {
+    /**
+     * Method to return the JButton to Roll Dice
+     */
+    public JButton getRollButton(){
         return rollButton;
     }
 
-    public JPanel getAppearance()
-    {
+    /**
+     * Method to return the JPanel of Hand View
+     */
+    public JPanel getAppearance(){
         return curPanel;
     }
 }
