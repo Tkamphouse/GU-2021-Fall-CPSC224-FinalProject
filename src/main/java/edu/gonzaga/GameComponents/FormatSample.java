@@ -1,9 +1,10 @@
 package edu.gonzaga.GameComponents;
 
+import edu.gonzaga.Windows.GameWindow;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-//import edu.gonzaga.GameComponents.ColorPalette;
 
 public class FormatSample extends JPanel{
 
@@ -19,6 +20,9 @@ public class FormatSample extends JPanel{
     GameRadioButton radioButton = new GameRadioButton();
     GameRadioButton radioButton2 = new GameRadioButton(2);
 
+    /**
+     * formatting sample (did not use)
+     */
     public FormatSample(){
         this.setLayout(null);
         this.setBackground(ColorPalette.backgroundColor);
@@ -41,6 +45,9 @@ public class FormatSample extends JPanel{
         this.add(radioButton2);
     }
 
+    /**
+     * Color swatches for theme of game
+     */
     public void makeSwatches(){
         makeSwatch(ColorPalette.lightRed, "<html>light<br>red</html>");
         makeSwatch(ColorPalette.red, "red");
@@ -68,6 +75,11 @@ public class FormatSample extends JPanel{
         makeSwatch(ColorPalette.darkOrange, "<html>dark<br>orange</html>");
     }
 
+    /**
+     * makes the swatch for method above
+     *
+     * @see makeSwatches()
+     */
     public void makeSwatch(Color color, String text){
         GameLabel tempSwatch;
         tempSwatch = new GameLabel(text, SwingConstants.CENTER);
@@ -77,6 +89,9 @@ public class FormatSample extends JPanel{
         colorSwatches.add(tempSwatch);
     }
 
+    /**
+     * sets the location of the swatch
+     */
     public void setSwatchLocations(){
         int row = 0;
         int column = 0;
@@ -90,12 +105,18 @@ public class FormatSample extends JPanel{
         }
     }
 
+    /**
+     * adds the swatches to the overall color palette JPanel
+     */
     public void addSwatchesToPalette(){
         for(int i = 0; i < colorSwatches.size(); i++){
             colorPalette.add(colorSwatches.get(i));
         }
     }
 
+    /**
+     * Configures the color palette to display on JPanel
+     */
     public void configureColorPalette(){
         makeSwatches();
         setSwatchLocations();

@@ -110,7 +110,7 @@ public class Die implements Comparable<Die> {
      * @return nothing
      */
     public void changeLockedState() {
-        if (locked == true)
+        if (locked)
             locked = false;
         else locked = true;
     }
