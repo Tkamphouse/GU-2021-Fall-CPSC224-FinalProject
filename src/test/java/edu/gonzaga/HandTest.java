@@ -2,11 +2,7 @@ package edu.gonzaga;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-// import java.util.ArrayList;
-// import javax.swing.*;
-// import java.awt.*;
 
 
 public class HandTest {
@@ -22,36 +18,17 @@ public class HandTest {
     }
 
     @Test
-    void testHandRollNew() {
+    void testHandRollNewKeepAll() {
         Hand hand = new Hand();
         Hand hand2 = new Hand();
         int expectedFill = 1;
         int[] expectedArrayFill = {1,1,1,1,1};
-
         //Test keep all
         for (int i = 0; i < hand.getSize(); ++i)
             hand.getDie(i).changeLockedState();
         hand.RollNewHand();
         for (int i = 0; i < hand.getSize(); ++i)
             assertEquals(hand.returnValue(i), expectedFill);
-        //Test keep none
-        for (int i = 0; i < hand.getSize(); ++i)
-            hand.getDie(i).changeLockedState();
-        hand.RollNewHand();
-        int[] returnVals = hand.returnAllValues();
-        for (int i = 0; i < hand.getSize(); ++i)
-            assertNotEquals(returnVals[i], expectedArrayFill[i]);
-        //Test keep one
-        hand2.getDie(0).changeLockedState();
-        for (int i = 0; i < 50; ++i)
-        {
-            hand2.RollNewHand();
-            if (hand2.getDie(0).getSideUp() != 1)
-                break;
-        }
-        assertNotEquals(hand2.returnValue(0), expectedFill);
-        for (int i = 1; i < hand2.getSize(); ++i)
-            assertEquals(hand2.returnValue(i), expectedFill);
     }
 
 
