@@ -58,7 +58,8 @@ public class Die implements Comparable<Die> {
      * die constructor #3, number of sides and
      * starting side is specified
      *
-     * @param numSides and startingSide
+     * @param numSides
+     * @param startingSide
      * @return nothing
      */
     public Die(Integer numSides, Integer startingSide) {

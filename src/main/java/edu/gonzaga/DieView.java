@@ -81,7 +81,8 @@ public class DieView extends JPanel {
     /**
      * can change the sizes of the dice images
      *
-     * @param height and width
+     * @param height
+     * @param width
      * @return nothing
      */
     public void setIcons(int width, int height){
