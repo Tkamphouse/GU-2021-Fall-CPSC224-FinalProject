@@ -81,7 +81,7 @@ public class Die implements Comparable<Die> {
      * @return nothing
      */
     public void roll() {
-        if(!locked) {
+        if (!locked) {
             Random rand = new Random();
             this.sideUp = rand.nextInt(this.numSides) + 1;
             dieView.updateDieAppearance(this.sideUp);
@@ -96,10 +96,9 @@ public class Die implements Comparable<Die> {
      * @return locked status
      */
     public boolean updateLockedState() {
-        if(dieView.button.isSelected()) {
+        if (dieView.button.isSelected()) {
             locked = true;
-        }
-        else {
+        } else {
             locked = false;
         }
         return locked;
@@ -111,9 +110,11 @@ public class Die implements Comparable<Die> {
      * @return nothing
      */
     public void changeLockedState() {
-        if (locked)
+        if (locked) {
             locked = false;
-        else locked = true;
+        } else {
+            locked = true;
+        }
     }
 
     /**
@@ -159,9 +160,7 @@ public class Die implements Comparable<Die> {
      *
      * @return dieView (JPanel)
      */
-    public JPanel getView() {
-        return dieView;
-    }
+    public JPanel getView() { return dieView; }
 
     /**
      * returns the current side up on the dice

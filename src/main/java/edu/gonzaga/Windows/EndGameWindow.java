@@ -14,7 +14,7 @@ import edu.gonzaga.GameComponents.*;
  * @author Jonathan Smoley
  * @version 2.0 4/24/2022
  */
-public class EndGameWindow extends JPanel{
+public class EndGameWindow extends JPanel {
 
     LeaderBoard leaderBoard;
     JLabel winner;
@@ -27,7 +27,7 @@ public class EndGameWindow extends JPanel{
      * @param players arraylist of players after the game
      * @see GameWindow.java
      */
-    public EndGameWindow(ArrayList<Player> players){
+    public EndGameWindow(ArrayList<Player> players) {
         this.players = players;
         this.setLayout(null);
         this.setSize(800, 800);
@@ -47,9 +47,9 @@ public class EndGameWindow extends JPanel{
      * 
      * @param titleWindow reference to the title window
      */
-    public void setSwitchButton(JFrame main, JPanel titleWindow){
-        toTitleScreen.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent event){
+    public void setSwitchButton(JFrame main, JPanel titleWindow) {
+        toTitleScreen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
                 TitleWindow titleWindow = new TitleWindow();
                 titleWindow.setSwitchButton(main, titleWindow);
                 main.add(titleWindow);
@@ -60,7 +60,7 @@ public class EndGameWindow extends JPanel{
     }
 
     // getters for unit testing purposes
-    public LeaderBoard getLeaderBoard(){ return leaderBoard; }
-    public GameButton getToTitleScreen(){ return toTitleScreen; }
-    public ArrayList<Player> getPlayers(){ return players; }
+    public LeaderBoard getLeaderBoard() { return leaderBoard; }
+    public GameButton getToTitleScreen() { return toTitleScreen; }
+    public ArrayList<Player> getPlayers() { return players; }
 }

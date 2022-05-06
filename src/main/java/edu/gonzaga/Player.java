@@ -73,7 +73,7 @@ public class Player {
     public void attachScoreButton(JButton scoreButton) {
         int numButtons = playerScoreCard.getPlayerScoreCardView().getScoringMenu().getButtons().size();
         JRadioButton tempButton;
-        for(int i = 0; i < numButtons; i++) {
+        for (int i = 0; i < numButtons; i++) {
             tempButton = playerScoreCard.getPlayerScoreCardView().getScoringMenu().getButtons().get(i);
             tempButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent event) {

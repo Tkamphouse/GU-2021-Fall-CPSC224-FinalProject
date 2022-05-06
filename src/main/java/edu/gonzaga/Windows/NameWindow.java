@@ -13,7 +13,7 @@ import edu.gonzaga.GameComponents.*;
  * @author Jonathan Smoley
  * @version 2.0 4/24/2022
  */
-public class NameWindow extends JPanel{
+public class NameWindow extends JPanel {
     JFrame window;
     JPanel contentNorth;
     JPanel contentCenter;
@@ -32,7 +32,7 @@ public class NameWindow extends JPanel{
      * @param numPlayers number of players requested by the user
      * @see TitleWindow.java
      */
-    public NameWindow(JFrame main, Integer numPlayers){
+    public NameWindow(JFrame main, Integer numPlayers) {
         window = main;
         this.numPlayers = numPlayers;
 
@@ -53,11 +53,11 @@ public class NameWindow extends JPanel{
      * 
      * @see NameWindow constructor
      */
-    private void initPlayerLists(){
+    private void initPlayerLists() {
         playerNumLabels = new ArrayList<>();
         playerNameCollectors = new ArrayList<>();
 
-        for(int i = 0; i < numPlayers; i++){
+        for (int i = 0; i < numPlayers; i++) {
             GameLabel tempGameLabel = new GameLabel("Player " + (i + 1) + ": ");
             JTextField tempTextField = new JTextField(10);
             playerNumLabels.add(i, tempGameLabel);
@@ -70,7 +70,7 @@ public class NameWindow extends JPanel{
      * 
      * @see NameWindow constructor
      */
-    private void setNorthContent(){
+    private void setNorthContent() {
         contentNorth = new JPanel();
         contentNorth.setLayout(new BorderLayout());
         contentNorth.setPreferredSize(new Dimension(800, 100));
@@ -90,14 +90,13 @@ public class NameWindow extends JPanel{
      * @param playerCount
      * @see NameWindow constructor
      */
-    private void setCenterContent(Integer playerCount){
+    private void setCenterContent(Integer playerCount) {
         contentCenter = new JPanel();
         contentCenter.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         contentCenter.setPreferredSize(new Dimension(600, 500));
 
         for (int i = 0; i < numPlayers; i++) {
-            //playerNumLabels.get(i).setFont(new Font("Serif", Font.PLAIN, 30));
             playerNumLabels.get(i).setTextSize(30);
 
             gbc.gridx = 0;
@@ -125,13 +124,12 @@ public class NameWindow extends JPanel{
      * 
      * @see NameWindow constructor
      */
-    private void setSouthContent(){
+    private void setSouthContent() {
         contentSouth = new JPanel();
         BoxLayout layout = new BoxLayout(contentSouth , BoxLayout.Y_AXIS);
         contentSouth.setPreferredSize(new Dimension(450, 150));
 
         toGameWindow = new GameButton("Start Game");
-        //toGameWindow.setFont(new Font("Serif", Font.PLAIN, 30));
         toGameWindow.setTextSize(30);
         toGameWindow.setPreferredSize(new Dimension(200, 50));
 
@@ -139,7 +137,6 @@ public class NameWindow extends JPanel{
 
         constraintNotice = new GameLabel("*must enter a name for each player*");
         constraintNotice.setTextSize(20);
-        //constraintNotice.setFont(new Font("Serif", Font.PLAIN, 20));
         constraintNotice.setVisible(false);
 
         contentSouth.add(constraintNotice, layout);
@@ -152,21 +149,21 @@ public class NameWindow extends JPanel{
      * @param titleWindow intro panel reference passed to game window
      * @see TitleWindow.java
      */
-    public void setSwitchButton(JFrame main, TitleWindow titleWindow){
-        toGameWindow.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent event){
+    public void setSwitchButton(JFrame main, TitleWindow titleWindow) {
+        toGameWindow.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
                 Boolean allNamesEntered = true;
-                for(int i = 0; i < playerNameCollectors.size(); i++){
-                    if(playerNameCollectors.get(i).getText().equals("")){
+                for (int i = 0; i < playerNameCollectors.size(); i++) {
+                    if (playerNameCollectors.get(i).getText().equals("")) {
                         allNamesEntered = false;
                     }
                 }
-                if(allNamesEntered){
+                if (allNamesEntered) {
                     GameWindow gameWindow = new GameWindow(main, titleWindow, playerNameCollectors);
                     main.add(gameWindow);
                     gameWindow.setVisible(true);
                     setVisible(false);
-                }else{
+                } else {
                     constraintNotice.setVisible(true);
                 }
                 
@@ -175,7 +172,7 @@ public class NameWindow extends JPanel{
     }
 
     // to be used for unit testing purposes
-    public ArrayList<GameLabel> getPlayerNumLabels(){ return playerNumLabels; }
+    public ArrayList<GameLabel> getPlayerNumLabels() { return playerNumLabels; }
     public ArrayList<JTextField> getPlayerNameCollectors() { return playerNameCollectors; }
     public GameLabel getInstructions() { return instructions; }
     public GameLabel getConstraintNotice() { return constraintNotice; }

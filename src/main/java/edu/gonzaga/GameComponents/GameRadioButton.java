@@ -18,7 +18,7 @@ import javax.swing.event.*;
 */
 
 /** Class customizing the java swing element JRadioButton */
-public class GameRadioButton extends JRadioButton{
+public class GameRadioButton extends JRadioButton {
 
     private String directory = System.getProperty("user.dir") + "\\src\\media\\";
     private ImageIcon defaultIconImage = new ImageIcon(directory + "DefaultRadioButton.png");
@@ -35,7 +35,7 @@ public class GameRadioButton extends JRadioButton{
     /**
      * default game radio button
      */
-    public GameRadioButton(){
+    public GameRadioButton() {
         resizeImages(17, 17);
         assignIcons();
         this.setIcon(defaultIcon);
@@ -49,7 +49,7 @@ public class GameRadioButton extends JRadioButton{
      *
      * @param type
      */
-    public GameRadioButton(int type){
+    public GameRadioButton(int type) {
         resizeImages(17, 17);
         assignAltIcons();
         this.setIcon(defaultIcon);
@@ -61,14 +61,14 @@ public class GameRadioButton extends JRadioButton{
         setBackground(ColorPalette.white);
         setBorderPainted(true);
         setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 2));
-        addChangeListener(new ChangeListener(){
+        addChangeListener(new ChangeListener() {
             @Override
-            public void stateChanged(ChangeEvent event){
-                if (getModel().isPressed()){
+            public void stateChanged(ChangeEvent event) {
+                if (getModel().isPressed()) {
                     setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 2));
-                } else if (getModel().isRollover()){
+                } else if (getModel().isRollover()) {
                     setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 1));
-                } else{
+                } else {
                     setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 2));
                 }
             }
@@ -81,7 +81,7 @@ public class GameRadioButton extends JRadioButton{
      * @param width
      * @param height
      */
-    public void resizeImages(int width, int height){
+    public void resizeImages(int width, int height) {
         Image image = defaultIconImage.getImage(); // transform it
         Image newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
         defaultIconImage = new ImageIcon(newimg);  // transform it back
@@ -110,7 +110,7 @@ public class GameRadioButton extends JRadioButton{
     /**
      * assigns icons to image
      */
-    public void assignIcons(){
+    public void assignIcons() {
         defaultIcon = defaultIconImage;
         rolloverIcon = rolloverIconImage;
         pressedIcon = pressedIconImage;
@@ -120,7 +120,7 @@ public class GameRadioButton extends JRadioButton{
     /**
      * assigns icon to empty image
      */
-    public void assignAltIcons(){
+    public void assignAltIcons() {
         defaultIcon = emptyIconImage;
         rolloverIcon = emptyIconImage;
         pressedIcon = emptyIconImage;

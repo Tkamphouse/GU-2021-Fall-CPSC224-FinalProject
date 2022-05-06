@@ -6,7 +6,7 @@ import edu.gonzaga.Player;
 import edu.gonzaga.GameComponents.*;
 import java.awt.*;
 
-public class LeaderBoardView extends JPanel{
+public class LeaderBoardView extends JPanel {
     
     private Color[][] possibleColors = {
         {ColorPalette.lightRed, ColorPalette.red, ColorPalette.darkRed},
@@ -22,7 +22,7 @@ public class LeaderBoardView extends JPanel{
     private GameLabel winnerLabel;
     private ArrayList<Player> players;
 
-    public LeaderBoardView(ScoreCardView scoreTableRef, ArrayList<Player> players){
+    public LeaderBoardView(ScoreCardView scoreTableRef, ArrayList<Player> players) {
         this.setLayout(null);
         scoreTableView = scoreTableRef;
         winnerLabel = new GameLabel("Not Assigned", SwingConstants.CENTER);
@@ -31,10 +31,10 @@ public class LeaderBoardView extends JPanel{
         configureView();
     }
 
-    public void setWinnerLabel(){
+    public void setWinnerLabel() {
         Player winner = players.get(0);
-        for(int i = 0; i < players.size(); i++){
-            if(winner.getFinalScore() < players.get(i).getFinalScore()){
+        for (int i = 0; i < players.size(); i++) {
+            if (winner.getFinalScore() < players.get(i).getFinalScore()) {
                 System.out.println(winner.getFinalScore() + ", " + players.get(i).getFinalScore());
                 winner = players.get(i);
             }
@@ -44,11 +44,11 @@ public class LeaderBoardView extends JPanel{
         winnerLabel.setSize(scoreTableView.getWidth(), 50);
     }
 
-    public void configureView(){
+    public void configureView() {
         scoreTableView.setLocation(0, 0);
         winnerLabel.setLocation(0, scoreTableView.getHeight() + 10);
         scoreTableView.setUpperScoreCardTitles(new ArrayList<String>(){{
-            for(int i = 0; i < players.size(); i++){
+            for (int i = 0; i < players.size(); i++) {
                 add(players.get(i).getName());
             }
         }});
@@ -60,27 +60,27 @@ public class LeaderBoardView extends JPanel{
         this.add(winnerLabel);
     }
 
-    public void colorPlayerColumns(){
-        for(int i = 0; i < players.size(); i++){
+    public void colorPlayerColumns() {
+        for (int i = 0; i < players.size(); i++) {
             scoreTableView.colorTitleCell(possibleColors[i][1], 1, i + 3);
             scoreTableView.colorTitleCell(possibleColors[i][1], 2, i + 3);
-            for(int j = 1; j <= 13; j++){
+            for (int j = 1; j <= 13; j++) {
                 scoreTableView.colorScoreCell(possibleColors[i][0], j, i + 3);
             }
-            for(int j = 1; j <= 6; j++){
+            for (int j = 1; j <= 6; j++) {
                 scoreTableView.colorTotalCell(possibleColors[i][0], j, i + 3);
             }
         }
     }
 
-    public void addPlayerScores(){
-        for(int currentPlayer = 0; currentPlayer < players.size(); currentPlayer++){
-            for(int rowIndex = 0; rowIndex < scoreTableView.getNumScoringRows(); rowIndex++){
+    public void addPlayerScores() {
+        for (int currentPlayer = 0; currentPlayer < players.size(); currentPlayer++) {
+            for (int rowIndex = 0; rowIndex < scoreTableView.getNumScoringRows(); rowIndex++) {
                 int newScore = players.get(currentPlayer).getScore(rowIndex + 1);
                 int scoreColumn = currentPlayer + 1;
                 scoreTableView.getScoreLineViews().get(rowIndex).updateScoreCell(newScore, scoreColumn);
             }
-            for(int rowIndex = 0; rowIndex < 6; rowIndex++){
+            for (int rowIndex = 0; rowIndex < 6; rowIndex++) {
                 int newScore = players.get(currentPlayer).getTotalScore(rowIndex + 1);
                 int scoreColumn = currentPlayer + 1;
                 scoreTableView.getTotalLineViews().get(rowIndex).updateScoreCell(newScore, scoreColumn);
@@ -88,8 +88,6 @@ public class LeaderBoardView extends JPanel{
         }
     }
 
-    public GameLabel getWinnerLabel(){
-        return winnerLabel;
-    }
+    public GameLabel getWinnerLabel() { return winnerLabel; }
 
 }

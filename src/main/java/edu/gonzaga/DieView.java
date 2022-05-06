@@ -5,7 +5,8 @@ import java.awt.*;
 /** Class to change how a single die is viewed.
  *
  * @author Hailey Boe
- * @version final 5/5/2022  */
+ * @version final 5/5/2022  
+ */
 public class DieView extends JPanel {
 
     private static final int IMAGE_XCOORDINATE = 0;

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import edu.gonzaga.GameComponents.*;
 
-public class PlayerScoreCardView extends JPanel{
+public class PlayerScoreCardView extends JPanel {
 
     private Color[][] possibleColors = {
         {ColorPalette.lightRed, ColorPalette.red, ColorPalette.darkRed},
@@ -26,7 +26,7 @@ public class PlayerScoreCardView extends JPanel{
     private int width;
     private int id;
  
-    public PlayerScoreCardView(ScoreCardView scoreTableView, int id){
+    public PlayerScoreCardView(ScoreCardView scoreTableView, int id) {
         this.setLayout(null);
         this.id = id;
         scoreTable = scoreTableView;
@@ -35,7 +35,7 @@ public class PlayerScoreCardView extends JPanel{
         configureView();
     }
 
-    public void configureView(){
+    public void configureView() {
         setColorSettings();
         setComponentSizes();
         setComponentLocations();
@@ -48,40 +48,34 @@ public class PlayerScoreCardView extends JPanel{
         this.add(possibleScoreExplanation);
     }
 
-    public void setColorSettings(){
+    public void setColorSettings() {
         titleColor = possibleColors[id-1][2];
         columnHeadersColor = possibleColors[id-1][1];
         possibleScoreColor = possibleColors[id-1][0];
     }
 
-    public void setComponentSizes(){
+    public void setComponentSizes() {
         possibleScoreExplanation.setSize(250, 20);
     }
 
-    public void setComponentLocations(){
+    public void setComponentLocations() {
         scoreTable.setLocation(0, 0);
         scoringMenu.setLocation(scoreTable.getRowWidth(), 0);
         possibleScoreExplanation.setLocation(0, scoreTable.getHeight() + 10);
     }
 
-    public int getSelectedScoringIndex(){
+    public int getSelectedScoringIndex() {
         return scoringMenu.getSelectedIndex();
     }
 
-    public void deleteScoringOption(int rowToDelete){
+    public void deleteScoringOption(int rowToDelete) {
         scoringMenu.deleteScoringOption(rowToDelete - 1);
     }
 
-    public void hideScoringMenu(){
-        scoringMenu.setVisible(false);
-    }
+    public void hideScoringMenu() { scoringMenu.setVisible(false); }
 
-    public void revealScoringMenu(){
-        scoringMenu.setVisible(true);
-    }
+    public void revealScoringMenu() { scoringMenu.setVisible(true); }
     
-    public ScoringMenuView getScoringMenu(){
-        return scoringMenu;
-    }
+    public ScoringMenuView getScoringMenu() { return scoringMenu; }
 
 }

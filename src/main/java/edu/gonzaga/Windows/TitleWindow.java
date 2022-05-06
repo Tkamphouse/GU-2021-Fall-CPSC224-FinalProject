@@ -32,7 +32,7 @@ public class TitleWindow extends JPanel{
      * 
      * @see Yahtzee.java
      */
-    public TitleWindow(){
+    public TitleWindow() {
         this.setSize(800, 800);
         JPanel spacer = new JPanel();
         spacer.setPreferredSize(new Dimension(800, 150));
@@ -51,7 +51,7 @@ public class TitleWindow extends JPanel{
      * 
      * @see TitleWindow constructor
      */
-    private void setCenterContent(){
+    private void setCenterContent() {
         contentCenter = new JPanel();
         contentCenter.setLayout(new BoxLayout(contentCenter, BoxLayout.Y_AXIS));
         contentCenter.setPreferredSize(new Dimension(640, 460));
@@ -88,7 +88,7 @@ public class TitleWindow extends JPanel{
         contentCenter.add(boxLabel);
     }
 
-    public void resizeYahtzeeLogo(int width, int height){
+    public void resizeYahtzeeLogo(int width, int height) {
         Image image = yahtzeeLogoIconImage.getImage(); // transform it 
         Image newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
         yahtzeeLogoIconImage = new ImageIcon(newimg);  // transform it back
@@ -100,7 +100,7 @@ public class TitleWindow extends JPanel{
      * 
      * @see TitleWindow constructor
      */
-    private void setSouthContent(){
+    private void setSouthContent() {
         contentSouth = new JPanel(new FlowLayout(FlowLayout.CENTER, 90, 40));
         contentSouth.setPreferredSize(new Dimension(800, 140));
         contentSouth.setBackground(ColorPalette.darkRed);
@@ -120,10 +120,10 @@ public class TitleWindow extends JPanel{
      * @param titleWindow a reference to this object panel to switch to
      * @see Yahtzee.java
      */
-    public void setSwitchButton(JFrame main, TitleWindow titleWindow){
+    public void setSwitchButton(JFrame main, TitleWindow titleWindow) {
         window = main;
-        toNameWindow.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent event){
+        toNameWindow.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
                 NameWindow nameWindow = new NameWindow(window, numPlayerDropBox.getSelectedIndex() + 1);
                 nameWindow.setSwitchButton(window, titleWindow);
                 nextPanel = nameWindow;

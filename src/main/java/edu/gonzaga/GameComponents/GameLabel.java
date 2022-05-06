@@ -17,7 +17,7 @@ import java.awt.*;
 */
 
 /** Class Customizing the java swing component JLabel */
-public class GameLabel extends JLabel{
+public class GameLabel extends JLabel {
 
     String fontName = "Candara";
     Font defaultTextFont = new Font("Candara", Font.PLAIN, 15);
@@ -25,7 +25,7 @@ public class GameLabel extends JLabel{
     /**
      * default game label, no parameters
      */
-    public GameLabel(){
+    public GameLabel() {
         super();
         this.setFont(defaultTextFont);
         this.setForeground(ColorPalette.textColor);
@@ -36,7 +36,7 @@ public class GameLabel extends JLabel{
      *
      * @param text
      */
-    public GameLabel(String text){
+    public GameLabel(String text) {
         super(text);
         this.setFont(defaultTextFont);
         this.setForeground(ColorPalette.textColor);
@@ -48,11 +48,11 @@ public class GameLabel extends JLabel{
      * @param text
      * @param bold
      */
-    public GameLabel(String text, boolean bold){
+    public GameLabel(String text, boolean bold) {
         super(text);
-        if(bold){
+        if (bold) {
             this.setFont(new Font(fontName, Font.BOLD, 15));
-        }else{
+        } else {
             this.setFont(defaultTextFont);
         }
         this.setForeground(ColorPalette.textColor);
@@ -65,7 +65,7 @@ public class GameLabel extends JLabel{
      * @param text
      * @param horizontalAlignment
      */
-    public GameLabel(String text, int horizontalAlignment){
+    public GameLabel(String text, int horizontalAlignment) {
         super(text, horizontalAlignment);
         this.setFont(defaultTextFont);
         this.setForeground(ColorPalette.textColor);
@@ -76,7 +76,7 @@ public class GameLabel extends JLabel{
     *
     * @param textSize int value representing the new text size
     */
-    public void setTextSize(int textSize){
+    public void setTextSize(int textSize) {
         this.setFont(new Font(fontName, Font.PLAIN, textSize));
     }
 
@@ -86,10 +86,10 @@ public class GameLabel extends JLabel{
      * @param bold
      * @param textSize
      */
-    public void setTextSettings(Boolean bold, int textSize){
-        if(bold){
+    public void setTextSettings(Boolean bold, int textSize) {
+        if (bold) {
             this.setFont(new Font(fontName, Font.BOLD, textSize));
-        }else{
+        } else {
             this.setFont(new Font(fontName, Font.PLAIN, textSize));
         }
     }
@@ -97,7 +97,7 @@ public class GameLabel extends JLabel{
     /**
      * sets the text to bold
      */
-    public void setTextBold(){
+    public void setTextBold() {
         this.setFont(new Font(fontName, Font.BOLD, 15));
     }
 }

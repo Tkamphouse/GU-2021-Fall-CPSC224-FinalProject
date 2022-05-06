@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-/** Class customizing JPanel formatting */
-public class FormatSample extends JPanel{
+/** 
+ * Class customizing JPanel formatting 
+ */
+public class FormatSample extends JPanel {
 
     ArrayList<GameLabel> colorSwatches = new ArrayList<>();
     JPanel colorPalette = new JPanel();
@@ -22,7 +24,7 @@ public class FormatSample extends JPanel{
     /**
      * formatting sample (did not use)
      */
-    public FormatSample(){
+    public FormatSample() {
         this.setLayout(null);
         this.setBackground(ColorPalette.backgroundColor);
         this.setBorder(BorderFactory.createLineBorder(ColorPalette.textColor));
@@ -47,7 +49,7 @@ public class FormatSample extends JPanel{
     /**
      * Color swatches for theme of game
      */
-    public void makeSwatches(){
+    public void makeSwatches() {
         makeSwatch(ColorPalette.lightRed, "<html>light<br>red</html>");
         makeSwatch(ColorPalette.red, "red");
         makeSwatch(ColorPalette.darkRed, "<html>dark<br>red</html>");
@@ -79,7 +81,7 @@ public class FormatSample extends JPanel{
      *
      * @see //makeSwatches()
      */
-    public void makeSwatch(Color color, String text){
+    public void makeSwatch(Color color, String text) {
         GameLabel tempSwatch;
         tempSwatch = new GameLabel(text, SwingConstants.CENTER);
         tempSwatch.setSize(swatchWidth, swatchWidth);
@@ -91,13 +93,13 @@ public class FormatSample extends JPanel{
     /**
      * sets the location of the swatch
      */
-    public void setSwatchLocations(){
+    public void setSwatchLocations() {
         int row = 0;
         int column = 0;
-        for(int i = 1; i <= colorSwatches.size(); i++){
+        for (int i = 1; i <= colorSwatches.size(); i++) {
             colorSwatches.get(i - 1).setLocation((spaceBetweenSwatches * (column + 1)) + swatchWidth*column, (spaceBetweenSwatches * (row+1)) + swatchWidth*row);
             column++;
-            if(i % 6 == 0){
+            if (i % 6 == 0) {
                 row++;
                 column = 0;
             }
@@ -107,8 +109,8 @@ public class FormatSample extends JPanel{
     /**
      * adds the swatches to the overall color palette JPanel
      */
-    public void addSwatchesToPalette(){
-        for(int i = 0; i < colorSwatches.size(); i++){
+    public void addSwatchesToPalette() {
+        for (int i = 0; i < colorSwatches.size(); i++) {
             colorPalette.add(colorSwatches.get(i));
         }
     }
@@ -116,11 +118,11 @@ public class FormatSample extends JPanel{
     /**
      * Configures the color palette to display on JPanel
      */
-    public void configureColorPalette(){
+    public void configureColorPalette() {
         makeSwatches();
         setSwatchLocations();
         int numSwatchesDown = colorSwatches.size() / 6;
-        if(colorSwatches.size() % 6 != 0){
+        if (colorSwatches.size() % 6 != 0) {
             numSwatchesDown += 1;
         }
         colorPaletteHeight = (numSwatchesDown * swatchWidth) + ((numSwatchesDown + 1) * spaceBetweenSwatches);

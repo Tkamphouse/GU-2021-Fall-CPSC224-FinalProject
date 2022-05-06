@@ -19,7 +19,7 @@ import javax.swing.border.BevelBorder;
 */
 
 /** Class customizing java swing component JButton */
-public class GameButton extends JButton{
+public class GameButton extends JButton {
 
     private Color mainColor = ColorPalette.red;
     private Color clickedColor = ColorPalette.darkRed;
@@ -29,7 +29,7 @@ public class GameButton extends JButton{
      *
      * @Param text
      */
-    public GameButton(String text){
+    public GameButton(String text) {
         super(text);
         this.setColorSettings();
         this.setFont(new Font("Candara", Font.PLAIN, 20));
@@ -47,7 +47,7 @@ public class GameButton extends JButton{
      * @param text
      * @param gameType
      */
-    public GameButton(String text, int gameType){ 
+    public GameButton(String text, int gameType) { 
         super(text);
         this.setColorSettings();
         this.setFont(new Font("Candara", Font.PLAIN, 20));
@@ -60,19 +60,19 @@ public class GameButton extends JButton{
     /**
     * sets color scheme of Game button based on the game type, or the number of sides on the game dice
     */
-    public void setColorSettings(){
+    public void setColorSettings() {
         this.setBackground(mainColor);
         this.setForeground(ColorPalette.textColor);
-        addChangeListener(new ChangeListener(){
+        addChangeListener(new ChangeListener() {
             @Override
-            public void stateChanged(ChangeEvent event){
-                if (getModel().isPressed()){
+            public void stateChanged(ChangeEvent event) {
+                if (getModel().isPressed()) {
                     setBackground(clickedColor);
                     setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-                } else if (getModel().isRollover()){
+                } else if (getModel().isRollover()) {
                     setBackground(mainColor);
                     setBorder(BorderFactory.createLineBorder(clickedColor, 2));
-                } else{
+                } else {
                     setBackground(mainColor);
                     setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 }
@@ -83,7 +83,7 @@ public class GameButton extends JButton{
     /**
      * sets the main color of the game (did not use)
      */
-    public void setColors(Color mainColor, Color clickedColor){
+    public void setColors(Color mainColor, Color clickedColor) {
         this.mainColor = mainColor;
         this.clickedColor = clickedColor;
         setColorSettings();
@@ -94,7 +94,7 @@ public class GameButton extends JButton{
      *
      * @param textSize
      */
-    public void setTextSize(int textSize){
+    public void setTextSize(int textSize) {
         this.setFont(new Font("Candara", Font.PLAIN, textSize));
     }
 
@@ -103,7 +103,7 @@ public class GameButton extends JButton{
     *
     * @return Color value representing the color of the button when clicked
     */
-    public Color getClickedColor(){
+    public Color getClickedColor() {
         return this.clickedColor;
     }
     

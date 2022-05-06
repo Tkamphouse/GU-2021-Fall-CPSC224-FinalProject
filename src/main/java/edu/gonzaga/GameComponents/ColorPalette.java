@@ -2,7 +2,15 @@ package edu.gonzaga.GameComponents;
 
 import java.awt.*;
 
+/**
+ * ColorPalette is a class containing a set of default
+ * colors for use in styling components in Yahtzee.
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 unknown
+ */
 public interface ColorPalette {
+
     Color lightGrey = new Color(195,180,177);
     Color grey = new Color(154,127,120);
     Color darkGrey = new Color(116,93,87);
@@ -30,4 +38,5 @@ public interface ColorPalette {
     Color white = new Color(250, 250, 250);
     Color backgroundColor = new Color(240, 240, 240);
     Color textColor = new Color(20,20,20);
+    
 }

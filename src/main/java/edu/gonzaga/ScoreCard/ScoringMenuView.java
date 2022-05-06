@@ -6,7 +6,7 @@ import javax.swing.JRadioButton;
 import java.util.ArrayList;
 import edu.gonzaga.GameComponents.GameLabel;
 
-public class ScoringMenuView extends JPanel{
+public class ScoringMenuView extends JPanel {
 
     private ArrayList<JRadioButton> buttons = new ArrayList<>();
     private ButtonGroup buttonGroup = new ButtonGroup();
@@ -15,12 +15,12 @@ public class ScoringMenuView extends JPanel{
     private int width = 150;
     private int height;
 
-    public ScoringMenuView(int numScoringRows, int scoreCardLength, int rowHeight){
+    public ScoringMenuView(int numScoringRows, int scoreCardLength, int rowHeight) {
         this.setLayout(null);
         this.height = scoreCardLength;
         this.rowHeight = rowHeight;
         this.setSize(width, height);
-        for(int i = 0; i < numScoringRows; i++){
+        for (int i = 0; i < numScoringRows; i++) {
             buttons.add(new JRadioButton());
             buttonGroup.add(buttons.get(i));
         }
@@ -28,14 +28,14 @@ public class ScoringMenuView extends JPanel{
         configurePanel();
     }
 
-    public void configurePanel(){
+    public void configurePanel() {
         setComponentSizes();
         setComponentLocations();
         AddComponents();
     }
 
-    public void setComponentSizes(){
-        for(int i = 0; i < buttons.size(); i++){
+    public void setComponentSizes() {
+        for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setSize(20, 15);
         }
         menuExplanation.setSize(100, rowHeight * 2);
@@ -43,36 +43,32 @@ public class ScoringMenuView extends JPanel{
 
     public void setComponentLocations(){
         menuExplanation.setLocation(10, 0);
-        for(int i = 0; i < 6; i++){
+        for (int i = 0; i < 6; i++){
             buttons.get(i).setLocation(10, (5 + menuExplanation.getHeight() + rowHeight * i));
         }
-        for(int i = 6; i < buttons.size(); i++){
+        for (int i = 6; i < buttons.size(); i++) {
             buttons.get(i).setLocation(10, (5 + menuExplanation.getHeight() + (4 * rowHeight) + rowHeight * i));
         }
     }
 
-    public void AddComponents(){
+    public void AddComponents() {
         this.add(menuExplanation);
-        for(int i = 0; i < buttons.size(); i++){
+        for (int i = 0; i < buttons.size(); i++) {
             this.add(buttons.get(i));
         }
     }
 
-    public int getSelectedIndex(){
-        for(int i = 0; i < buttons.size(); i++){
-            if(buttons.get(i).isSelected()){
+    public int getSelectedIndex() {
+        for (int i = 0; i < buttons.size(); i++) {
+            if (buttons.get(i).isSelected()) {
                 return i;
             }
         }
         return -1;
     }
 
-    public void deleteScoringOption(int indexToHide){
-        buttons.get(indexToHide).setVisible(false);
-    }
+    public void deleteScoringOption(int indexToHide) { buttons.get(indexToHide).setVisible(false); }
 
-    public ArrayList<JRadioButton> getButtons(){
-        return buttons;
-    }
+    public ArrayList<JRadioButton> getButtons() { return buttons; }
     
 }

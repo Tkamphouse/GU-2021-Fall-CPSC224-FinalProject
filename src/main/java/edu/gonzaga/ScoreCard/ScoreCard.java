@@ -3,7 +3,7 @@ package edu.gonzaga.ScoreCard;
 import java.util.ArrayList;
 import edu.gonzaga.ScoreCard.ScoreLines.*;
 
-public class ScoreCard{
+public class ScoreCard {
 
     private UpperScoreLine ones;
     private UpperScoreLine twos;
@@ -39,7 +39,7 @@ public class ScoreCard{
     private ScoreCardView view;
     private int numUpperScoringRows; 
     
-    public ScoreCard(String name, int numDiceSides, int numPlayers){
+    public ScoreCard(String name, int numDiceSides, int numPlayers) {
         this.name = name;
         this.numUpperScoringRows = numDiceSides;
         configureScoreLines(numPlayers);
@@ -48,7 +48,7 @@ public class ScoreCard{
         configureView(); 
     }
 
-    public void configureScoreLines(int numPlayers){
+    public void configureScoreLines(int numPlayers) {
         ones = new UpperScoreLine(" Aces 1's", "Count and Add Only Aces", 1, numPlayers);
         twos = new UpperScoreLine(" Twos 2's", "Count and Add Only Twos", 2, numPlayers);
         threes = new UpperScoreLine(" Threes 3's", "Count and Add Only Threes", 3, numPlayers);
@@ -77,27 +77,27 @@ public class ScoreCard{
         lowerScoreLines.add(yahtzeeLine);
         lowerScoreLines.add(chanceLine);
 
-        for(int i = 0; i < numUpperScoringRows; i++){
+        for (int i = 0; i < numUpperScoringRows; i++) {
             scoreLines.add(upperScoreLines.get(i));
         }
-        for(int i = 0; i < lowerScoreLines.size(); i++){
+        for (int i = 0; i < lowerScoreLines.size(); i++) {
             scoreLines.add(lowerScoreLines.get(i));
         }
 
     }
 
-    public void configureTotalLines(int numPlayers){
+    public void configureTotalLines(int numPlayers) {
         upperTotalLine = new TotalScoreLine(" Total Score", "--->", numPlayers, upperScoreLines);
         upperBonusLine = new BonusLine(" Bonus", "If total score over 62, score 35", numPlayers, upperTotalLine);
         ArrayList<ScoreLine> allUpperLines = new ArrayList<>();
-        for(int i = 0; i < upperScoreLines.size(); i++){
+        for (int i = 0; i < upperScoreLines.size(); i++) {
             allUpperLines.add(upperScoreLines.get(i));
         }
         allUpperLines.add(upperBonusLine);
         upperGrandTotalLine = new TotalScoreLine(" Total", "--->", numPlayers, allUpperLines);
         lowerTotalLine = new TotalScoreLine(" Total (lower)", "--->", numPlayers, lowerScoreLines);
         lowerUpperTotalLine = new TotalScoreLine(" Total (upper)", "--->", numPlayers, allUpperLines);
-        ArrayList<ScoreLine> allLines = new ArrayList<>() {{ add(lowerTotalLine); add(lowerUpperTotalLine); }};
+        ArrayList<ScoreLine> allLines = new ArrayList<>() { { add(lowerTotalLine); add(lowerUpperTotalLine); } };
         grandTotalScoreLine = new TotalScoreLine(" Grand Total", "--->", numPlayers, allLines);
         grandTotalScoreLine.setBottomBorder();
         
@@ -109,9 +109,9 @@ public class ScoreCard{
         totalLines.add(grandTotalScoreLine);
     }
 
-    public void configureTitleLines(int numPlayers){
+    public void configureTitleLines(int numPlayers) {
         ArrayList<String> scoreHeaders = new ArrayList<>();
-        for(int i = 0; i < numPlayers; i++){
+        for (int i = 0; i < numPlayers; i++) {
             scoreHeaders.add("Score");
         }
         upperTitle = new TitleLineView(" Upper Section", "How to Score", scoreHeaders);
@@ -120,35 +120,21 @@ public class ScoreCard{
         titleLines.add(lowerTitle);
     }
 
-    public void configureView(){
-        view = new ScoreCardView(name, scoreLines, totalLines, titleLines);
-    }
+    public void configureView() { view = new ScoreCardView(name, scoreLines, totalLines, titleLines); }
 
-    public ScoreCardView getView(){
-        return view;
-    }
+    public ScoreCardView getView() { return view; }
 
-    public int getRowHeight(){
-        return view.getRowHeight();
-    }
+    public int getRowHeight() { return view.getRowHeight(); }
 
-    public int getHeight(){
-        return this.getHeight();
-    }
+    public int getHeight() { return this.getHeight(); }
 
-    public int getRowWidth(){
-        return view.getRowWidth();
-    }
+    public int getRowWidth() { return view.getRowWidth(); }
 
-    public ArrayList<ScoreLine> getScoreLines(){
-        return scoreLines;
-    }
+    public ArrayList<ScoreLine> getScoreLines() { return scoreLines; }
 
-    public ArrayList<ScoreLine> getTotalLines(){
-        return totalLines;
-    }
+    public ArrayList<ScoreLine> getTotalLines() { return totalLines; }
 
-    public void setScore(int scoringRow, int scoringColumn, int score){
+    public void setScore(int scoringRow, int scoringColumn, int score) {
         scoreLines.get(scoringRow - 1).setScore(scoringColumn, score);
     }
 
