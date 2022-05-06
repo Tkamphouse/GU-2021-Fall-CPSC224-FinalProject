@@ -20,9 +20,7 @@ public class HandTest {
     @Test
     void testHandRollNewKeepAll() {
         Hand hand = new Hand();
-        Hand hand2 = new Hand();
         int expectedFill = 1;
-        int[] expectedArrayFill = {1,1,1,1,1};
         //Test keep all
         for (int i = 0; i < hand.getSize(); ++i)
             hand.getDie(i).changeLockedState();

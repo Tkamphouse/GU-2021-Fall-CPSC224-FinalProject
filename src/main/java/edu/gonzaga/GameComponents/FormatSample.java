@@ -1,7 +1,5 @@
 package edu.gonzaga.GameComponents;
 
-import edu.gonzaga.Windows.GameWindow;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
