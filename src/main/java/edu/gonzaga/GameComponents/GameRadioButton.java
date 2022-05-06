@@ -31,8 +31,10 @@ public class GameRadioButton extends JRadioButton{
     private Icon rolloverIcon;
     private Icon pressedIcon;
     private Icon selectedIcon;
-    //private Icon crossIcon;
 
+    /**
+     * default game radio button
+     */
     public GameRadioButton(){
         resizeImages(17, 17);
         assignIcons();
@@ -40,13 +42,15 @@ public class GameRadioButton extends JRadioButton{
         this.setRolloverIcon(rolloverIcon);
         this.setPressedIcon(pressedIcon);
         this.setSelectedIcon(selectedIcon);
-        //setBackground(ColorPalette.red);
-        //setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 2));
     }
 
+    /**
+     * default game radio button with type parameter
+     *
+     * @param type
+     */
     public GameRadioButton(int type){
         resizeImages(17, 17);
-        //assignAltIcons();
         assignAltIcons();
         this.setIcon(defaultIcon);
         this.setRolloverIcon(rolloverIcon);
@@ -61,22 +65,24 @@ public class GameRadioButton extends JRadioButton{
             @Override
             public void stateChanged(ChangeEvent event){
                 if (getModel().isPressed()){
-                    //setBackground(new Color(220, 220, 220));
                     setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 2));
                 } else if (getModel().isRollover()){
-                    //setBackground(ColorPalette.white);
                     setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 1));
                 } else{
-                    //setBackground(ColorPalette.white);
                     setBorder(BorderFactory.createLineBorder(ColorPalette.textColor, 2));
                 }
             }
         });
     }
 
+    /**
+     * resizes the images with width and height parameters
+     *
+     * @param width
+     * @param height
+     */
     public void resizeImages(int width, int height){
-        //ImageIcon defaultIcon = new ImageIcon(System.getProperty("user.dir") + "\\src\\media\\DefaultRadioButton.png"); // load the image to a imageIcon
-        Image image = defaultIconImage.getImage(); // transform it 
+        Image image = defaultIconImage.getImage(); // transform it
         Image newimg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
         defaultIconImage = new ImageIcon(newimg);  // transform it back
 
@@ -101,6 +107,9 @@ public class GameRadioButton extends JRadioButton{
         emptyIconImage = new ImageIcon(newimg);
     }
 
+    /**
+     * assigns icons to image
+     */
     public void assignIcons(){
         defaultIcon = defaultIconImage;
         rolloverIcon = rolloverIconImage;
@@ -108,6 +117,9 @@ public class GameRadioButton extends JRadioButton{
         selectedIcon = selectedIconImage;
     }
 
+    /**
+     * assigns icon to empty image
+     */
     public void assignAltIcons(){
         defaultIcon = emptyIconImage;
         rolloverIcon = emptyIconImage;

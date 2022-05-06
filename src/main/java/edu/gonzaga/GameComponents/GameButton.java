@@ -24,24 +24,33 @@ public class GameButton extends JButton{
     private Color mainColor = ColorPalette.red;
     private Color clickedColor = ColorPalette.darkRed;
 
+    /**
+     * default game button with text parameter
+     *
+     * @Param text
+     */
     public GameButton(String text){
         super(text);
         this.setColorSettings();
         this.setFont(new Font("Candara", Font.PLAIN, 20));
-        //this.setVerticalAlignment(SwingConstants.CENTER);
-        //this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setFocusPainted(false);
         this.setContentAreaFilled(false);
         this.setOpaque(true);
         this.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     }
 
+    /**
+     * default game button with text parameter and
+     * gameType (did not change the game type to
+     * lizard spock yahtzee)
+     *
+     * @param text
+     * @param gameType
+     */
     public GameButton(String text, int gameType){ 
         super(text);
         this.setColorSettings();
         this.setFont(new Font("Candara", Font.PLAIN, 20));
-        //this.setVerticalAlignment(SwingConstants.CENTER);
-        //this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setFocusPainted(false);
         this.setContentAreaFilled(false);
         this.setOpaque(true);
@@ -50,20 +59,8 @@ public class GameButton extends JButton{
 
     /**
     * sets color scheme of Game button based on the game type, or the number of sides on the game dice
-    *
-    * @param gameType int value representing the number of sides on the dice in the game
     */
     public void setColorSettings(){
-        /*if(gameType == 12){
-            mainColor = lightBlue;
-            clickedColor = darkBlue; 
-        } else if(gameType == 8){
-            mainColor = lightGreen;
-            clickedColor = darkGreen;
-        } else{
-            mainColor = lightRed;
-            clickedColor = darkRed;
-        }*/
         this.setBackground(mainColor);
         this.setForeground(ColorPalette.textColor);
         addChangeListener(new ChangeListener(){
@@ -83,18 +80,26 @@ public class GameButton extends JButton{
         });
     }
 
+    /**
+     * sets the main color of the game (did not use)
+     */
     public void setColors(Color mainColor, Color clickedColor){
         this.mainColor = mainColor;
         this.clickedColor = clickedColor;
         setColorSettings();
     }
 
+    /**
+     * changes the text size of text displayed on JPanel
+     *
+     * @param textSize
+     */
     public void setTextSize(int textSize){
         this.setFont(new Font("Candara", Font.PLAIN, textSize));
     }
 
     /**
-    * Returns the color of the game buttono when clicked
+    * Returns the color of the game button when clicked (did not use)
     *
     * @return Color value representing the color of the button when clicked
     */

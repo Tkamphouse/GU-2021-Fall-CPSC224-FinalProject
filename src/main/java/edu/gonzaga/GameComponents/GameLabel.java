@@ -19,22 +19,35 @@ import java.awt.*;
 /** Class Customizing the java swing component JLabel */
 public class GameLabel extends JLabel{
 
-    //private static final Color darkBrown = new Color(27, 25, 21);
     String fontName = "Candara";
     Font defaultTextFont = new Font("Candara", Font.PLAIN, 15);
 
+    /**
+     * default game label, no parameters
+     */
     public GameLabel(){
         super();
         this.setFont(defaultTextFont);
         this.setForeground(ColorPalette.textColor);
     }
 
+    /**
+     * default game label with text parameter
+     *
+     * @param text
+     */
     public GameLabel(String text){
         super(text);
         this.setFont(defaultTextFont);
         this.setForeground(ColorPalette.textColor);
     }
 
+    /**
+     * default game label with text and boolean 'bold' parameter
+     *
+     * @param text
+     * @param bold
+     */
     public GameLabel(String text, boolean bold){
         super(text);
         if(bold){
@@ -45,6 +58,13 @@ public class GameLabel extends JLabel{
         this.setForeground(ColorPalette.textColor);
     }
 
+    /**
+     * default game label with text parameter and
+     * alignment (horizontal) parameter
+     *
+     * @param text
+     * @param horizontalAlignment
+     */
     public GameLabel(String text, int horizontalAlignment){
         super(text, horizontalAlignment);
         this.setFont(defaultTextFont);
@@ -60,15 +80,23 @@ public class GameLabel extends JLabel{
         this.setFont(new Font(fontName, Font.PLAIN, textSize));
     }
 
+    /**
+     * sets the text settings (did not use)
+     *
+     * @param bold
+     * @param textSize
+     */
     public void setTextSettings(Boolean bold, int textSize){
         if(bold){
             this.setFont(new Font(fontName, Font.BOLD, textSize));
         }else{
             this.setFont(new Font(fontName, Font.PLAIN, textSize));
         }
-        //this.setFont(new Font(fontName, Font.PLAIN, textSize));
     }
 
+    /**
+     * sets the text to bold
+     */
     public void setTextBold(){
         this.setFont(new Font(fontName, Font.BOLD, 15));
     }

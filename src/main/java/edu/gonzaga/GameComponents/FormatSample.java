@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/** Class customizing JPanel formatting */
 public class FormatSample extends JPanel{
 
     ArrayList<GameLabel> colorSwatches = new ArrayList<>();
@@ -78,7 +79,7 @@ public class FormatSample extends JPanel{
     /**
      * makes the swatch for method above
      *
-     * @see makeSwatches()
+     * @see //makeSwatches()
      */
     public void makeSwatch(Color color, String text){
         GameLabel tempSwatch;
