@@ -21,7 +21,7 @@ public class OfAKindLine extends ScoreLine {
             int finalScore;
             boolean matchFound = false;
             int count;
-            for (int i = 1; i <= playerHand.getSize(); i++) { //loop through die sides 
+            for (int i = 1; i <= playerHand.getSize() + 1; i++) { //loop through die sides 
                 count = 0;
                 for (int j = 0; j < playerHand.getSize(); j++) { //loop through all dice
                     if (playerHand.getDie(j).getSideUp() == i) { //counts each occurance of current side vlaue
@@ -34,8 +34,7 @@ public class OfAKindLine extends ScoreLine {
             }
             if (matchFound == false) { //score 0 if didn't find specified amount of one kind
                 finalScore = 0;
-            }
-            else if (howManyOfAKind == 5) { //score 50 if yahtzee
+            } else if (howManyOfAKind == 5) { //score 50 if yahtzee
                 finalScore = 50;
             } else { //add up dice values if 3/4 of a kind 
                 finalScore = playerHand.sum();
