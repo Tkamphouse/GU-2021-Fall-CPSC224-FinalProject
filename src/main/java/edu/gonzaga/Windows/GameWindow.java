@@ -17,7 +17,6 @@ import java.util.ArrayList;
  */
 public class GameWindow extends JPanel{
 
-    //JFra
     GameLabel currentPlayerName = new GameLabel();
     GameLabel footer = new GameLabel();
     JPanel currentPlayerScoreCardView = new JPanel();
