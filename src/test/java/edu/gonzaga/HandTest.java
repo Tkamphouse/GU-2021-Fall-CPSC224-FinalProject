@@ -29,6 +29,17 @@ public class HandTest {
             assertEquals(hand.returnValue(i), expectedFill);
     }
 
+    @Test
+    void testHandRollNewKeepFour() {
+        Hand hand = new Hand();
+        int expectedFill = 1;
+        //Test roll 1
+        for (int i = 1; i < hand.getSize(); ++i)
+            hand.getDie(i).changeLockedState();
+        while (hand.getDie(0).getSideUp() == 1)
+            hand.RollNewHand();
+        assertNotEquals(hand.returnValue(0), expectedFill);
+    }
 
     @Test
     void testHandSum() {
