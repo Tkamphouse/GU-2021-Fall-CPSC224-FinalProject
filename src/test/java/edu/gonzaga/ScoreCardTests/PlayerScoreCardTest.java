@@ -1,12 +1,10 @@
 package edu.gonzaga.ScoreCardTests;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import edu.gonzaga.ScoreCard.PlayerScoreCard;
 import edu.gonzaga.ScoreCard.PlayerScoreCardView;
-import edu.gonzaga.ScoreCard.ScoreCard;
 import edu.gonzaga.*;
 
 public class PlayerScoreCardTest {

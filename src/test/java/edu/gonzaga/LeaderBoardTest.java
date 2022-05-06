@@ -1,12 +1,8 @@
 package edu.gonzaga;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import javax.swing.*;
-
 import edu.gonzaga.ScoreCard.LeaderBoard;
-import edu.gonzaga.ScoreCard.ScoreLines.ScoreLine;
 import java.util.ArrayList;
 
 public class LeaderBoardTest {

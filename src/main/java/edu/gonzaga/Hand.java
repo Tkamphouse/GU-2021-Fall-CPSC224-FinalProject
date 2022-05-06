@@ -3,11 +3,7 @@ package edu.gonzaga;
 
 import edu.gonzaga.GameComponents.GameButton;
 import edu.gonzaga.GameComponents.GameLabel;
-import edu.gonzaga.GameComponents.GameRadioButton;
-
-import java.util.ArrayList;
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Class to create an array of Dice and manage them

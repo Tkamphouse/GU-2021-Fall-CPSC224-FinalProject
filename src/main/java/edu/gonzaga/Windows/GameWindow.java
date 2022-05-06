@@ -1,14 +1,11 @@
 package edu.gonzaga.Windows;
 
 import javax.swing.*;
-import javax.swing.text.AttributeSet.ColorAttribute;
-
 import java.awt.event.*;
 import edu.gonzaga.*;
 import edu.gonzaga.GameComponents.*;
 
 import java.util.ArrayList;
-import java.util.Currency;
 
 /**
  * Class to create and update the actual game mechanics

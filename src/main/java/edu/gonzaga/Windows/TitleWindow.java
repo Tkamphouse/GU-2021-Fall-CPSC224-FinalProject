@@ -1,8 +1,6 @@
 package edu.gonzaga.Windows;
 
 import javax.swing.*;
-import javax.swing.plaf.DimensionUIResource;
-
 import java.awt.*;
 import java.awt.event.*;
 import edu.gonzaga.GameComponents.*;

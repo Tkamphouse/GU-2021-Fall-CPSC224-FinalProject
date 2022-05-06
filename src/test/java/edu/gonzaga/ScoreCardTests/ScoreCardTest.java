@@ -1,10 +1,7 @@
 package edu.gonzaga.ScoreCardTests;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import edu.gonzaga.ScoreCard.ScoreCard;
 import edu.gonzaga.ScoreCard.ScoreCardView;
