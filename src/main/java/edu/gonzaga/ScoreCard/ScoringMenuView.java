@@ -6,6 +6,13 @@ import javax.swing.JRadioButton;
 import java.util.ArrayList;
 import edu.gonzaga.GameComponents.GameLabel;
 
+/**
+ * The ScoringMenuView class generates a list of radio buttons
+ * for use in recording the score of a turn in a player's scorecard.
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 4/22/2022
+ */
 public class ScoringMenuView extends JPanel {
 
     private ArrayList<JRadioButton> buttons = new ArrayList<>();
@@ -15,6 +22,13 @@ public class ScoringMenuView extends JPanel {
     private int width = 150;
     private int height;
 
+    /**
+     * The constructor for the ScoringMenuView class.
+     * 
+     * @param numScoringRows the number of rows in the scorecard that need buttons
+     * @param scoreCardLength the number of rows in the scorecard
+     * @param rowHeight the height of each row in the scorecard
+     */
     public ScoringMenuView(int numScoringRows, int scoreCardLength, int rowHeight) {
         this.setLayout(null);
         this.height = scoreCardLength;
@@ -28,12 +42,22 @@ public class ScoringMenuView extends JPanel {
         configurePanel();
     }
 
+    /**
+     * Method to generate and add components to this panel.
+     * 
+     * @see ScoringMenyView constructor
+     */
     public void configurePanel() {
         setComponentSizes();
         setComponentLocations();
         AddComponents();
     }
 
+    /**
+     * Method to set the size of each component in this panel.
+     * 
+     * @see configurePanel method above
+     */
     public void setComponentSizes() {
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setSize(20, 15);
@@ -41,6 +65,11 @@ public class ScoringMenuView extends JPanel {
         menuExplanation.setSize(100, rowHeight * 2);
     }
 
+    /**
+     * Method to set the location of each component in this panel.
+     * 
+     * @see configurePanel method above
+     */
     public void setComponentLocations(){
         menuExplanation.setLocation(10, 0);
         for (int i = 0; i < 6; i++){
@@ -51,6 +80,11 @@ public class ScoringMenuView extends JPanel {
         }
     }
 
+    /**
+     * Method to add components to this panel.
+     * 
+     * @see configurePanel method above
+     */
     public void AddComponents() {
         this.add(menuExplanation);
         for (int i = 0; i < buttons.size(); i++) {
@@ -58,6 +92,11 @@ public class ScoringMenuView extends JPanel {
         }
     }
 
+    /**
+     * Getter for the index selected by the player.
+     * 
+     * @return int index of the selected radio button
+     */
     public int getSelectedIndex() {
         for (int i = 0; i < buttons.size(); i++) {
             if (buttons.get(i).isSelected()) {
