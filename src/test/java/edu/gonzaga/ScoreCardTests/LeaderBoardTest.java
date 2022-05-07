@@ -1,7 +1,9 @@
-package edu.gonzaga;
+package edu.gonzaga.ScoreCardTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
+import edu.gonzaga.Player;
 import edu.gonzaga.ScoreCard.LeaderBoard;
 import java.util.ArrayList;
 

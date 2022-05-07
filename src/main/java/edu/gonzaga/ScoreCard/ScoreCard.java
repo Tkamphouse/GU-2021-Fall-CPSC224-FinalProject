@@ -3,6 +3,12 @@ package edu.gonzaga.ScoreCard;
 import java.util.ArrayList;
 import edu.gonzaga.ScoreCard.ScoreLines.*;
 
+/**
+ * ScoreCard is the class that holds the basic outline for score keeping in the yahtzee game
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 5/6/2022
+ */
 public class ScoreCard {
 
     private UpperScoreLine ones;
@@ -48,6 +54,11 @@ public class ScoreCard {
         configureView(); 
     }
 
+    /**
+    * assigns the scorelines based on number of players
+    *
+    * @param numPlayers number of players to be recorded on card
+    */
     public void configureScoreLines(int numPlayers) {
         ones = new UpperScoreLine(" Aces 1's", "Count and Add Only Aces", 1, numPlayers);
         twos = new UpperScoreLine(" Twos 2's", "Count and Add Only Twos", 2, numPlayers);
@@ -86,6 +97,11 @@ public class ScoreCard {
 
     }
 
+    /**
+    * assigns the TotalLines based on the number of players 
+    *
+    * @param numPlayers int value corresponding to the number of players to be recorded on the card
+    */
     public void configureTotalLines(int numPlayers) {
         upperTotalLine = new TotalScoreLine(" Total Score", "--->", numPlayers, upperScoreLines);
         upperBonusLine = new BonusLine(" Bonus", "If total score over 62, score 35", numPlayers, upperTotalLine);
@@ -109,6 +125,11 @@ public class ScoreCard {
         totalLines.add(grandTotalScoreLine);
     }
 
+    /**
+    * assigns the TitleLines based on the number of player
+    *
+    * @param numPlayers int value corresponding to the number of players to be recorded on the card
+    */
     public void configureTitleLines(int numPlayers) {
         ArrayList<String> scoreHeaders = new ArrayList<>();
         for (int i = 0; i < numPlayers; i++) {
@@ -120,20 +141,51 @@ public class ScoreCard {
         titleLines.add(lowerTitle);
     }
 
+    /** creates a ScoreCardView object with card's visual information*/
     public void configureView() { view = new ScoreCardView(name, scoreLines, totalLines, titleLines); }
 
+    /**
+    * Gets the view
+    *
+    * @return ScoreCardView with visual information
+    */
     public ScoreCardView getView() { return view; }
 
+    /**
+    * Gets the height of the card rows
+    *
+    * @return int value corresponding to the row height
+    */
     public int getRowHeight() { return view.getRowHeight(); }
 
-    public int getHeight() { return this.getHeight(); }
-
+    /**
+    * Gets the width of the card rows
+    *
+    * @return int value corresponding to the row width
+    */
     public int getRowWidth() { return view.getRowWidth(); }
 
+    /**
+    * Gets all scorelines
+    *
+    * @return ArrayList<ScoreLines> with all scorelines
+    */
     public ArrayList<ScoreLine> getScoreLines() { return scoreLines; }
 
+    /**
+    * Gets all totallines
+    *
+    * @return ArrayList<ScoreLines> with all totalLines
+    */
     public ArrayList<ScoreLine> getTotalLines() { return totalLines; }
 
+    /**
+    * sets the score on a given row in a given column
+    *
+    * @param scoringRow int corresponding to the row where the score is to be recorded
+    * @param scoringColumn int corresponding to the column where the score is to be recorded
+    * @param score int corresponding to the new score to be recorded
+    */
     public void setScore(int scoringRow, int scoringColumn, int score) {
         scoreLines.get(scoringRow - 1).setScore(scoringColumn, score);
     }

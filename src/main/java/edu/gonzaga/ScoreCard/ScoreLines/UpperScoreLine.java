@@ -2,6 +2,12 @@ package edu.gonzaga.ScoreCard.ScoreLines;
 
 import edu.gonzaga.*;
 
+/**
+ * UpperScoreLine is the class that represents the scorelines on the UpperScoreLine
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 5/6/2022
+ */
 public class UpperScoreLine extends ScoreLine {
     
     private int rowNum;
@@ -16,12 +22,17 @@ public class UpperScoreLine extends ScoreLine {
         this.rowNum = rowNum;
     }
 
-    public void calculateScore(Hand playerHand) {
+    /**
+    * Calculates possible score based on a given hand
+    *
+    * @param currentHand hand object used to calculate possible score
+    */
+    public void calculateScore(Hand currentHand) {
         if (!super.checkUsed()) {
             int finalScore;
             int countPoints = 0;
-            for (int i = 0; i < playerHand.getSize(); i++) {
-                if (playerHand.getDie(i).getSideUp() == rowNum) { //record each occurance of specified side
+            for (int i = 0; i < currentHand.getSize(); i++) {
+                if (currentHand.getDie(i).getSideUp() == rowNum) { //record each occurance of specified side
                     countPoints++;
                 }
             }

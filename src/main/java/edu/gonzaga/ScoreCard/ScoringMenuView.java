@@ -106,8 +106,18 @@ public class ScoringMenuView extends JPanel {
         return -1;
     }
 
+    /**
+    * Hides the a given button by setting it invisible
+    *
+    * @param indexToHide int value corresponding to the button to be hidden
+    */
     public void deleteScoringOption(int indexToHide) { buttons.get(indexToHide).setVisible(false); }
 
+    /**
+    * gets all buttons
+    *
+    * @return ArrayList<JRadioButton> containing all buttons
+    */
     public ArrayList<JRadioButton> getButtons() { return buttons; }
     
 }

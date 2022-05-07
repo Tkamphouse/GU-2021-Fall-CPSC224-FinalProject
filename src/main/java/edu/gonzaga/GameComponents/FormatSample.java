@@ -80,6 +80,8 @@ public class FormatSample extends JPanel {
      * makes the swatch for method above
      *
      * @see //makeSwatches()
+     * @param color Color value to set background of swatch
+     * @param text String value to label color swatch
      */
     public void makeSwatch(Color color, String text) {
         GameLabel tempSwatch;

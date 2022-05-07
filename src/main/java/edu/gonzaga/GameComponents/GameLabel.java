@@ -81,10 +81,10 @@ public class GameLabel extends JLabel {
     }
 
     /**
-     * sets the text settings (did not use)
+     * sets the text settings 
      *
-     * @param bold
-     * @param textSize
+     * @param bold boolean whether or not text is bolded
+     * @param textSize integer that sets text size
      */
     public void setTextSettings(Boolean bold, int textSize) {
         if (bold) {

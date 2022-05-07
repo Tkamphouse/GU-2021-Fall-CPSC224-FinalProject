@@ -2,6 +2,12 @@ package edu.gonzaga.ScoreCard.ScoreLines;
 
 import edu.gonzaga.*;
 
+/**
+ * Bonus Line is the Class the represents the bonus line on the UpperScoreCard
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 5/6/2022
+ */
 public class BonusLine extends ScoreLine {
 
     private int targetScore = 63;
@@ -17,7 +23,12 @@ public class BonusLine extends ScoreLine {
         this.lineToWatch = lineToWatch;
     }
 
-    public void calculateScore(Hand hand) {
+    /**
+    * Calculates possible score based on a given hand
+    *
+    * @param currentHand hand object used to calculate possible score
+    */
+    public void calculateScore(Hand currentHand) {
         int finalScore;
         for (int i = 0; i < lineToWatch.getScores().size(); i++) {
             finalScore = 0;

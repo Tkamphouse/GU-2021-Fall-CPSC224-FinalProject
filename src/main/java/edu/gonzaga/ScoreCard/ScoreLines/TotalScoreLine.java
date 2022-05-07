@@ -3,6 +3,12 @@ package edu.gonzaga.ScoreCard.ScoreLines;
 import java.util.ArrayList;
 import edu.gonzaga.*;
 
+/**
+ * TotalScoreLine is the Class the represents the total score lines on the ScoreCard
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 5/6/2022
+ */
 public class TotalScoreLine extends ScoreLine {
 
     private ArrayList<ScoreLine> linesToTotal = new ArrayList<>();
@@ -17,15 +23,12 @@ public class TotalScoreLine extends ScoreLine {
         this.linesToTotal = linesToTotal;
     }
 
-    public int getScore(int scoreColumn) {
-        int total = 0;
-        for (int i = 0; i < linesToTotal.size(); i++) {
-            total += linesToTotal.get(i).getScores().get(scoreColumn - 1);
-        }
-        return total;
-    }
-
-    public void calculateScore(Hand hand) {
+    /**
+    * Calculates possible score based on a given hand
+    *
+    * @param currentHand hand object used to calculate possible score
+    */
+    public void calculateScore(Hand currentHand) {
         int total = 0;
         int lineToTotalScore;
         for (int i = 0; i < linesToTotal.size(); i++) {
@@ -37,7 +40,7 @@ public class TotalScoreLine extends ScoreLine {
             }
         }
         getScores().set(0, total);
-        super.setScore(1, total); 
+        super.setScore(1, total);  
     }
     
 }

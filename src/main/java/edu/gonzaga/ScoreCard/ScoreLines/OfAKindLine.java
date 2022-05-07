@@ -2,6 +2,12 @@ package edu.gonzaga.ScoreCard.ScoreLines;
 
 import edu.gonzaga.*;
 
+/**
+ * OfAKindLine is the Class the represents the different of a kind lines on the LowerScoreCard
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 5/6/2022
+ */
 public class OfAKindLine extends ScoreLine {
 
     private int howManyOfAKind;
@@ -16,6 +22,11 @@ public class OfAKindLine extends ScoreLine {
         this.howManyOfAKind = howManyOfAKind;
     }
 
+    /**
+    * Calculates possible score based on a given hand
+    *
+    * @param currentHand hand object used to calculate possible score
+    */
     public void calculateScore(Hand playerHand) {
         if (!super.checkUsed()) {
             int finalScore;

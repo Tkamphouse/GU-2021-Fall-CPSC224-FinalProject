@@ -6,6 +6,12 @@ import edu.gonzaga.Player;
 import edu.gonzaga.GameComponents.*;
 import java.awt.*;
 
+/**
+ * LeaderBoardView is the class that conatins the LeaderBoard class's visual information
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 5/6/2022
+ */
 public class LeaderBoardView extends JPanel {
     
     private Color[][] possibleColors = {
@@ -31,6 +37,7 @@ public class LeaderBoardView extends JPanel {
         configureView();
     }
 
+    /** sets the winner label text after calculating game winner*/
     public void setWinnerLabel() {
         Player winner = players.get(0);
         for (int i = 0; i < players.size(); i++) {
@@ -44,6 +51,7 @@ public class LeaderBoardView extends JPanel {
         winnerLabel.setSize(scoreTableView.getWidth(), 50);
     }
 
+    /** assigns component visual information*/
     public void configureView() {
         scoreTableView.setLocation(0, 0);
         winnerLabel.setLocation(0, scoreTableView.getHeight() + 10);
@@ -60,6 +68,7 @@ public class LeaderBoardView extends JPanel {
         this.add(winnerLabel);
     }
 
+    /** assigns the colors of the score columns*/
     public void colorPlayerColumns() {
         for (int i = 0; i < players.size(); i++) {
             scoreTableView.colorTitleCell(possibleColors[i][1], 1, i + 3);
@@ -73,6 +82,7 @@ public class LeaderBoardView extends JPanel {
         }
     }
 
+    /** adds the players' scores to the score columns*/
     public void addPlayerScores() {
         for (int currentPlayer = 0; currentPlayer < players.size(); currentPlayer++) {
             for (int rowIndex = 0; rowIndex < scoreTableView.getNumScoringRows(); rowIndex++) {
@@ -88,6 +98,11 @@ public class LeaderBoardView extends JPanel {
         }
     }
 
+    /**
+    * Gets the winner label
+    *
+    * @return GameLabel with winner label information
+    */
     public GameLabel getWinnerLabel() { return winnerLabel; }
 
 }

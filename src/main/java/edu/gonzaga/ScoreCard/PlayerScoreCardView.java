@@ -4,6 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import edu.gonzaga.GameComponents.*;
 
+/**
+ * PlayerScoreCardView is the class that holds the PlayerScoreCard class's visual information
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 5/6/2022
+ */
 public class PlayerScoreCardView extends JPanel {
 
     private Color[][] possibleColors = {
@@ -35,6 +41,7 @@ public class PlayerScoreCardView extends JPanel {
         configureView();
     }
 
+    /** sets component visual settings*/
     public void configureView() {
         setColorSettings();
         setComponentSizes();
@@ -48,34 +55,54 @@ public class PlayerScoreCardView extends JPanel {
         this.add(possibleScoreExplanation);
     }
 
+    /** assigns colors based on current cardId*/
     public void setColorSettings() {
         titleColor = possibleColors[id-1][2];
         columnHeadersColor = possibleColors[id-1][1];
         possibleScoreColor = possibleColors[id-1][0];
     }
 
+    /** sets the posssibleScoreExplanation size*/
     public void setComponentSizes() {
         possibleScoreExplanation.setSize(250, 20);
     }
 
+    /** sets the location of the card components*/
     public void setComponentLocations() {
         scoreTable.setLocation(0, 0);
         scoringMenu.setLocation(scoreTable.getRowWidth(), 0);
         possibleScoreExplanation.setLocation(0, scoreTable.getHeight() + 10);
     }
 
+    /**
+    * gets the currently selected row index from the scoring menu
+    *
+    * @return int value corresponding to the index of the selected row
+    */
     public int getSelectedScoringIndex() {
         return scoringMenu.getSelectedIndex();
     }
 
+    /**
+    * Hides the button used to select scoring row on a given row
+    *
+    * @param rowToDelete int value corresponding to the row that needs its scoring button hidden
+    */
     public void deleteScoringOption(int rowToDelete) {
         scoringMenu.deleteScoringOption(rowToDelete - 1);
     }
 
+    /** sets the scoring menu to invisible*/
     public void hideScoringMenu() { scoringMenu.setVisible(false); }
 
+    /** sets the scoring menu to visible*/
     public void revealScoringMenu() { scoringMenu.setVisible(true); }
     
+    /**
+    * gets the scoring menu
+    *
+    * @return ScoringMenuView with scoring menu data
+    */
     public ScoringMenuView getScoringMenu() { return scoringMenu; }
 
 }

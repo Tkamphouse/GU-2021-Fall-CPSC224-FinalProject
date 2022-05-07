@@ -6,6 +6,12 @@ import edu.gonzaga.GameComponents.*;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * ScoreLineView is the Class the represents the visual information from the ScoreLine Class
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 5/6/2022
+ */
 public class ScoreLineView extends JPanel {
 
     private static final int NAME_CELL_WIDTH = 100;
@@ -57,6 +63,7 @@ public class ScoreLineView extends JPanel {
         configureView();
     }
 
+    /** organizes component visual information */
     public void configureView() {
         this.setLayout(null);
         this.setSize(width, height);
@@ -70,6 +77,7 @@ public class ScoreLineView extends JPanel {
         }
     }
     
+    /** assigns each cell dimensions*/
     public void setCellDimensions() {
         nameCell.setSize(NAME_CELL_WIDTH, height);
         scoringExplanationCell.setSize(SCORING_EXPLANATION_CELL_WIDTH, height);
@@ -78,6 +86,7 @@ public class ScoreLineView extends JPanel {
         }
     }
 
+    /** assigns the location of each cell*/
     public void setCellLocations() {
         int scoreCellXCoordinate;
         nameCell.setLocation(0, 0);
@@ -88,6 +97,7 @@ public class ScoreLineView extends JPanel {
         }
     }
 
+    /** sets the border on each cell*/
     public void setCellBorders() {
         nameCell.setBorder(BorderFactory.createMatteBorder(1, 3, 1, 1, ColorPalette.textColor));
         scoringExplanationCell.setBorder(BorderFactory.createLineBorder(ColorPalette.textColor));
@@ -99,31 +109,66 @@ public class ScoreLineView extends JPanel {
         }
     }
 
+    /**
+    * Updates text to match new score and sets text to black
+    *
+    * @param newScore int value corresponding to the new score
+    */
     public void updateScoreCell(int newScore) {
         scoreCells.get(0).setText(Integer.toString(newScore));
         scoreCells.get(0).setForeground(Color.BLACK);
     }
 
+    /**
+    * Updates text to match new score and sets text to black
+    *
+    * @param newScore int value corresponding to the new score
+    * @param scoreColumn int value corresponding to column to update
+    */
     public void updateScoreCell(int newScore, int scoreColumn) {
         scoreCells.get(scoreColumn - 1).setText(Integer.toString(newScore));
         scoreCells.get(0).setForeground(Color.BLACK);
     }
 
+    /**
+    * Updates text to match a given text and sets text to black
+    *
+    * @param newScoreText String value to be assigned as scorecell text
+    * @param scoreColumn int value corresponding to collumn to update
+    */
     public void updateScoreCell(String newScoreText, int scoreColumn) {
         scoreCells.get(scoreColumn - 1).setText(newScoreText);
         scoreCells.get(0).setForeground(Color.BLACK);
     }
 
+    /**
+    * Updates text to match new score and sets text to given color
+    *
+    * @param newScore int value corresponding to the new score
+    * @param scoreColor Color value of new Score
+    */
     public void updateScoreCell(int newScore, Color scoreColor) {
         scoreCells.get(0).setText(Integer.toString(newScore));
         scoreCells.get(0).setForeground(scoreColor);
     }
 
+    /**
+    * Updates text to match new score and sets text to black on a given column
+    *
+    * @param newScore int value corresponding to the new score
+    * @param scoreColumn int value scorresponding to the column to be changed
+    * @param scoreColor Color value corresponding to the color of the new text
+    */
     public void updateScoreCell(int newScore, int scoreColumn, Color scoreColor) {
         scoreCells.get(scoreColumn - 1).setText(Integer.toString(newScore));
         scoreCells.get(scoreColumn - 1).setForeground(scoreColor);
     }
 
+    /**
+    * sets the background color of the line
+    *
+    * @param backgroundColor Color value to be set as line background color
+    */
     public void setLineBackground(Color backgroundColor) {
         nameCell.setOpaque(true);
         nameCell.setBackground(backgroundColor);
@@ -135,6 +180,12 @@ public class ScoreLineView extends JPanel {
         }
     }
 
+    /**
+    * get cell on a given column
+    *
+    * @param column int value corresponding with column to get cell from
+    * @return GameLabel with cell information
+    */
     public GameLabel getCell(int column) {
         if (column == 1) {
             return nameCell;
@@ -145,6 +196,7 @@ public class ScoreLineView extends JPanel {
         }
     }
 
+    /** Makes the bottom border of the line thicker*/
     public void setBottomBorder() {
         nameCell.setBorder(BorderFactory.createMatteBorder(1, 3, 3, 1, ColorPalette.textColor));
         scoringExplanationCell.setBorder(BorderFactory.createMatteBorder(1, 1, 3, 1, ColorPalette.textColor));

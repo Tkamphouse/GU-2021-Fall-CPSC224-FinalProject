@@ -2,6 +2,12 @@ package edu.gonzaga.ScoreCard.ScoreLines;
 
 import edu.gonzaga.*;
 
+/**
+ * FullHouseLine is the Class the represents the full house line on the LowerScoreCard
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 5/6/2022
+ */
 public class FullHouseLine extends ScoreLine {
     
     public FullHouseLine(String name, String scoringExplanation) {
@@ -16,16 +22,21 @@ public class FullHouseLine extends ScoreLine {
         super(name, scoringExplanation, playerScores);
     }
 
-    public void calculateScore(Hand playerHand) {
+    /**
+    * Calculates possible score based on a given hand
+    *
+    * @param currentHand hand object used to calculate possible score
+    */
+    public void calculateScore(Hand currentHand) {
         if (!super.checkUsed()) {
             int finalScore;
             boolean matchOfThree = false;
             boolean matchOfTwo = false;
             int count = 0;
-            for (int i = 1; i <= playerHand.getSize(); i++) { //loop through die sides
+            for (int i = 1; i <= currentHand.getSize(); i++) { //loop through die sides
                 count = 0;
-                for (int j = 0; j < playerHand.getSize(); j++) { //loop through dice
-                    if (playerHand.getDie(j).getSideUp() == i) { // count occurances of current specified side
+                for (int j = 0; j < currentHand.getSize(); j++) { //loop through dice
+                    if (currentHand.getDie(j).getSideUp() == i) { // count occurances of current specified side
                         count++;
                     }
                 }

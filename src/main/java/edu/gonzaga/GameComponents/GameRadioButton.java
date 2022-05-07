@@ -78,8 +78,8 @@ public class GameRadioButton extends JRadioButton {
     /**
      * resizes the images with width and height parameters
      *
-     * @param width
-     * @param height
+     * @param width int that sets width of all images
+     * @param height int that sets height of all images
      */
     public void resizeImages(int width, int height) {
         Image image = defaultIconImage.getImage(); // transform it

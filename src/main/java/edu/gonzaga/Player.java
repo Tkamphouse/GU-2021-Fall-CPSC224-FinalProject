@@ -11,7 +11,7 @@ import java.awt.event.*;
  * Player is the class that defines what a player has and does during the Yahtzee game.
  * 
  * @author Anna Cardinal
- * @version 3.0 4/22/2022
+ * @version 1.0 4/22/2022
  */
 public class Player {
 

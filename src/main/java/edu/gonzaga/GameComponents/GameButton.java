@@ -92,7 +92,7 @@ public class GameButton extends JButton {
     /**
      * changes the text size of text displayed on JPanel
      *
-     * @param textSize
+     * @param textSize int that sets teh size of text
      */
     public void setTextSize(int textSize) {
         this.setFont(new Font("Candara", Font.PLAIN, textSize));

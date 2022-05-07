@@ -3,6 +3,12 @@ package edu.gonzaga.ScoreCard.ScoreLines;
 import edu.gonzaga.*;
 import java.util.Arrays;
 
+/**
+ * StraightLine is the Class the represents all the straight lines on the LowerScoreCard
+ * 
+ * @author Anna Cardinal
+ * @version 1.0 5/6/2022
+ */
 public class StraightLine extends ScoreLine {
 
     private int targetLengthOfStraight;
@@ -22,14 +28,19 @@ public class StraightLine extends ScoreLine {
         targetLengthOfStraight = lengthOfStraight;
     }
 
-    public void calculateScore(Hand currHand) {
+    /**
+    * Calculates possible score based on a given hand
+    *
+    * @param currentHand hand object used to calculate possible score
+    */
+    public void calculateScore(Hand currentHand) {
         if (!super.checkUsed()) {
             int finalScore;
             int lengthOfStraight = 1;
             int currentLength = 1;
-            int[] dieValues = new int[currHand.getSize()];
+            int[] dieValues = new int[currentHand.getSize()];
             for (int i = 0; i < dieValues.length; i++) {
-                dieValues[i] = currHand.getDie(i).getSideUp();
+                dieValues[i] = currentHand.getDie(i).getSideUp();
             }
             Arrays.sort(dieValues);
             for (int i = 0; i < dieValues.length - 1; i++) {
