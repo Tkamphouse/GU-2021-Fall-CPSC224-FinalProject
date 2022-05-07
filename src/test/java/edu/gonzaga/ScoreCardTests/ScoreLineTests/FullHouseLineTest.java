@@ -1,7 +1,6 @@
 package edu.gonzaga.ScoreCardTests.ScoreLineTests;
 
 import org.junit.jupiter.api.Test;
-
 import edu.gonzaga.Hand;
 import edu.gonzaga.ScoreCard.ScoreLines.*;
 import static org.junit.jupiter.api.Assertions.*;

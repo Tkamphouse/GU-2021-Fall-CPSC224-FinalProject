@@ -1,10 +1,8 @@
 package edu.gonzaga.ScoreCardTests.ScoreLineTests;
 
 import org.junit.jupiter.api.Test;
-
 import edu.gonzaga.Hand;
 import edu.gonzaga.ScoreCard.ScoreLines.ChanceLine;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ChanceLineTest {

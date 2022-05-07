@@ -3,7 +3,6 @@ package edu.gonzaga.ScoreCardTests.ScoreLineTests;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import javax.swing.*;
-
 import edu.gonzaga.Hand;
 import edu.gonzaga.ScoreCard.ScoreLines.ScoreLine;
 import java.util.ArrayList;
